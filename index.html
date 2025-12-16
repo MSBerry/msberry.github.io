@@ -1,10 +1,2576 @@
 <!DOCTYPE html>
-<!-- saved from url=(0042)https://juejin.cn/post/7582469532326920228 -->
-<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>just a web</title>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>马培德食品科技 - 产品能力数字图册</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+            color: #e0e1dd;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            color: #4fc3f7;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, #4fc3f7, #66bb6a, #ff8a65, #ffd54f);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #a3b1c6;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        /* 导航控制 */
+        .nav-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e0e1dd;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+        }
+        
+        .nav-btn.active {
+            background: linear-gradient(90deg, #4fc3f7, #3a8fb7);
+            box-shadow: 0 5px 15px rgba(79, 195, 247, 0.3);
+        }
+        
+        /* 主内容区 */
+        .content-area {
+            position: relative;
+            min-height: 600px;
+        }
+        
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 总览页 - 星系图 */
+        .galaxy-container {
+            position: relative;
+            height: 650px;
+            overflow: hidden;
+            border-radius: 20px;
+            background: rgba(10, 20, 35, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+        
+        .galaxy-core {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #4fc3f7 0%, #1b4b6b 70%, transparent 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            box-shadow: 0 0 50px #4fc3f7;
+        }
+        
+        .core-text {
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            font-size: 0.9rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+        
+        .orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            transform-origin: center;
+            border: 1px dashed;
+        }
+        
+        .orbit-1 {
+            width: 400px;
+            height: 400px;
+            border-color: rgba(79, 195, 247, 0.5);
+            transform: translate(-50%, -50%);
+            animation: rotate 120s linear infinite;
+        }
+        
+        .orbit-2 {
+            width: 500px;
+            height: 500px;
+            border-color: rgba(102, 187, 106, 0.5);
+            transform: translate(-50%, -50%);
+            animation: rotate 140s linear infinite reverse;
+        }
+        
+        .orbit-3 {
+            width: 600px;
+            height: 600px;
+            border-color: rgba(255, 138, 101, 0.5);
+            transform: translate(-50%, -50%);
+            animation: rotate 160s linear infinite;
+        }
+        
+        .orbit-4 {
+            width: 700px;
+            height: 700px;
+            border-color: rgba(255, 213, 79, 0.5);
+            transform: translate(-50%, -50%);
+            animation: rotate 180s linear infinite reverse;
+        }
+        
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .planet {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 5;
+            text-decoration: none;
+        }
+        
+        .planet:hover {
+            transform: scale(1.15);
+            z-index: 20;
+        }
+        
+        .planet-icon {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+        
+        .planet-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            max-width: 70px;
+        }
+        
+        .puff-planet {
+            background: radial-gradient(circle, #5ac8fa 0%, #2a8dbd 100%);
+            box-shadow: 0 0 25px rgba(79, 195, 247, 0.7);
+        }
+        
+        .bar-planet {
+            background: radial-gradient(circle, #7ccf7f 0%, #4a9e4d 100%);
+            box-shadow: 0 0 25px rgba(102, 187, 106, 0.7);
+        }
+        
+        .shrimp-planet {
+            background: radial-gradient(circle, #ff9e7a 0%, #d87050 100%);
+            box-shadow: 0 0 25px rgba(255, 138, 101, 0.7);
+        }
+        
+        .roll-planet {
+            background: radial-gradient(circle, #ffe082 0%, #e6b400 100%);
+            box-shadow: 0 0 25px rgba(255, 213, 79, 0.7);
+        }
+        
+        .rice-planet {
+            background: radial-gradient(circle, #ba68c8 0%, #8e44ad 100%);
+            box-shadow: 0 0 25px rgba(186, 104, 200, 0.7);
+        }
+        
+        .other-planet {
+            background: radial-gradient(circle, #4db6ac 0%, #00897b 100%);
+            box-shadow: 0 0 25px rgba(77, 182, 172, 0.7);
+        }
+        
+        .tag-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            transform-origin: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .tag-ring-outer {
+            width: 850px;
+            height: 850px;
+            transform: translate(-50%, -50%);
+        }
+        
+        .tag-ring-inner {
+            width: 750px;
+            height: 750px;
+            transform: translate(-50%, -50%);
+        }
+        
+        .ring-tag {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-align: center;
+            width: 100px;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* 品类全景页 */
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .category-title {
+            font-size: 2.2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .category-icon {
+            font-size: 2.5rem;
+        }
+        
+        .back-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #e0e1dd;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .panorama-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .module {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .module:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            flex-shrink: 0;
+        }
+        
+        .module-icon {
+            font-size: 1.8rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+        
+        .module-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .shapes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        
+        .shape-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .shape-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+        
+        .shape-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        
+        .shape-name {
+            font-size: 0.85rem;
+            text-align: center;
+        }
+        
+        .flavor-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow-y: auto;
+            flex-grow: 1;
+            padding-right: 5px;
+        }
+        
+        .flavor-list::-webkit-scrollbar {
+            width: 5px;
+        }
+        
+        .flavor-list::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+        
+        .flavor-category {
+            margin-bottom: 15px;
+        }
+        
+        .flavor-category-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #a3b1c6;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .flavor-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .flavor-tag {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .flavor-tag:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .function-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            overflow-y: auto;
+            flex-grow: 1;
+            padding-right: 5px;
+        }
+        
+        .function-list::-webkit-scrollbar {
+            width: 5px;
+        }
+        
+        .function-list::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+        
+        .function-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .function-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .function-icon {
+            font-size: 1.3rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+        
+        .function-desc {
+            font-size: 0.95rem;
+        }
+        
+        .products-section {
+            margin-top: 40px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .product-visual {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.5rem;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .product-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .product-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        .product-desc {
+            font-size: 0.95rem;
+            color: #a3b1c6;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .product-link {
+            display: inline-block;
+            background: linear-gradient(90deg, #4fc3f7, #3a8fb7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .product-link:hover {
+            background: linear-gradient(90deg, #3a8fb7, #2a6f94);
+            box-shadow: 0 5px 15px rgba(79, 195, 247, 0.3);
+        }
+        
+        .capability-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 10;
+        }
+        
+        .footer-note {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #8a9bb2;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .panorama-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .galaxy-container {
+                height: 550px;
+            }
+            
+            .orbit-1 { width: 300px; height: 300px; }
+            .orbit-2 { width: 400px; height: 400px; }
+            .orbit-3 { width: 500px; height: 500px; }
+            .orbit-4 { width: 600px; height: 600px; }
+            
+            .tag-ring-outer { width: 650px; height: 650px; }
+            .tag-ring-inner { width: 550px; height: 550px; }
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .subtitle { font-size: 1.1rem; }
+            
+            .galaxy-container {
+                height: 450px;
+            }
+            
+            .orbit-1 { width: 250px; height: 250px; }
+            .orbit-2 { width: 320px; height: 320px; }
+            .orbit-3 { width: 390px; height: 390px; }
+            .orbit-4 { width: 460px; height: 460px; }
+            
+            .planet {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .planet-icon {
+                font-size: 1.5rem;
+            }
+            
+            .planet-name {
+                font-size: 0.7rem;
+            }
+            
+            .tag-ring-outer { width: 500px; height: 500px; }
+            .tag-ring-inner { width: 400px; height: 400px; }
+            
+            .ring-tag {
+                font-size: 0.7rem;
+                width: 70px;
+            }
+            
+            .category-title {
+                font-size: 1.8rem;
+            }
+            
+            .shapes-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-<p>hello word!  you are so great</p>
-<br>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <h1>马培德产品创新星系</h1>
+            </div>
+            <p class="subtitle">从创意到货架的一站式健康零食ODM解决方案 · 婴标品质 · 清洁标签 · 全球认证</p>
+            
+            <div class="nav-controls">
+                <button class="nav-btn active" data-page="overview">
+                    <i class="fas fa-globe-americas"></i> 星系总览
+                </button>
+                <button class="nav-btn" data-page="puff">
+                    <i class="fas fa-star"></i> 泡芙宇宙
+                </button>
+                <button class="nav-btn" data-page="bar">
+                    <i class="fas fa-bolt"></i> 谷物棒星系
+                </button>
+                <button class="nav-btn" data-page="shrimp">
+                    <i class="fas fa-fish"></i> 虾片星云
+                </button>
+                <button class="nav-btn" data-page="roll">
+                    <i class="fas fa-circle-notch"></i> 蛋卷星河
+                </button>
+                <button class="nav-btn" data-page="rice">
+                    <i class="fas fa-cookie"></i> 米饼星球
+                </button>
+                <button class="nav-btn" data-page="other">
+                    <i class="fas fa-asterisk"></i> 其他品类
+                </button>
+            </div>
+        </header>
+        
+        <div class="content-area">
+            <!-- 总览页 -->
+            <div id="overview" class="page active">
+                <div class="galaxy-container">
+                    <div class="capability-badge">
+                        <i class="fas fa-cogs"></i> 200+模具 · 柔性智造
+                    </div>
+                    
+                    <!-- 星系核心 -->
+                    <div class="galaxy-core">
+                        <div class="core-text">
+                            马培德<br>智造引擎
+                        </div>
+                    </div>
+                    
+                    <!-- 轨道 -->
+                    <div class="orbit orbit-1"></div>
+                    <div class="orbit orbit-2"></div>
+                    <div class="orbit orbit-3"></div>
+                    <div class="orbit orbit-4"></div>
+                    
+                    <!-- 星球 -->
+                    <a href="#" class="planet puff-planet" style="top: 30%; left: 20%;" data-category="puff">
+                        <div class="planet-icon">⭐</div>
+                        <div class="planet-name">趣味泡芙</div>
+                    </a>
+                    
+                    <a href="#" class="planet bar-planet" style="top: 65%; left: 15%;" data-category="bar">
+                        <div class="planet-icon">⚡</div>
+                        <div class="planet-name">能量谷物棒</div>
+                    </a>
+                    
+                    <a href="#" class="planet shrimp-planet" style="top: 25%; left: 75%;" data-category="shrimp">
+                        <div class="planet-icon">🦐</div>
+                        <div class="planet-name">鲜味虾片</div>
+                    </a>
+                    
+                    <a href="#" class="planet roll-planet" style="top: 70%; left: 80%;" data-category="roll">
+                        <div class="planet-icon">🌀</div>
+                        <div class="planet-name">酥香蛋卷</div>
+                    </a>
+                    
+                    <!-- 更多星球 -->
+                    <a href="#" class="planet rice-planet" style="top: 40%; left: 40%;" data-category="rice">
+                        <div class="planet-icon">🍘</div>
+                        <div class="planet-name">酥脆米饼</div>
+                    </a>
+                    
+                    <a href="#" class="planet other-planet" style="top: 50%; left: 60%;" data-category="other">
+                        <div class="planet-icon">✨</div>
+                        <div class="planet-name">其他品类</div>
+                    </a>
+                    
+                    <!-- 功能标签环 - 8个标签均匀分布 -->
+                    <div class="tag-ring tag-ring-inner">
+                        <div class="ring-tag" style="transform: rotate(0deg) translate(375px) rotate(-0deg);">非油炸</div>
+                        <div class="ring-tag" style="transform: rotate(45deg) translate(375px) rotate(-45deg);">清洁标签</div>
+                        <div class="ring-tag" style="transform: rotate(90deg) translate(375px) rotate(-90deg);">婴标品质</div>
+                        <div class="ring-tag" style="transform: rotate(135deg) translate(375px) rotate(-135deg);">高蛋白</div>
+                        <div class="ring-tag" style="transform: rotate(180deg) translate(375px) rotate(-180deg);">低GI</div>
+                        <div class="ring-tag" style="transform: rotate(225deg) translate(375px) rotate(-225deg);">益生元</div>
+                        <div class="ring-tag" style="transform: rotate(270deg) translate(375px) rotate(-270deg);">无添加</div>
+                        <div class="ring-tag" style="transform: rotate(315deg) translate(375px) rotate(-315deg);">功能强化</div>
+                    </div>
+                    
+                    <!-- 场景标签环 - 6个标签均匀分布 -->
+                    <div class="tag-ring tag-ring-outer">
+                        <div class="ring-tag" style="transform: rotate(0deg) translate(425px) rotate(-0deg);">母婴臻选</div>
+                        <div class="ring-tag" style="transform: rotate(60deg) translate(425px) rotate(-60deg);">健身能量</div>
+                        <div class="ring-tag" style="transform: rotate(120deg) translate(425px) rotate(-120deg);">高端礼赠</div>
+                        <div class="ring-tag" style="transform: rotate(180deg) translate(425px) rotate(-180deg);">休闲零食</div>
+                        <div class="ring-tag" style="transform: rotate(240deg) translate(425px) rotate(-240deg);">儿童营养</div>
+                        <div class="ring-tag" style="transform: rotate(300deg) translate(425px) rotate(-300deg);">代餐管理</div>
+                    </div>
+                </div>
+                
+                <div class="footer-note">
+                    <p><i class="fas fa-lightbulb"></i> 点击任意星球或使用上方导航探索各品类解决方案</p>
+                    <p>马培德食品科技有限公司 · FSSC22000认证 · FDA注册 · 10万级洁净车间</p>
+                </div>
+            </div>
+            
+            <!-- 泡芙品类全景页 -->
+            <div id="puff" class="page">
+                <div class="category-header">
+                    <div class="category-title">
+                        <div class="category-icon" style="color: #4fc3f7;">⭐</div>
+                        <div>
+                            <h2>泡芙宇宙 · 定制解决方案</h2>
+                            <p style="color: #a3b1c6; font-size: 1.1rem; margin-top: 5px;">从造型到配方，您的专属趣味营养工厂</p>
+                        </div>
+                    </div>
+                    <button class="back-btn">
+                        <i class="fas fa-arrow-left"></i> 返回星系总览
+                    </button>
+                </div>
+                
+                <div class="panorama-grid">
+                    <!-- 左栏：百变造型库 - 滚动式 -->
+                    <div class="module">
+                        <div class="module-header">
+                            <div class="module-icon" style="background: rgba(79, 195, 247, 0.2); color: #4fc3f7;">
+                                <i class="fas fa-shapes"></i>
+                            </div>
+                            <div class="module-title">百变造型库</div>
+                        </div>
+                        <p style="color: #a3b1c6; margin-bottom: 20px; line-height: 1.5; flex-shrink: 0;">6大系列，20+造型，200+模具支持快速定制</p>
+                        
+                        <div class="flavor-list">
+                            <!-- 系列1：常规系列 -->
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-cube" style="color: #4fc3f7;"></i> 常规系列
+                                </div>
+                                <div class="shapes-grid" style="margin-top: 10px; grid-template-columns: repeat(4, 1fr);">
+                                    <div class="shape-item">
+                                        <div class="shape-icon">👆</div>
+                                        <div class="shape-name">手指</div>
+                                    </div>
+                                    <div class="shape-item">
+                                        <div class="shape-icon">⚪</div>
+                                        <div class="shape-name">波波球</div>
+                                    </div>
+                                    <div class="shape-item">
+                                        <div class="shape-icon">❤️</div>
+                                        <div class="shape-name">爱心</div>
+                                    </div>
+                                    <div class="shape-item">
+                                        <div class="shape-icon">⭕</div>
+                                        <div class="shape-name">小圈圈</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 系列2：星空系列 -->
+                            <div class="flavor-category" style="margin-top: 25px;">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-star" style="color: #ffd54f;"></i> 星空系列
+                                </div>
+                                <div class="shapes-grid" style="margin-top: 10px; grid-template-columns: repeat(4, 1fr);">
+                                    <div class="shape-item">
+                                        <div class="shape-icon">🌙</div>
+                                        <div class="shape-name">月亮</div>
+                                    </div>
+                                    <div class="shape-item">
+                                        <div class="shape-icon">⭐</div>
+                                        <div class="shape-name">星星</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 系列3：动物系列 -->
+                            <div class="flavor-category" style="margin-top: 25px;">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-paw" style="color: #ff8a65;"></i> 动物系列
+                                </div>
+                                <div class="shapes-grid" style="margin-top: 10px; grid-template-columns: repeat(4, 1fr);">
+                                    <div class="shape-item">
+                                        <div class="shape-icon">🦆</div>
+                                        <div class="shape-name">鸭子</div>
+                                    </div>
+                                    <div class="shape-item">
+                                        <div class="shape-icon">🐕</div>
+                                        <div class="shape-name">小狗</div>
+                                    </div>
+                                    <div class="shape-item">
+                                        <div class="shape-icon">🐰</div>
+                                        <div class="shape-name">小兔子</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 系列4：海洋生物系列 -->
+                            <div class="flavor-category" style="margin-top: 25px;">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-fish" style="color: #4fc3f7;"></i> 海洋生物系列
+                                </div>
+                                <div class="shapes-grid" style="margin-top: 10px; grid-template-columns: repeat(4, 1fr);">
+                                    <div class="shape-item">
+                                        <div class="shape-icon">🦈</div>
+                                        <div class="shape-name">鲨鱼</div>
+                                    </div>
+                                    <div class="shape-item">
+                                        <div class="shape-icon">🐬</div>
+                                        <div class="shape-name">海豚</div>
+                                    </div>
+                                    <div class="shape-item">
+                                        <div class="shape-icon" style="font-size: 1.5rem;">🦭</div>
+                                        <div class="shape-name">海狮</div>
+                                    </div>
+                                    <div class="shape-item">
+                                        <div class="shape-icon">🐟</div>
+                                        <div class="shape-name">小鱼</div>
+                                    </div>
+                                    <div class="shape-item">
+                                        <div class="shape-icon">⭐</div>
+                                        <div class="shape-name">海星</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 系列5：水果系列 -->
+                            <div class="flavor-category" style="margin-top: 25px;">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-apple-alt" style="color: #66bb6a;"></i> 水果系列
+                                </div>
+                                <div class="shapes-grid" style="margin-top: 10px; grid-template-columns: repeat(4, 1fr);">
+                                    <div class="shape-item">
+                                        <div class="shape-icon">🍌</div>
+                                        <div class="shape-name">香蕉</div>
+                                    </div>
+                                    <div class="shape-item">
+                                        <div class="shape-icon">🍎</div>
+                                        <div class="shape-name">苹果</div>
+                                    </div>
+                                    <div class="shape-item">
+                                        <div class="shape-icon">🍓</div>
+                                        <div class="shape-name">草莓</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 系列6：植物系列 -->
+                            <div class="flavor-category" style="margin-top: 25px;">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-seedling" style="color: #8bc34a;"></i> 植物系列
+                                </div>
+                                <div class="shapes-grid" style="margin-top: 10px; grid-template-columns: repeat(4, 1fr);">
+                                    <div class="shape-item">
+                                        <div class="shape-icon">🍄</div>
+                                        <div class="shape-name">蘑菇</div>
+                                    </div>
+                                    <div class="shape-item">
+                                        <div class="shape-icon">🌼</div>
+                                        <div class="shape-name">花朵</div>
+                                    </div>
+                                    <div class="shape-item">
+                                        <div class="shape-icon" style="font-size: 1.5rem;">🥒</div>
+                                        <div class="shape-name">葫芦</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px; padding: 12px; background: rgba(79, 195, 247, 0.1); border-radius: 8px; border-left: 4px solid #4fc3f7; flex-shrink: 0;">
+                            <div style="font-weight: 600; margin-bottom: 5px;">定制能力</div>
+                            <div style="font-size: 0.9rem; color: #a3b1c6;">支持专属IP造型定制 · 15天开模周期 · 200+模具库</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 中栏：风味矩阵 -->
+                    <div class="module">
+                        <div class="module-header">
+                            <div class="module-icon" style="background: rgba(255, 138, 101, 0.2); color: #ff8a65;">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="module-title">风味矩阵</div>
+                        </div>
+                        <p style="color: #a3b1c6; margin-bottom: 20px; line-height: 1.5; flex-shrink: 0;">我们能为它赋予灵魂的味道，清洁标签风味技术</p>
+                        
+                        <div class="flavor-list">
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-crown" style="color: #ffd54f;"></i> 经典系列
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">原味</span>
+                                    <span class="flavor-tag">奶酪（芝士）</span>
+                                    <span class="flavor-tag">酸奶</span>
+                                    <span class="flavor-tag">海盐</span>
+                                    <span class="flavor-tag">牛乳</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-apple-alt" style="color: #66bb6a;"></i> 水果系列
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">雪梨</span>
+                                    <span class="flavor-tag">苹果</span>
+                                    <span class="flavor-tag">草莓</span>
+                                    <span class="flavor-tag">香蕉</span>
+                                    <span class="flavor-tag">蓝莓</span>
+                                    <span class="flavor-tag">火龙果</span>
+                                    <span class="flavor-tag">葡萄</span>
+                                    <span class="flavor-tag">樱桃</span>
+                                    <span class="flavor-tag">黄桃</span>
+                                    <span class="flavor-tag">车厘子</span>
+                                    <span class="flavor-tag">青柠</span>
+                                    <span class="flavor-tag">蔓越莓</span>
+                                    <span class="flavor-tag">树莓</span>
+                                    <span class="flavor-tag">桑葚</span>
+                                    <span class="flavor-tag">哈密瓜</span>
+                                    <span class="flavor-tag">芒果</span>
+                                    <span class="flavor-tag">奇异果</span>
+                                    <span class="flavor-tag">椰子</span>
+                                    <span class="flavor-tag">枇杷</span>
+                                    <span class="flavor-tag">荔枝</span>
+                                    <span class="flavor-tag">凤梨</span>
+                                    <span class="flavor-tag">香橙</span>
+                                    <span class="flavor-tag">山竹</span>
+                                    <span class="flavor-tag">无花果</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-carrot" style="color: #ff8a65;"></i> 蔬菜系列
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">黄瓜</span>
+                                    <span class="flavor-tag">甜玉米</span>
+                                    <span class="flavor-tag">甜菜</span>
+                                    <span class="flavor-tag">南瓜</span>
+                                    <span class="flavor-tag">紫薯</span>
+                                    <span class="flavor-tag">菠菜</span>
+                                    <span class="flavor-tag">胡萝卜</span>
+                                    <span class="flavor-tag">海苔</span>
+                                    <span class="flavor-tag">西蓝花</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-drumstick-bite" style="color: #f44336;"></i> 肉食系列
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">鳕鱼</span>
+                                    <span class="flavor-tag">虾/鲜虾</span>
+                                    <span class="flavor-tag">三文鱼</span>
+                                    <span class="flavor-tag">牛肉</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-heartbeat" style="color: #e91e63;"></i> 膳养系列
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">铁棍山药</span>
+                                    <span class="flavor-tag">鸡内金</span>
+                                    <span class="flavor-tag">猴头菇</span>
+                                    <span class="flavor-tag">红枣</span>
+                                    <span class="flavor-tag">赤小豆</span>
+                                    <span class="flavor-tag">茯苓</span>
+                                    <span class="flavor-tag">山楂</span>
+                                    <span class="flavor-tag">黑芝麻</span>
+                                    <span class="flavor-tag">陈皮</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-plus-circle" style="color: #9c27b0;"></i> 延伸品
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag" style="background: rgba(156, 39, 176, 0.2);">朱古力（外裹)</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-tools" style="color: #607d8b;"></i> 定制开发
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag" style="background: rgba(96, 125, 139, 0.2);">其他定制风味开发中</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 右栏：功能配方库 - 滚动式并合并钙铁锌 -->
+                    <div class="module">
+                        <div class="module-header">
+                            <div class="module-icon" style="background: rgba(102, 187, 106, 0.2); color: #66bb6a;">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <div class="module-title">功能配方库</div>
+                        </div>
+                        <p style="color: #a3b1c6; margin-bottom: 20px; line-height: 1.5; flex-shrink: 0;">我们能把它变成更健康的食物，功能可叠加定制</p>
+                        
+                        <div class="function-list">
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(33, 150, 243, 0.2); color: #2196f3;">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">DHA</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">促进婴幼儿脑部与视力发育</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(76, 175, 80, 0.2); color: #4caf50;">
+                                    <i class="fas fa-bone"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">钙铁锌</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">强化骨骼，预防贫血，增强免疫力</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(156, 39, 176, 0.2); color: #9c27b0;">
+                                    <i class="fas fa-capsules"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">维生素B</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">促进能量代谢，维持神经系统健康</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(0, 150, 136, 0.2); color: #009688;">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">益生元/益生菌</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">促进肠道健康，提升免疫力</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(96, 125, 139, 0.2); color: #607d8b;">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">低GI</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">稳定血糖，更适合控糖人群</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(103, 58, 183, 0.2); color: #673ab7;">
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">GABA</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">天然镇静神经，改善睡眠质量</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px; padding: 12px; background: rgba(102, 187, 106, 0.1); border-radius: 8px; border-left: 4px solid #66bb6a; flex-shrink: 0;">
+                            <div style="font-weight: 600; margin-bottom: 5px;">功能叠加</div>
+                            <div style="font-size: 0.9rem; color: #a3b1c6;">支持多种功能成分组合，打造差异化产品</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 明星产品方案 -->
+                <div class="products-section">
+                    <div class="section-title">
+                        <i class="fas fa-crown" style="color: #ffd54f;"></i> 明星成品方案库
+                    </div>
+                    
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(79, 195, 247, 0.1); color: #4fc3f7;">
+                                👆
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">高钙芝士手指泡芙</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">婴标</span>
+                                    <span class="product-tag">高钙</span>
+                                    <span class="product-tag">清洁标签</span>
+                                    <span class="product-tag">常规系列</span>
+                                </div>
+                                <p class="product-desc">专为婴幼儿设计，手指形状方便抓握，强化钙质吸收，使用进口乳粉，无额外添加。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(102, 187, 106, 0.1); color: #66bb6a;">
+                                🦈
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">海洋动物DHA泡芙</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">DHA</span>
+                                    <span class="product-tag">海洋生物系列</span>
+                                    <span class="product-tag">脑部发育</span>
+                                </div>
+                                <p class="product-desc">趣味海洋动物造型，添加DHA促进脑部发育，适合8M+宝宝抓握训练与认知启蒙。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(255, 213, 79, 0.1); color: #ffd54f;">
+                                🍓
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">益生元水果乐园泡芙</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">益生元</span>
+                                    <span class="product-tag">水果系列</span>
+                                    <span class="product-tag">肠道健康</span>
+                                </div>
+                                <p class="product-desc">水果造型泡芙，添加益生元促进肠道菌群平衡，多种水果风味激发宝宝进食兴趣。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(255, 138, 101, 0.1); color: #ff8a65;">
+                                🐰
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">动物系列高铁泡芙</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">高铁</span>
+                                    <span class="product-tag">动物系列</span>
+                                    <span class="product-tag">预防贫血</span>
+                                </div>
+                                <p class="product-desc">可爱动物造型，强化铁元素，预防婴幼儿贫血，适合6M+宝宝辅食添加。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 谷物棒品类全景页 -->
+            <div id="bar" class="page">
+                <div class="category-header">
+                    <div class="category-title">
+                        <div class="category-icon" style="color: #66bb6a;">⚡</div>
+                        <div>
+                            <h2>谷物棒星系 · 定制解决方案</h2>
+                            <p style="color: #a3b1c6; font-size: 1.1rem; margin-top: 5px;">从能量到营养，您的专属续航补给站</p>
+                        </div>
+                    </div>
+                    <button class="back-btn">
+                        <i class="fas fa-arrow-left"></i> 返回星系总览
+                    </button>
+                </div>
+                
+                <div class="panorama-grid">
+                    <!-- 左栏：形态库 -->
+                    <div class="module">
+                        <div class="module-header">
+                            <div class="module-icon" style="background: rgba(102, 187, 106, 0.2); color: #66bb6a;">
+                                <i class="fas fa-shapes"></i>
+                            </div>
+                            <div class="module-title">形态库</div>
+                        </div>
+                        <p style="color: #a3b1c6; margin-bottom: 20px; line-height: 1.5; flex-shrink: 0;">多种形态满足不同场景需求，从便携到分享装</p>
+                        
+                        <div class="shapes-grid">
+                            <div class="shape-item">
+                                <div class="shape-icon">▭</div>
+                                <div class="shape-name">扁形</div>
+                            </div>
+                            <div class="shape-item">
+                                <div class="shape-icon">●</div>
+                                <div class="shape-name">圆柱</div>
+                            </div>
+                            <div class="shape-item">
+                                <div class="shape-icon">▲</div>
+                                <div class="shape-name">三棱柱</div>
+                            </div>
+                            <div class="shape-item">
+                                <div class="shape-icon">🌀</div>
+                                <div class="shape-name">螺旋形</div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px; padding: 12px; background: rgba(102, 187, 106, 0.1); border-radius: 8px; border-left: 4px solid #66bb6a; flex-shrink: 0;">
+                            <div style="font-weight: 600; margin-bottom: 5px;">定制能力</div>
+                            <div style="font-size: 0.9rem; color: #a3b1c6;">支持注芯/涂层工艺 · 克重灵活调整</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 中栏：风味矩阵 -->
+                    <div class="module">
+                        <div class="module-header">
+                            <div class="module-icon" style="background: rgba(255, 138, 101, 0.2); color: #ff8a65;">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="module-title">风味矩阵</div>
+                        </div>
+                        <p style="color: #a3b1c6; margin-bottom: 20px; line-height: 1.5; flex-shrink: 0;">80+风味选择，从经典到猎奇，满足不同人群需求</p>
+                        
+                        <div class="flavor-list">
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-crown" style="color: #ffd54f;"></i> 经典系列
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">原味</span>
+                                    <span class="flavor-tag">奶酪（芝士）</span>
+                                    <span class="flavor-tag">酸奶</span>
+                                    <span class="flavor-tag">牛乳</span>
+                                    <span class="flavor-tag">蜂蜜</span>
+                                    <span class="flavor-tag">黄油</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-utensil-spoon" style="color: #ff8a65;"></i> 菜肴风味
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">海苔</span>
+                                    <span class="flavor-tag">蛋黄</span>
+                                    <span class="flavor-tag">麻辣</span>
+                                    <span class="flavor-tag">香蒜</span>
+                                    <span class="flavor-tag">芥末</span>
+                                    <span class="flavor-tag">坚果</span>
+                                    <span class="flavor-tag">海鲜</span>
+                                    <span class="flavor-tag">青稞</span>
+                                    <span class="flavor-tag">牛肉</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-pepper-hot" style="color: #f44336;"></i> 猎奇风味
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">云南酸汤</span>
+                                    <span class="flavor-tag">江西小炒</span>
+                                    <span class="flavor-tag">冬阴功</span>
+                                    <span class="flavor-tag">藤椒</span>
+                                    <span class="flavor-tag">黑松露</span>
+                                    <span class="flavor-tag">章鱼烧</span>
+                                    <span class="flavor-tag">香菜</span>
+                                    <span class="flavor-tag">烤鸡</span>
+                                    <span class="flavor-tag">罗勒</span>
+                                    <span class="flavor-tag">辣年糕</span>
+                                    <span class="flavor-tag">意式浓汤</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-random" style="color: #9c27b0;"></i> 跨界风味
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">棉花糖</span>
+                                    <span class="flavor-tag">奥利奥</span>
+                                    <span class="flavor-tag">朱古力</span>
+                                    <span class="flavor-tag">焦糖</span>
+                                    <span class="flavor-tag">奶茶</span>
+                                    <span class="flavor-tag">咖啡</span>
+                                    <span class="flavor-tag">杨枝甘露</span>
+                                    <span class="flavor-tag">桂花</span>
+                                    <span class="flavor-tag">茉莉</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 右栏：功能配方库 -->
+                    <div class="module">
+                        <div class="module-header">
+                            <div class="module-icon" style="background: rgba(79, 195, 247, 0.2); color: #4fc3f7;">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <div class="module-title">功能配方库</div>
+                        </div>
+                        <p style="color: #a3b1c6; margin-bottom: 20px; line-height: 1.5; flex-shrink: 0;">能量补充与营养强化的完美结合</p>
+                        
+                        <div class="function-list">
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(33, 150, 243, 0.2); color: #2196f3;">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">DHA</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">脑力补充，适合学生与上班族</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(76, 175, 80, 0.2); color: #4caf50;">
+                                    <i class="fas fa-bone"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">强化钙铁锌</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">运动后快速补充矿物质</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 152, 0, 0.2); color: #ff9800;">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">益生元/益生菌</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">运动后肠道健康维护</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(156, 39, 176, 0.2); color: #9c27b0;">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">低GI</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">缓慢释放能量，持久饱腹</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(103, 58, 183, 0.2); color: #673ab7;">
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">GABA</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">缓解压力，运动后放松</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 明星产品方案 -->
+                <div class="products-section">
+                    <div class="section-title">
+                        <i class="fas fa-crown" style="color: #ffd54f;"></i> 明星成品方案库
+                    </div>
+                    
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(102, 187, 106, 0.1); color: #66bb6a;">
+                                ⚡
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">高蛋白能量谷物棒</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">高蛋白</span>
+                                    <span class="product-tag">低GI</span>
+                                    <span class="product-tag">健身</span>
+                                </div>
+                                <p class="product-desc">专为健身人群设计，高蛋白含量，低GI配方，提供持久能量，运动前后皆宜。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(255, 138, 101, 0.1); color: #ff8a65;">
+                                🌶️
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">猎奇风味谷物棒</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">创新风味</span>
+                                    <span class="product-tag">年轻消费</span>
+                                    <span class="product-tag">话题产品</span>
+                                </div>
+                                <p class="product-desc">冬阴功、麻辣等猎奇风味，吸引年轻消费者，打造社交话题性零食。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(255, 213, 79, 0.1); color: #ffd54f;">
+                                🍫
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">朱古力涂层谷物棒</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">涂层工艺</span>
+                                    <span class="product-tag">休闲零食</span>
+                                    <span class="product-tag">美味享受</span>
+                                </div>
+                                <p class="product-desc">外裹优质朱古力涂层，口感层次丰富，满足休闲零食需求，兼具美味与营养。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 虾片品类全景页 -->
+            <div id="shrimp" class="page">
+                <div class="category-header">
+                    <div class="category-title">
+                        <div class="category-icon" style="color: #ff8a65;">🦐</div>
+                        <div>
+                            <h2>虾片星云 · 定制解决方案</h2>
+                            <p style="color: #a3b1c6; font-size: 1.1rem; margin-top: 5px;">鲜香薄脆，还原海洋本味</p>
+                        </div>
+                    </div>
+                    <button class="back-btn">
+                        <i class="fas fa-arrow-left"></i> 返回星系总览
+                    </button>
+                </div>
+                
+                <div class="panorama-grid">
+                    <!-- 左栏：工艺特点 -->
+                    <div class="module">
+                        <div class="module-header">
+                            <div class="module-icon" style="background: rgba(255, 138, 101, 0.2); color: #ff8a65;">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                            <div class="module-title">工艺特点</div>
+                        </div>
+                        <p style="color: #a3b1c6; margin-bottom: 20px; line-height: 1.5; flex-shrink: 0;">非油炸膨化工艺，保留食材原味，健康与美味兼得</p>
+                        
+                        <div class="function-list">
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 138, 101, 0.2); color: #ff8a65;">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">非油炸工艺</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">低脂健康，减少油脂摄入</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 138, 101, 0.2); color: #ff8a65;">
+                                    <i class="fas fa-fish"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">真实虾肉添加</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">选用优质虾源，鲜味纯正</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 138, 101, 0.2); color: #ff8a65;">
+                                    <i class="fas fa-weight"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">轻质薄脆</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">空气感质地，入口即化</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 138, 101, 0.2); color: #ff8a65;">
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">婴标品质</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">无添加盐糖，适合婴幼儿</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 中栏：风味矩阵 -->
+                    <div class="module">
+                        <div class="module-header">
+                            <div class="module-icon" style="background: rgba(79, 195, 247, 0.2); color: #4fc3f7;">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="module-title">风味矩阵</div>
+                        </div>
+                        <p style="color: #a3b1c6; margin-bottom: 20px; line-height: 1.5; flex-shrink: 0;">8+基础风味，支持定制开发，满足不同市场需求</p>
+                        
+                        <div class="flavor-list">
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-fish" style="color: #ff8a65;"></i> 海鲜原味
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">虾</span>
+                                    <span class="flavor-tag">海苔</span>
+                                    <span class="flavor-tag">三文鱼</span>
+                                    <span class="flavor-tag">鳕鱼</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-cheese" style="color: #ffd54f;"></i> 奶香系列
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">芝士</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-pepper-hot" style="color: #f44336;"></i> 风味系列
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">番茄</span>
+                                    <span class="flavor-tag">牛肉</span>
+                                    <span class="flavor-tag">芥末</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-pencil-alt" style="color: #9c27b0;"></i> 定制开发
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag" style="background: rgba(156, 39, 176, 0.2);">其他定制风味开发中</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 右栏：应用场景 -->
+                    <div class="module">
+                        <div class="module-header">
+                            <div class="module-icon" style="background: rgba(255, 213, 79, 0.2); color: #ffd54f;">
+                                <i class="fas fa-globe-americas"></i>
+                            </div>
+                            <div class="module-title">应用场景</div>
+                        </div>
+                        <p style="color: #a3b1c6; margin-bottom: 20px; line-height: 1.5; flex-shrink: 0;">多元消费场景，覆盖全年龄段人群</p>
+                        
+                        <div class="function-list">
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 213, 79, 0.2); color: #ffd54f;">
+                                    <i class="fas fa-baby"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">婴幼儿辅食</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">无盐糖配方，锻炼抓握能力</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 213, 79, 0.2); color: #ffd54f;">
+                                    <i class="fas fa-child"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">儿童零食</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">趣味包装，补充蛋白质</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 213, 79, 0.2); color: #ffd54f;">
+                                    <i class="fas fa-tv"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">休闲零食</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">追剧伴侣，轻负担零食</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 213, 79, 0.2); color: #ffd54f;">
+                                    <i class="fas fa-cocktail"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">佐餐搭配</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">酒水搭档，聚会分享</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 明星产品方案 -->
+                <div class="products-section">
+                    <div class="section-title">
+                        <i class="fas fa-crown" style="color: #ffd54f;"></i> 明星成品方案库
+                    </div>
+                    
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(255, 138, 101, 0.1); color: #ff8a65;">
+                                🦐
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">婴标鲜虾片</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">婴标</span>
+                                    <span class="product-tag">非油炸</span>
+                                    <span class="product-tag">高蛋白</span>
+                                </div>
+                                <p class="product-desc">专为婴幼儿设计，无添加盐糖，真实虾肉添加，非油炸工艺，健康营养。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(255, 138, 101, 0.1); color: #ff8a65;">
+                                🍅
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">番茄味虾片</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">番茄风味</span>
+                                    <span class="product-tag">休闲零食</span>
+                                    <span class="product-tag">儿童喜爱</span>
+                                </div>
+                                <p class="product-desc">酸甜番茄风味搭配鲜虾本味，口感层次丰富，深受儿童喜爱。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(255, 138, 101, 0.1); color: #ff8a65;">
+                                🌶️
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">芥末海苔虾片</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">成人风味</span>
+                                    <span class="product-tag">刺激口感</span>
+                                    <span class="product-tag">佐餐零食</span>
+                                </div>
+                                <p class="product-desc">芥末与海苔的完美结合，刺激口感，适合成人作为酒水搭档。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 蛋卷品类全景页 -->
+            <div id="roll" class="page">
+                <div class="category-header">
+                    <div class="category-title">
+                        <div class="category-icon" style="color: #ffd54f;">🌀</div>
+                        <div>
+                            <h2>蛋卷星河 · 定制解决方案</h2>
+                            <p style="color: #a3b1c6; font-size: 1.1rem; margin-top: 5px;">酥香层层，匠心卷制</p>
+                        </div>
+                    </div>
+                    <button class="back-btn">
+                        <i class="fas fa-arrow-left"></i> 返回星系总览
+                    </button>
+                </div>
+                
+                <div class="panorama-grid">
+                    <!-- 左栏：工艺特点 -->
+                    <div class="module">
+                        <div class="module-header">
+                            <div class="module-icon" style="background: rgba(255, 213, 79, 0.2); color: #ffd54f;">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                            <div class="module-title">工艺特点</div>
+                        </div>
+                        <p style="color: #a3b1c6; margin-bottom: 20px; line-height: 1.5; flex-shrink: 0;">传统工艺与现代技术的完美结合，打造极致酥脆口感</p>
+                        
+                        <div class="function-list">
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 213, 79, 0.2); color: #ffd54f;">
+                                    <i class="fas fa-layer-group"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">多层卷制</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">128层酥脆口感，入口即化</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 213, 79, 0.2); color: #ffd54f;">
+                                    <i class="fas fa-egg"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">新鲜鸡蛋</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">选用新鲜鸡蛋，蛋香浓郁</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 213, 79, 0.2); color: #ffd54f;">
+                                    <i class="fas fa-temperature-low"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">低温烘焙</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">保留营养，色泽金黄</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 213, 79, 0.2); color: #ffd54f;">
+                                    <i class="fas fa-weight"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">轻薄酥脆</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">空气感质地，不油腻</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 中栏：风味矩阵 -->
+                    <div class="module">
+                        <div class="module-header">
+                            <div class="module-icon" style="background: rgba(79, 195, 247, 0.2); color: #4fc3f7;">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="module-title">风味矩阵</div>
+                        </div>
+                        <p style="color: #a3b1c6; margin-bottom: 20px; line-height: 1.5; flex-shrink: 0;">15+经典风味，东西方口味融合创新</p>
+                        
+                        <div class="flavor-list">
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-crown" style="color: #ffd54f;"></i> 经典原味
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">原味</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-leaf" style="color: #66bb6a;"></i> 茶香系列
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">抹茶</span>
+                                    <span class="flavor-tag">绿茶/红茶</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-coffee" style="color: #8d6e63;"></i> 醇香系列
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">朱古力</span>
+                                    <span class="flavor-tag">咖啡</span>
+                                    <span class="flavor-tag">芝士</span>
+                                    <span class="flavor-tag">黄油</span>
+                                    <span class="flavor-tag">牛乳</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-umbrella-beach" style="color: #4fc3f7;"></i> 热带风味
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">椰子</span>
+                                    <span class="flavor-tag">蛋黄</span>
+                                    <span class="flavor-tag">海苔</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-ice-cream" style="color: #e91e63;"></i> 甜品风味
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">红豆</span>
+                                    <span class="flavor-tag">玫梅</span>
+                                    <span class="flavor-tag">士多啤梨</span>
+                                    <span class="flavor-tag">奶茶</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 右栏：应用场景 -->
+                    <div class="module">
+                        <div class="module-header">
+                            <div class="module-icon" style="background: rgba(255, 138, 101, 0.2); color: #ff8a65;">
+                                <i class="fas fa-globe-americas"></i>
+                            </div>
+                            <div class="module-title">应用场景</div>
+                        </div>
+                        <p style="color: #a3b1c6; margin-bottom: 20px; line-height: 1.5; flex-shrink: 0;">覆盖全场景消费，从伴手礼到日常零食</p>
+                        
+                        <div class="function-list">
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 138, 101, 0.2); color: #ff8a65;">
+                                    <i class="fas fa-gift"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">礼品市场</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">精致包装，节日伴手礼首选</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 138, 101, 0.2); color: #ff8a65;">
+                                    <i class="fas fa-mug-hot"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">茶点搭配</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">中西式茶点完美搭档</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 138, 101, 0.2); color: #ff8a65;">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">办公室零食</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">独立包装，方便分享</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 138, 101, 0.2); color: #ff8a65;">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">家庭消费</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">老少皆宜，全家共享</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 明星产品方案 -->
+                <div class="products-section">
+                    <div class="section-title">
+                        <i class="fas fa-crown" style="color: #ffd54f;"></i> 明星成品方案库
+                    </div>
+                    
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(255, 213, 79, 0.1); color: #ffd54f;">
+                                🌀
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">经典原味蛋卷</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">经典</span>
+                                    <span class="product-tag">酥脆</span>
+                                    <span class="product-tag">蛋香浓郁</span>
+                                </div>
+                                <p class="product-desc">传统工艺制作，128层酥脆口感，纯正蛋香，回味无穷。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(255, 213, 79, 0.1); color: #ffd54f;">
+                                🍵
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">日式抹茶蛋卷</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">抹茶风味</span>
+                                    <span class="product-tag">日式风格</span>
+                                    <span class="product-tag">茶点搭档</span>
+                                </div>
+                                <p class="product-desc">选用日本宇治抹茶，茶香清新，口感细腻，搭配茶饮绝佳。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(255, 213, 79, 0.1); color: #ffd54f;">
+                                🥥
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">椰香蛋卷</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">热带风味</span>
+                                    <span class="product-tag">椰香浓郁</span>
+                                    <span class="product-tag">休闲零食</span>
+                                </div>
+                                <p class="product-desc">添加天然椰浆，椰香与蛋香完美融合，带来热带风情体验。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 米饼品类全景页 -->
+            <div id="rice" class="page">
+                <div class="category-header">
+                    <div class="category-title">
+                        <div class="category-icon" style="color: #ba68c8;">🍘</div>
+                        <div>
+                            <h2>米饼星球 · 定制解决方案</h2>
+                            <p style="color: #a3b1c6; font-size: 1.1rem; margin-top: 5px;">米香四溢，健康膨化</p>
+                        </div>
+                    </div>
+                    <button class="back-btn">
+                        <i class="fas fa-arrow-left"></i> 返回星系总览
+                    </button>
+                </div>
+                
+                <div class="panorama-grid">
+                    <!-- 左栏：形态库 -->
+                    <div class="module">
+                        <div class="module-header">
+                            <div class="module-icon" style="background: rgba(186, 104, 200, 0.2); color: #ba68c8;">
+                                <i class="fas fa-shapes"></i>
+                            </div>
+                            <div class="module-title">形态库</div>
+                        </div>
+                        <p style="color: #a3b1c6; margin-bottom: 20px; line-height: 1.5; flex-shrink: 0;">多种形态设计，满足不同年龄段抓握需求</p>
+                        
+                        <div class="shapes-grid">
+                            <div class="shape-item">
+                                <div class="shape-icon">⭕</div>
+                                <div class="shape-name">圆形</div>
+                            </div>
+                            <div class="shape-item">
+                                <div class="shape-icon">▲</div>
+                                <div class="shape-name">三角</div>
+                            </div>
+                            <div class="shape-item">
+                                <div class="shape-icon">▭</div>
+                                <div class="shape-name">矩形</div>
+                            </div>
+                            <div class="shape-item">
+                                <div class="shape-icon">❀</div>
+                                <div class="shape-name">花瓣</div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px; padding: 12px; background: rgba(186, 104, 200, 0.1); border-radius: 8px; border-left: 4px solid #ba68c8; flex-shrink: 0;">
+                            <div style="font-weight: 600; margin-bottom: 5px;">定制能力</div>
+                            <div style="font-size: 0.9rem; color: #a3b1c6;">支持夹心米饼 · 造型灵活定制</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 中栏：风味矩阵 -->
+                    <div class="module">
+                        <div class="module-header">
+                            <div class="module-icon" style="background: rgba(255, 138, 101, 0.2); color: #ff8a65;">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="module-title">风味矩阵</div>
+                        </div>
+                        <p style="color: #a3b1c6; margin-bottom: 20px; line-height: 1.5; flex-shrink: 0;">22+风味选择，从经典到猎奇，覆盖全年龄段</p>
+                        
+                        <div class="flavor-list">
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-crown" style="color: #ffd54f;"></i> 经典系列
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">原味</span>
+                                    <span class="flavor-tag">奶酪（芝士）</span>
+                                    <span class="flavor-tag">酸奶</span>
+                                    <span class="flavor-tag">牛乳</span>
+                                    <span class="flavor-tag">蜂蜜</span>
+                                    <span class="flavor-tag">青柠</span>
+                                    <span class="flavor-tag">黄油</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-pepper-hot" style="color: #f44336;"></i> 跨界猎奇
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">香菜</span>
+                                    <span class="flavor-tag">香蒜</span>
+                                    <span class="flavor-tag">罗勒</span>
+                                    <span class="flavor-tag">牛肉</span>
+                                    <span class="flavor-tag">烧烤</span>
+                                    <span class="flavor-tag">辣年糕</span>
+                                    <span class="flavor-tag">香辣小炒</span>
+                                    <span class="flavor-tag">椒麻鸡</span>
+                                    <span class="flavor-tag">金桂</span>
+                                    <span class="flavor-tag">茉莉</span>
+                                    <span class="flavor-tag">意式浓汤</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-cookie-bite" style="color: #8d6e63;"></i> 夹心米饼
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">水果</span>
+                                    <span class="flavor-tag">牛乳</span>
+                                    <span class="flavor-tag">朱古力</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 右栏：工艺特点 -->
+                    <div class="module">
+                        <div class="module-header">
+                            <div class="module-icon" style="background: rgba(102, 187, 106, 0.2); color: #66bb6a;">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                            <div class="module-title">工艺特点</div>
+                        </div>
+                        <p style="color: #a3b1c6; margin-bottom: 20px; line-height: 1.5; flex-shrink: 0;">健康膨化工艺，保留大米原香</p>
+                        
+                        <div class="function-list">
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(102, 187, 106, 0.2); color: #66bb6a;">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">非油炸膨化</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">低脂健康，减少油脂摄入</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(102, 187, 106, 0.2); color: #66bb6a;">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">大米原粮</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">选用优质大米，米香纯正</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(102, 187, 106, 0.2); color: #66bb6a;">
+                                    <i class="fas fa-baby"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">入口即化</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">适合婴幼儿，锻炼咀嚼能力</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(102, 187, 106, 0.2); color: #66bb6a;">
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">婴标品质</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">无添加盐糖，适合婴幼儿</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 明星产品方案 -->
+                <div class="products-section">
+                    <div class="section-title">
+                        <i class="fas fa-crown" style="color: #ffd54f;"></i> 明星成品方案库
+                    </div>
+                    
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(186, 104, 200, 0.1); color: #ba68c8;">
+                                🍘
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">婴标原味米饼</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">婴标</span>
+                                    <span class="product-tag">非油炸</span>
+                                    <span class="product-tag">入口即化</span>
+                                </div>
+                                <p class="product-desc">专为婴幼儿设计，无添加盐糖，纯大米制作，入口即化，锻炼抓握能力。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(186, 104, 200, 0.1); color: #ba68c8;">
+                                🍯
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">蜂蜜黄油米饼</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">蜂蜜黄油</span>
+                                    <span class="product-tag">韩国风味</span>
+                                    <span class="product-tag">休闲零食</span>
+                                </div>
+                                <p class="product-desc">蜂蜜与黄油的完美融合，韩国流行风味，香甜不腻，休闲零食首选。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(186, 104, 200, 0.1); color: #ba68c8;">
+                                🌶️
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">香辣小炒米饼</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">猎奇风味</span>
+                                    <span class="product-tag">成人零食</span>
+                                    <span class="product-tag">中国特色</span>
+                                </div>
+                                <p class="product-desc">还原中式小炒风味，香辣开胃，适合成人作为休闲零食或下酒菜。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 其他品类全景页 -->
+            <div id="other" class="page">
+                <div class="category-header">
+                    <div class="category-title">
+                        <div class="category-icon" style="color: #4db6ac;">✨</div>
+                        <div>
+                            <h2>其他品类 · 定制解决方案</h2>
+                            <p style="color: #a3b1c6; font-size: 1.1rem; margin-top: 5px;">创新无限，拓展零食边界</p>
+                        </div>
+                    </div>
+                    <button class="back-btn">
+                        <i class="fas fa-arrow-left"></i> 返回星系总览
+                    </button>
+                </div>
+                
+                <div class="panorama-grid">
+                    <!-- 左栏：产品类型 -->
+                    <div class="module">
+                        <div class="module-header">
+                            <div class="module-icon" style="background: rgba(77, 182, 172, 0.2); color: #4db6ac;">
+                                <i class="fas fa-boxes"></i>
+                            </div>
+                            <div class="module-title">产品类型</div>
+                        </div>
+                        <p style="color: #a3b1c6; margin-bottom: 20px; line-height: 1.5; flex-shrink: 0;">多样化的产品矩阵，满足不同消费需求</p>
+                        
+                        <div class="function-list">
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(77, 182, 172, 0.2); color: #4db6ac;">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">高纤谷物片</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">高纤维含量，促进肠道蠕动</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(77, 182, 172, 0.2); color: #4db6ac;">
+                                    <i class="fas fa-peas"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">豌豆/鹰嘴豆脆</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">植物蛋白来源，健康膨化</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(77, 182, 172, 0.2); color: #4db6ac;">
+                                    <i class="fas fa-popcorn"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">爆米花</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">非油炸工艺，轻负担零食</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(77, 182, 172, 0.2); color: #4db6ac;">
+                                    <i class="fas fa-bread-slice"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">早餐谷物</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">即食早餐，营养均衡</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(77, 182, 172, 0.2); color: #4db6ac;">
+                                    <i class="fas fa-utensils"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">塔可</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">墨西哥风味，创新零食形态</div>
+                                </div>
+                            </div>
+                            
+                            <!-- 新增：烤奶皮/烤奶条 -->
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(77, 182, 172, 0.2); color: #4db6ac;">
+                                    <i class="fas fa-fire"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">烤奶皮/烤奶条</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">浓郁奶香，酥脆口感，高蛋白营养</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 中栏：风味矩阵 -->
+                    <div class="module">
+                        <div class="module-header">
+                            <div class="module-icon" style="background: rgba(255, 138, 101, 0.2); color: #ff8a65;">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="module-title">风味矩阵</div>
+                        </div>
+                        <p style="color: #a3b1c6; margin-bottom: 20px; line-height: 1.5; flex-shrink: 0;">72+风味选择，覆盖全系列产品</p>
+                        
+                        <div class="flavor-list">
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-crown" style="color: #ffd54f;"></i> 经典系列
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">原味</span>
+                                    <span class="flavor-tag">奶酪（芝士）</span>
+                                    <span class="flavor-tag">酸奶</span>
+                                    <span class="flavor-tag">牛乳</span>
+                                    <span class="flavor-tag">蜂蜜</span>
+                                    <span class="flavor-tag">黄油</span>
+                                    <span class="flavor-tag">青稞</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-utensil-spoon" style="color: #ff8a65;"></i> 菜肴风味
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">海苔</span>
+                                    <span class="flavor-tag">蛋黄</span>
+                                    <span class="flavor-tag">麻辣</span>
+                                    <span class="flavor-tag">香蒜</span>
+                                    <span class="flavor-tag">芥末</span>
+                                    <span class="flavor-tag">坚果</span>
+                                    <span class="flavor-tag">海鲜</span>
+                                    <span class="flavor-tag">烧烤</span>
+                                    <span class="flavor-tag">牛肉</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flavor-category">
+                                <div class="flavor-category-title">
+                                    <i class="fas fa-random" style="color: #9c27b0;"></i> 跨界风味
+                                </div>
+                                <div class="flavor-tags">
+                                    <span class="flavor-tag">棉花糖</span>
+                                    <span class="flavor-tag">奥利奥</span>
+                                    <span class="flavor-tag">朱古力</span>
+                                    <span class="flavor-tag">焦糖</span>
+                                    <span class="flavor-tag">奶茶</span>
+                                    <span class="flavor-tag">咖啡</span>
+                                    <span class="flavor-tag">杨枝甘露</span>
+                                    <span class="flavor-tag">金桂</span>
+                                    <span class="flavor-tag">茉莉</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 右栏：市场定位 -->
+                    <div class="module">
+                        <div class="module-header">
+                            <div class="module-icon" style="background: rgba(255, 213, 79, 0.2); color: #ffd54f;">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="module-title">市场定位</div>
+                        </div>
+                        <p style="color: #a3b1c6; margin-bottom: 20px; line-height: 1.5; flex-shrink: 0;">精准定位不同消费人群，打造差异化产品</p>
+                        
+                        <div class="function-list">
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 213, 79, 0.2); color: #ffd54f;">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">健康追求者</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">高纤、低脂、植物蛋白产品</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 213, 79, 0.2); color: #ffd54f;">
+                                    <i class="fas fa-user-friends"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">年轻消费者</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">猎奇风味，社交分享属性</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 213, 79, 0.2); color: #ffd54f;">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">家庭消费</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">早餐谷物，全家共享</div>
+                                </div>
+                            </div>
+                            
+                            <div class="function-item">
+                                <div class="function-icon" style="background: rgba(255, 213, 79, 0.2); color: #ffd54f;">
+                                    <i class="fas fa-film"></i>
+                                </div>
+                                <div class="function-desc">
+                                    <div style="font-weight: 600;">娱乐场景</div>
+                                    <div style="font-size: 0.85rem; color: #a3b1c6;">爆米花，观影伴侣</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 明星产品方案 -->
+                <div class="products-section">
+                    <div class="section-title">
+                        <i class="fas fa-crown" style="color: #ffd54f;"></i> 明星成品方案库
+                    </div>
+                    
+                    <div class="products-grid">
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(77, 182, 172, 0.1); color: #4db6ac;">
+                                🌾
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">高纤谷物早餐片</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">高纤维</span>
+                                    <span class="product-tag">早餐</span>
+                                    <span class="product-tag">健康</span>
+                                </div>
+                                <p class="product-desc">多种谷物混合，高纤维含量，即食早餐选择，搭配牛奶或酸奶食用。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(77, 182, 172, 0.1); color: #4db6ac;">
+                                🥜
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">鹰嘴豆脆</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">植物蛋白</span>
+                                    <span class="product-tag">高蛋白</span>
+                                    <span class="product-tag">素食</span>
+                                </div>
+                                <p class="product-desc">鹰嘴豆为主要原料，高植物蛋白含量，非油炸工艺，健康零食选择。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(77, 182, 172, 0.1); color: #4db6ac;">
+                                🍿
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">焦糖爆米花</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">观影零食</span>
+                                    <span class="product-tag">焦糖风味</span>
+                                    <span class="product-tag">分享装</span>
+                                </div>
+                                <p class="product-desc">非油炸爆米花，焦糖涂层均匀，甜而不腻，观影娱乐最佳伴侣。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card">
+                            <div class="product-visual" style="background: rgba(77, 182, 172, 0.1); color: #4db6ac;">
+                                🔥
+                            </div>
+                            <div class="product-info">
+                                <div class="product-name">烤奶皮</div>
+                                <div class="product-tags">
+                                    <span class="product-tag">高蛋白</span>
+                                    <span class="product-tag">浓郁奶香</span>
+                                    <span class="product-tag">酥脆</span>
+                                </div>
+                                <p class="product-desc">传统工艺烤制，浓郁奶香，酥脆口感，高蛋白含量，营养健康零食。</p>
+                                <a href="#" class="product-link">查看详情与报价</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 页面切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有导航按钮和页面
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const pages = document.querySelectorAll('.page');
+            const backButtons = document.querySelectorAll('.back-btn');
+            
+            // 导航按钮点击事件
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // 更新活动按钮
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // 显示目标页面
+                    pages.forEach(page => {
+                        page.classList.remove('active');
+                        if (page.id === targetPage) {
+                            page.classList.add('active');
+                        }
+                    });
+                });
+            });
+            
+            // 返回按钮点击事件
+            backButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // 返回总览页
+                    navButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        if (btn.getAttribute('data-page') === 'overview') {
+                            btn.classList.add('active');
+                        }
+                    });
+                    
+                    pages.forEach(page => {
+                        page.classList.remove('active');
+                        if (page.id === 'overview') {
+                            page.classList.add('active');
+                        }
+                    });
+                });
+            });
+            
+            // 星球点击事件
+            const planets = document.querySelectorAll('.planet');
+            planets.forEach(planet => {
+                planet.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const category = this.getAttribute('data-category');
+                    
+                    // 更新活动按钮
+                    navButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        if (btn.getAttribute('data-page') === category) {
+                            btn.classList.add('active');
+                        }
+                    });
+                    
+                    // 显示对应品类页面
+                    pages.forEach(page => {
+                        page.classList.remove('active');
+                        if (page.id === category) {
+                            page.classList.add('active');
+                        }
+                    });
+                });
+            });
+            
+            // 初始加载时显示总览页
+            document.getElementById('overview').classList.add('active');
+            document.querySelector('.nav-btn[data-page="overview"]').classList.add('active');
+        });
+    </script>
 </body>
 </html>
