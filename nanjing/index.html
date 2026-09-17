@@ -16,8 +16,11 @@
      代价是秦淮画舫夜游（同在晚上）——「顺手」把夜游加回来而不动别的就会撞车。
   🔴 Day3 两条支线下午不在一起，所以行李必须早上就送进南京南寄存。
      别改回「下午回酒店取」：那天没人能替对方跑那一趟。
+     但**送行李的只有老人组**（2026-09-17 改）：去车站和去欢乐谷是正相反的两个方向，
+     全家一起送既要叫 6/7 座、又让亲子组白绕大半个南京。分头点在酒店门口，不在车站。
 
-  票价 / 开放时间 / 预约口径均来自官方或本地宝，核不到的标「待核」，不冒充确定值。
+  票价 / 开放时间 / 预约口径均来自官方或本地宝。2026-09-17 把原先「待核」的七项核了一轮，
+  数字的来源和保质期见页尾 note；核不到的仍标「待核」，不冒充确定值。
   玄武湖和鸡鸣寺在城北，Day3 两条支线都不经过，已不在行程内。
 
   换照片：改页尾 PHOTOS 映射即可（本地文件名或完整网址都行），缺图会自动退回渐变色块。
@@ -28,18 +31,22 @@
   这份里的地址和孩子年龄已经在源文件里就脱敏成「家」「孩子」，发布时不再需要额外 sed。
 -->
 <style>
+  /* 色系：2026-09-17 整体降饱和度。原来那套（#2f7fd0 / #1d6fc0 / #dff0fb）在手机屏上
+     蓝得发冲，整页像浸在蓝墨水里。这版把装饰色的饱和度砍掉约一半、往灰里靠，
+     ⚠️ 但 .warn / .red / .win 三个语义色**没跟着降** —— 它们的职责就是从页面里跳出来，
+     一起调灰会让「19:00 停止检票」这种硬线和普通正文长得一样。 */
   :root{
-    --d1:#2f7fd0; --d1-l:#eaf3fc;
-    --d2:#1f9e7a; --d2-l:#e7f6f1;
-    --d3:#c7603f; --d3-l:#fceee8;
-    --ink:#22303d; --ink2:#5b6b7a; --ink3:#8b9aa8;
-    --line:#dbe6f0;
+    --d1:#4a7fa4; --d1-l:#eceff2;
+    --d2:#4b9184; --d2-l:#edf2f0;
+    --d3:#b5765c; --d3-l:#f6efeb;
+    --ink:#2a343d; --ink2:#5d6976; --ink3:#8d97a1;
+    --line:#dfe3e8;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{
     font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
     color:var(--ink);
-    background:linear-gradient(160deg,#dff0fb 0%,#eef7fd 36%,#fdf6ee 100%);
+    background:linear-gradient(160deg,#e7ebee 0%,#f1f3f3 38%,#f7f3ee 100%);
     padding:26px 18px 34px;-webkit-font-smoothing:antialiased;
     /* 不写这条，Chrome Android 会对窄列自动放大字号，把已经调好的字号层级打乱 */
     -webkit-text-size-adjust:100%;text-size-adjust:100%;
@@ -49,8 +56,8 @@
   /* ── 页头 ─────────────────────────────── */
   header{
     position:relative;overflow:hidden;border-radius:18px;padding:22px 28px 20px;
-    background:linear-gradient(105deg,#1d6fc0 0%,#2f95d8 46%,#63c0e2 100%);
-    color:#fff;box-shadow:0 8px 22px rgba(30,110,180,.22);
+    background:linear-gradient(105deg,#3d6b8c 0%,#4f89a4 46%,#83b0bb 100%);
+    color:#fff;box-shadow:0 8px 20px rgba(60,90,110,.18);
   }
   header h1{font-size:34px;letter-spacing:1px;font-weight:800;line-height:1.2}
   header h1 small{font-size:20px;font-weight:600;opacity:.92;margin-left:8px}
@@ -62,14 +69,14 @@
 
   /* ── 三天 ─────────────────────────────── */
   .days{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:18px}
-  .day{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(40,90,140,.10)}
+  .day{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(70,85,100,.10)}
   .day-hd{padding:12px 16px 11px;color:#fff}
   .day-hd .dt{font-size:22px;font-weight:800;letter-spacing:.5px}
   .day-hd .dt em{font-style:normal;font-size:14px;font-weight:600;opacity:.9;margin-left:7px}
   .day-hd .rt{margin-top:5px;font-size:12px;opacity:.93;line-height:1.55}
-  .d1 .day-hd{background:linear-gradient(100deg,#2f7fd0,#57a6e0)}
-  .d2 .day-hd{background:linear-gradient(100deg,#1f9e7a,#4dbf9c)}
-  .d3 .day-hd{background:linear-gradient(100deg,#c7603f,#e59168)}
+  .d1 .day-hd{background:linear-gradient(100deg,#4a7fa4,#7aa6bd)}
+  .d2 .day-hd{background:linear-gradient(100deg,#4b9184,#7ab5a7)}
+  .d3 .day-hd{background:linear-gradient(100deg,#b5765c,#d2a189)}
   .day-bd{padding:13px 14px 15px}
 
   /* 时间轴：竖线画在 li::before，最后一条截断 */
@@ -136,9 +143,9 @@
   /* Day3 分两条并行支线，用小标题把时间轴切成段 */
   .trk{margin:2px 0 9px;padding:7px 10px;border-radius:8px;font-size:12.5px;font-weight:800;line-height:1.5}
   .trk small{display:block;font-weight:600;font-size:11.5px;opacity:.88;margin-top:2px}
-  .trk.a{background:#fdefe7;color:#a8492a}
-  .trk.b{background:#eaf1f8;color:#25567d}
-  .trk.c{background:#e9f6ee;color:#1a6e48}
+  .trk.a{background:#f7ece6;color:#9c5a41}
+  .trk.b{background:#ecf0f3;color:#3f6480}
+  .trk.c{background:#ecf3ee;color:#3c7558}
 
   .stay{margin-top:4px;border-radius:10px;padding:10px 12px;font-size:12px;line-height:1.6}
   .d1 .stay{background:var(--d1-l)} .d2 .stay{background:var(--d2-l)} .d3 .stay{background:var(--d3-l)}
@@ -149,15 +156,15 @@
   .panels{display:grid;gap:14px;margin-top:15px}
   .row-a{grid-template-columns:1.02fr 1.1fr 1.08fr}
   .row-b{grid-template-columns:.72fr .72fr .64fr 1.62fr}
-  .card{background:#fff;border-radius:14px;padding:14px 16px 15px;box-shadow:0 4px 14px rgba(40,90,140,.09)}
+  .card{background:#fff;border-radius:14px;padding:14px 16px 15px;box-shadow:0 4px 14px rgba(70,85,100,.09)}
   .card h3{font-size:15.5px;font-weight:800;margin-bottom:9px;display:flex;align-items:center;gap:6px}
-  .c-blue h3{color:#1d6fc0} .c-green h3{color:#1f9e7a} .c-amber h3{color:#bb8410}
-  .c-orange h3{color:#c7603f} .c-purple h3{color:#7c5cbf} .c-teal h3{color:#16808a}
+  .c-blue h3{color:#43718f} .c-green h3{color:#42887b} .c-amber h3{color:#9c7b2e}
+  .c-orange h3{color:#b0705a} .c-purple h3{color:#726a9c} .c-teal h3{color:#3d777e}
 
   table.sch{width:100%;border-collapse:collapse;font-size:12px}
   table.sch td{padding:4.5px 2px;border-bottom:1px dashed var(--line);vertical-align:top;line-height:1.5}
   table.sch tr:last-child td{border-bottom:none}
-  table.sch td.k{white-space:nowrap;font-weight:800;color:#1d6fc0;width:70px}
+  table.sch td.k{white-space:nowrap;font-weight:800;color:#43718f;width:70px}
   table.sch td.v{color:var(--ink2)}
   table.sch td.p{white-space:nowrap;text-align:right;font-weight:700;color:var(--ink);width:56px}
   table.sch tr.tbd td{opacity:.72}
@@ -167,8 +174,24 @@
   .box{background:#f7fafc;border-radius:9px;padding:9px 10px}
   .box .bt{font-size:12px;font-weight:800;margin-bottom:5px;color:var(--ink)}
   .box.hl{background:#fff7e8} .box.hl .bt{color:#bb8410}
+  /* 可勾选清单：点一下打勾并划掉，勾选状态存 localStorage。
+     ⚠️ 别改成真的 <input type=checkbox>：原来的条目是纯 <li>，
+        换成 input 要把十几条全改一遍标记，而且 iOS 上原生复选框和这套字号对不齐。
+        现在是 JS 给 li 加 .done，标记一行没动。 */
   ul.chk{list-style:none;font-size:11.5px;line-height:1.85;color:var(--ink2)}
+  ul.chk li{cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;
+            transition:opacity .12s,color .12s}
   ul.chk li::before{content:"□ ";color:#9fb3c4;font-weight:700}
+  ul.chk li.done{color:var(--ink3);text-decoration:line-through;text-decoration-color:#b9c3cb}
+  /* inline-block 是必须的：它切断父元素的 text-decoration 传播，
+     否则删除线会从勾号上横着划过去。margin-right 补回被宽勾号吃掉的那个空格。 */
+  ul.chk li.done::before{content:"☑";color:#4b9184;display:inline-block;
+                         margin-right:4px;text-decoration:none;text-decoration-line:none}
+  ul.chk li.done b{font-weight:600;color:var(--ink3)}
+  /* 清空按钮：跟在卡片标题后面，不抢视线 */
+  .chk-reset{margin-left:auto;font-size:11px;font-weight:600;color:var(--ink3);
+             background:#f1f3f5;border:none;border-radius:5px;padding:3px 8px;cursor:pointer}
+  .chk-reset:hover{color:var(--ink2);background:#e7eaed}
 
   .wx{display:grid;grid-template-columns:1fr;gap:5px;font-size:12px}
   .wx .w{display:flex;align-items:center;gap:7px;color:var(--ink2)}
@@ -184,7 +207,7 @@
   ul.tips li.att::before{content:"⚠️";font-size:10px;top:7px}
   ul.tips li b{color:var(--ink)}
 
-  footer{margin-top:18px;text-align:center;font-size:16px;font-weight:700;color:#2b7cb8;letter-spacing:3px}
+  footer{margin-top:18px;text-align:center;font-size:16px;font-weight:700;color:#4a7d95;letter-spacing:3px}
   footer .tiny{display:block;margin-top:7px;font-size:11px;font-weight:400;letter-spacing:0;color:var(--ink3)}
 
   /* ── 手机 ─────────────────────────────────
@@ -232,7 +255,9 @@
     /* 两列清单在 390px 宽下每列只剩 ~160px，"薄外套 × 1"都要折行 */
     .cols2{grid-template-columns:1fr}
     .box{padding:10px 11px}
+    /* 清单要用手指点，13px×1.95 只有 25px 高，加内边距把点击区撑到 32px 左右 */
     ul.chk{font-size:13px;line-height:1.95}
+    ul.chk li{padding:3px 0}
     ul.tips{font-size:13px;line-height:1.75}
     ul.tips li{padding:6px 0 6px 20px}
     .wx{font-size:13px}
@@ -248,6 +273,9 @@
 
     footer{font-size:15px;letter-spacing:2px}
   }
+
+  /* 打印时「清空勾选」是个死按钮，别占纸 */
+  @media print{.chk-reset{display:none}}
 
   /* iPhone SE / mini 一档：再收一次，避免票价表横向出溢出条 */
   @media (max-width:390px){
@@ -362,10 +390,12 @@
           <div class="photo p-meiling">美龄宫 · 紫金山上的"项链"</div>
         </li>
         <li class="opt">
-          <div class="t">16:25–16:35 · 路过</div>
-          <div class="h"><span class="ic">🪨</span>四方城<span class="badge">不当景点，走个过场</span></div>
-          <div class="n">观光车 1 号线一站到（或步行 6 分钟）。就一座碑亭，<b>看两眼拍张照就走</b>。<br>
-          它的用处是<b>当路口认</b>：往下走接石象路，往外走跨天桥就是陵园路 ——
+          <div class="t">16:25–16:35</div>
+          <div class="h"><span class="ic">🪨</span>四方城 · 神功圣德碑亭<span class="badge">分头点</span></div>
+          <div class="n">观光车 1 号线一站到（或步行 6 分钟）。亭子里立着明孝陵的<b>神功圣德碑</b>，
+          朱棣给他父亲朱元璋立的，连碑带座近 9 米高；<b>驮碑的是赑屃</b>（龙生九子之一，看着像只大石龟）
+          —— 跟孩子讲"大石龟驮着一块九米高的碑"，比讲"碑亭"管用。<br>
+          这里同时是这一带的路口：往下走接石象路，往外走跨天桥就是陵园路 ——
           <b>孩子走不动的分头点就在这儿。</b></div>
         </li>
         <li class="star">
@@ -438,9 +468,10 @@
         <li>
           <div class="t">09:40–11:40</div>
           <div class="h"><span class="ic">🏺</span>六朝博物馆</div>
-          <div class="n"><span class="tag">约 30 元 · 待核</span><span class="tag bk">建议预约</span><span class="tag">3 号线大行宫</span>
+          <div class="n"><span class="tag ok">30 元 · 已核</span><span class="tag">3 号线大行宫</span>
           长江路，酒店打车约 10 分钟。三楼那面木格落地窗是公认打卡点。
-          <span class="warn">周一闭馆，本次周六不受影响。</span></div>
+          <span class="win">✅ 未满 18 岁免票 —— 这站孩子不花钱；70 岁以上免票、60–69 岁半价 15。</span>
+          <span class="warn">9:00–17:30，17:00 停止售票；周一闭馆，本次周六不受影响。</span></div>
           <div class="photo p-six">六朝博物馆 · 木格落地窗</div>
         </li>
         <li class="meal">
@@ -453,12 +484,14 @@
         <li class="star">
           <div class="t">13:10–14:20</div>
           <div class="h"><span class="ic">🧱</span>南京城墙 · 中华门瓮城</div>
-          <div class="n"><span class="tag">约 50 元 · 待核</span><span class="tag">3 号线中华门</span>
+          <div class="n"><span class="tag ok">50 元 · 已核</span><span class="tag">3 号线中华门</span>
           长江路打车约 20 分钟。
           现存<b>世界最大的瓮城</b>：三道瓮城、四道券门、27 个藏兵洞 ——
           <b>正是钻洞的年纪，这是整趟行程里最"能玩"的一个点</b>（27 个洞，让他自己数）。
           <span class="warn">城上看出去是老城南屋顶和大报恩寺琉璃塔 —— <b>晚上要去的就是那座塔</b>。
-          开放时间待核，下午这个点没风险。</span></div>
+          日场 <b>8:30–17:00</b>（旺季另有 17:00–22:00 的夜间开放场，21:30 停售，与日场分开算）。</span>
+          <span class="red">🔴 13:10 进场很安全，但<b>别拖到 16:40 才进</b> —— 日场 17:00 结束，
+          一小时钻不完 27 个洞。</span></div>
           <div class="photo p-wall2">中华门瓮城 · 藏兵洞</div>
         </li>
         <li>
@@ -472,9 +505,11 @@
         <li>
           <div class="t">16:00–17:05</div>
           <div class="h"><span class="ic">📜</span>江南贡院 · 中国科举博物馆</div>
-          <div class="n"><span class="tag">约 50 元 · 待核</span><span class="tag">3 号线夫子庙</span>
+          <div class="n"><span class="tag ok">50 元 · 已核</span><span class="tag ok">免预约</span><span class="tag">3 号线夫子庙</span>
           老门东步行约 15 分钟。<b>全在地下四层、有空调</b>，走了一天这里正好歇脚；
-          科举号舍、殿试互动屏，小学生很吃这套。</div>
+          科举号舍、殿试互动屏，小学生很吃这套。
+          <span class="win">✅ 官网开放到 <b>22:00</b>，是这一天时间上最宽的一站 —— 万一前面拖了，
+          它可以往后挪，甚至挪到大报恩寺之后。学生票和 60–70 岁半价 25。</span></div>
           <div class="photo p-exam">中国科举博物馆 · 地下四层</div>
         </li>
         <li>
@@ -514,11 +549,15 @@
         <li class="opt">
           <div class="t">备选 · 未安排</div>
           <div class="h"><span class="ic">🚤</span>秦淮河夜游（画舫）</div>
-          <div class="n"><span class="tag">约 60–100 元/人 · 待核</span>
+          <div class="n"><span class="tag bk">旺季夜船 120 元/人</span><span class="tag">运营到 22:00</span>
           <b>点灯和夜游都在晚上，只能二选一。</b>想两个都要：
-          晚餐压到 40 分钟（19:40–20:20），<b>20:30–21:30 上船</b>，21:45 回酒店。
-          <span class="warn">⚠️ 成不成取决于<b>末班船时间</b>（待核）—— 出发前查清楚再决定，
-          别当天到码头碰运气。</span></div>
+          晚餐压到 40 分钟（19:40–20:20），<b>20:30–21:30 上船</b>，21:45 回酒店 —— 时间上排得下。
+          <span class="red">🔴 但核完价之后它更不划算了：<b>9 月属旺季</b>，东五华里夜船
+          <b>120</b>/人（白天才 100，淡季夜船只要 80），西五华里夜游 <b>140</b>；
+          孩子 1.2–1.5 m 半价、1.2 m 以下免票 —— 五个人<b>一小时的船要 500 元上下</b>。</span>
+          <span class="warn">⚠️ 真要加：画舫 09:00–22:00 运营，<b>船满即发不是整点发</b>，
+          赶末班得 20:30 前到码头。东线可线上买，西线和夜间票只在线下窗口。<br>
+          ⚠️ 路边举牌「夜游秦淮 50」的是私人小艇，认准「秦淮画舫」售票处。</span></div>
         </li>
       </ul>
       <div class="stay">
@@ -535,11 +574,11 @@
   <section class="day d3">
     <div class="day-hd">
       <div class="dt">9/27 <em>周日</em></div>
-      <div class="rt"><b>全家先送行李进南京南 → 分两路</b>：亲子组去欢乐谷 / 老人组走纪念馆 + 雨花台 → 18:20 南京南会合 → 杭州东</div>
+      <div class="rt"><b>退房后在酒店门口就分两路</b>：老人组顺路把行李送进南京南寄存 → 纪念馆 + 雨花台 / 亲子组直奔欢乐谷 → 18:20 南京南会合 → 杭州东</div>
     </div>
     <div class="day-bd">
-      <div class="trk c">🧳 共同段 · 先把行李甩掉
-        <small>两组都空手出门，这是分头能成立的前提</small></div>
+      <div class="trk c">🧳 共同段 · 只到酒店门口
+        <small>行李跟老人组走，亲子组空手直接出发</small></div>
       <ul class="tl">
         <li class="meal">
           <div class="t">07:00–07:50</div>
@@ -547,18 +586,23 @@
           <div class="eat"><b>水游城假日早餐</b>。今天两组分开走，吃饭时把会合时间和地点先说定。</div>
         </li>
         <li class="star">
-          <div class="t">08:30–09:00</div>
-          <div class="h"><span class="ic">🚉</span>全家一起送行李进南京南站寄存</div>
-          <div class="n">08:00 退房、行李<b>全部带走</b>，08:30 一台 6/7 座直奔南京南（约 25 分钟），
-          <b>站内统一寄存</b>。
-          <span class="red">🔴 <b>行李必须早上就进站，不能留到下午取。</b>
-          今天两组下午不在一起，谁都没法替对方跑那一趟。</span></div>
+          <div class="t">08:00–08:20</div>
+          <div class="h"><span class="ic">👋</span>退房 · 在酒店门口分头</div>
+          <div class="n">08:00 退房，行李<b>全部带走</b>，门口<b>叫两辆普通车、各走各的方向</b>：<br>
+          ▸ <b>老人组带全部行李</b> → 南京南寄存 → 再去江东门（城西）<br>
+          ▸ <b>亲子组空手</b> → 直奔欢乐谷（城东北）<br>
+          两组方向正相反，一起去车站等于让亲子组白绕大半个南京，五个人加行李还得叫 6/7 座。
+          <span class="red">🔴 <b>行李必须早上就进站，不能留到下午取</b> ——
+          今天两组下午不在一起，谁都没法替对方跑那一趟。</span>
+          <span class="warn">⚠️ 行李归两位老人拿：前一晚就<b>归并成尽量少的、带轮子的箱子</b>。
+          箱子实在多，就让<b>爸爸陪老人组送完再去欢乐谷</b>（妈妈带孩子先进园），他晚到约 40 分钟。</span></div>
         </li>
         <li>
-          <div class="t">09:00 · 南京南站</div>
-          <div class="h"><span class="ic">👋</span>在这里分头</div>
-          <div class="n">两条支线都<b>以南京南站为起点、也以它为终点</b>，谁晚了都不影响另一组。<br>
-          分开前对一遍：<b>会合时间 18:20、地点候车层、行李寄存柜号</b>。</div>
+          <div class="t">对表</div>
+          <div class="h"><span class="ic">📱</span>分开前先说定三件事</div>
+          <div class="n">两条支线都<b>以南京南站为终点</b>，谁晚了都不影响另一组。<br>
+          分开前对一遍：<b>会合时间 18:20、地点候车层、行李寄存柜号</b>
+          —— 柜号老人组存完<b>拍张照发群里</b>，别只靠记。</div>
         </li>
       </ul>
 
@@ -566,24 +610,26 @@
         <small>南京欢乐谷（栖霞区）· 全天一个点</small></div>
       <ul class="tl">
         <li>
-          <div class="t">09:15–10:00</div>
-          <div class="h"><span class="ic">🚕</span>南京南 → 南京欢乐谷</div>
-          <div class="n">打车约 45 分钟（欢乐谷北路 8 号，城东北）。
+          <div class="t">09:10–09:55</div>
+          <div class="h"><span class="ic">🚕</span>酒店 → 南京欢乐谷</div>
+          <div class="n">从水游城直接打车约 45 分钟（欢乐谷北路 8 号，城东北）。<b>不用先去车站</b>。
           <span class="warn">地铁要 1 小时 15 分（3 号线 → 大行宫换 2 号线 → 经天路站 + 接驳车），
           带孩子不值这个时间，打车。</span></div>
         </li>
         <li class="star">
           <div class="t">10:00–17:30</div>
           <div class="h"><span class="ic">🎢</span>南京欢乐谷</div>
-          <div class="n"><span class="tag bk">门票待核</span><span class="tag">周末 09:30–18:30</span><span class="tag">2 号线经天路</span>
+          <div class="n"><span class="tag ok">10:00–21:00</span><span class="tag">20:00 停止入园</span><span class="tag">2 号线经天路</span>
           南京最大的主题乐园，六大园区、40 余台设备，招牌是飞翼过山车<b>「掠食者」</b>。<br>
           <span class="win">✅ <b>1.4–1.45 m 这个区间其实挺好</b>：主流项目的门槛是 <b>1.4 m</b>，
           绝大部分都能上；卡 <b>1.45 m</b> 的通常只有最刺激的那两三个。</span>
           <span class="warn">⚠️ 出发前在官方小程序<b>对一遍各项目的身高线</b>，
           把 1.45 m 那几个先划掉、按「能玩的」排当天主攻 —— 省得到现场再临时改计划。</span>
-          <span class="warn">⚠️ 闭园前 1 小时停止售票入园。<b>假期热门项目排队 1–2 小时</b>，
-          7.5 小时实际玩不了太多：进门先用官方 App 看排队时长，挑 3–4 个主攻，别指望全玩。<br>
-          ⚠️ 门票和假期是否需预约都<b>待核</b>，提前在官方小程序买。</span></div>
+          <span class="warn"><b>假期热门项目排队 1–2 小时</b>，7.5 小时实际玩不了太多：
+          进门先用官方 App 看排队时长，挑 3–4 个主攻，别指望全玩。</span>
+          <span class="red">🔴 <b>门票别按挂牌价买</b>：挂牌 260 / 儿童长者 130，
+          官方小程序和美团常年 <b>79–99</b>。免预约，<b>提前 1–2 天、看完 9/24 的预报再下单</b>
+          —— 下雨会关停户外项目。</span></div>
           <div class="photo p-happy">南京欢乐谷 · 飞翼过山车「掠食者」</div>
         </li>
         <li class="meal">
@@ -595,7 +641,8 @@
         <li>
           <div class="t">17:30–18:20</div>
           <div class="h"><span class="ic">🚕</span>离园 → 回南京南</div>
-          <div class="n"><span class="red">🔴 <b>17:30 就走，不等 18:30 闭园。</b></span>
+          <div class="n"><span class="red">🔴 <b>17:30 就走，不等 21:00 闭园</b>（9 月中旬起是长运营档，
+          闭园时间跟我们没关系，走是为了 20:26 的车）。</span>
           它在城东北、车站在城西南，<b>跨城返程 + 假期最后一天晚高峰</b>，
           这一小时是留给堵车的，不是浪费。</div>
         </li>
@@ -605,9 +652,15 @@
         <small>纪念馆 + 雨花台 · 节奏慢、全程有座位可歇</small></div>
       <ul class="tl">
         <li>
+          <div class="t">08:20–08:45</div>
+          <div class="h"><span class="ic">🧳</span>酒店 → 南京南站 · 寄存行李</div>
+          <div class="n">带全家行李打车约 25 分钟。<b>存完拍下柜号发群里。</b>
+          <span class="win">✅ 存完不用急 —— 站内有座位，先歇二十分钟再出发，纪念馆 10:10 到就行。</span></div>
+        </li>
+        <li>
           <div class="t">09:40–10:05</div>
           <div class="h"><span class="ic">🚕</span>南京南 → 江东门</div>
-          <div class="n">打车约 25 分钟（或地铁 2 号线云锦路站）。</div>
+          <div class="n">打车约 25 分钟（或地铁 2 号线云锦路站）。<b>这段已经空手了。</b></div>
         </li>
         <li class="star">
           <div class="t">10:10–12:00</div>
@@ -668,8 +721,9 @@
         </li>
       </ul>
       <div class="stay">
-        <span class="lb">🔑 今天的两条线共用车站</span>
-        两组<b>都从南京南出发、也都回南京南</b>，谁那边晚了都不拖累另一组。
+        <span class="lb">🔑 今天两条线只共用终点</span>
+        早上在<b>酒店门口</b>就分开（行李跟老人组走），两组各走各的方向，
+        傍晚<b>都回南京南</b>，谁那边晚了都不拖累另一组。
         出门前把<b>会合时间、地点（候车层）和寄存柜号</b>说定，路上手机不一定顺畅。
       </div>
     </div>
@@ -689,12 +743,13 @@
         <b>9/18 下午 16:00 整</b>去抢 9/25 的：<br>
         ▸ <b>中山陵</b>（免费，<span style="color:#b4342c">要 12:30–14:30 场</span>）<br>
         ▸ 同日一起约 <b>南京博物院</b>（免费）</td></tr>
-      <tr><td class="k" style="color:#b4342c">9/19<br>16:00</td><td class="v">约 9/26 的 <b>六朝博物馆</b>（口径待核，按需预约）</td></tr>
+      <tr class="tbd"><td class="k">9/19</td><td class="v">六朝博物馆<b>不用预约</b>（收费馆，现场或小程序买票即可）—— 这天空出来了，
+        改成<b>把 9/18 没抢到的中山陵场次补一轮</b></td></tr>
       <tr><td class="k" style="color:#b4342c">9/20<br>16:00</td><td class="v">约 9/27 的 <b>遇难同胞纪念馆</b>（免费，<b>只需 2 位老人的名额</b>）<br>
         <span class="free">约上午场（10:00 前后进馆）；没约到可蹲当天放票</span></td></tr>
       <tr><td class="k">9/23</td><td class="v">线上买票：<b>钟山联票</b>（成人 100 / <b>老人儿童 50</b>）·
         <b>观光车不限次 30</b> · 大报恩寺 90 · <b>中华门城墙</b> · 科举博物馆 ·
-        <span style="color:#8b9aa8">秦淮河画舫（未安排，想加再买 —— 先查末班船）</span> ·
+        <span style="color:#8b9aa8">秦淮河画舫（未安排；真要加是旺季夜船 120/人，现场买，别提前买死）</span> ·
         <b style="color:#b4342c">南京欢乐谷（3 张，并查清各项目身高线）</b></td></tr>
       <tr><td class="k">9/24</td><td class="v">① 看最终天气<br>
         ② <b>预约 9/25 早 06:00 的 6/7 座车</b><br>③ Day2 晚餐提前订位</td></tr>
@@ -753,17 +808,22 @@
           <td class="p free">免费<br><span style="font-size:10.5px;color:#1a7a52">免预约</span></td></tr>
       <tr><td class="v"><b>雨花台</b><span class="badge">老人组</span><br><span style="font-size:11px">室内馆约 17:00 停止入馆 · 13:30 进场没问题</span></td>
           <td class="p free">免费</td></tr>
-      <tr><td class="v"><b>南京欢乐谷</b><span class="badge new">亲子组</span><br><span style="font-size:11px">周末 09:30–18:30<br>闭园前 1 小时停止入园 · 2号线经天路</span></td>
-          <td class="p" style="color:#b4342c">待核<br><span style="font-size:10.5px">提前买</span></td></tr>
+      <tr><td class="v"><b>南京欢乐谷</b><span class="badge new">亲子组</span><br><span style="font-size:11px">9 月中旬起 10:00–21:00<br>20:00 停止入园 · 2号线经天路</span></td>
+          <td class="p">79–99<br><span style="font-size:10.5px;color:#b4342c">挂牌 260</span></td></tr>
       <tr><td class="v">玄武湖 / 古鸡鸣寺<span class="badge">本次不去</span><br><span style="font-size:11px">在城北，两条支线都不经过</span></td>
           <td class="p free">免费<br><span style="font-size:10.5px">／10 元</span></td></tr>
       <tr><td class="v">总统府<span class="badge">没排进</span><br><span style="font-size:11px">8:30–18:00 · 3号线</span></td>
           <td class="p">35<br><span style="font-size:10.5px;color:#b4342c">提前7天</span></td></tr>
       <tr><td class="v">红山动物园<span class="badge">没排进</span><br><span style="font-size:11px">8:30–18:00 · 1号线</span></td>
           <td class="p">40<br><span style="font-size:10.5px;color:#1a7a52">免预约</span></td></tr>
-      <tr class="tbd"><td class="v">六朝博物馆 / 科举博物馆 / <b>中华门城墙</b> / 秦淮画舫<br>
-          <span style="font-size:11px"><b>票价待核</b>，出发前在官方渠道确认</span></td>
-          <td class="p">约 30<br>约 50<br>约 50<br>60–100</td></tr>
+      <tr><td class="v"><b>六朝博物馆</b><br><span style="font-size:11px">9:00–17:30 · 17:00 停售 · 周一闭<br><b>未满 18 岁免票</b> · 60–69 岁半价 15</span></td>
+          <td class="p">30<br><span style="font-size:10.5px;color:#1a7a52">免预约</span></td></tr>
+      <tr><td class="v"><b>中华门城墙</b><br><span style="font-size:11px">日场 8:30–17:00<br>旺季另有夜场 17:00–22:00（21:30 停售）</span></td>
+          <td class="p">50<br><span style="font-size:10.5px;color:#1a7a52">免预约</span></td></tr>
+      <tr><td class="v"><b>中国科举博物馆</b><br><span style="font-size:11px">官网 <b>9:00–22:00</b>，当天最宽的一站<br>学生 / 60–70 岁半价 25</span></td>
+          <td class="p">50<br><span style="font-size:10.5px;color:#1a7a52">免预约</span></td></tr>
+      <tr><td class="v">秦淮画舫<span class="badge">未安排</span><br><span style="font-size:11px">09:00–22:00 · 船满即发<br>东线夜船 / 西线夜游 · 1.2 m 以下免票</span></td>
+          <td class="p">120<br><span style="font-size:10.5px">西线 140</span></td></tr>
     </table>
     <div class="note">🔴 <b>钟山买联票比单买便宜</b>：明孝陵 70 + 美龄宫 30 + 音乐台 10 = 110，联票 100 且不用逐个预约；
     <b>老人票 / 儿童票都是 50</b>，按 2 老 + 2 成 + 1 童算是 <b>350</b>，比五张全票省 150。<br>
@@ -891,18 +951,25 @@
       这是 Day2 晚上唯一有硬时间的一站。</li>
       <li class="att"><b>点灯和秦淮河画舫夜游都在晚上，只能二选一</b>，本行程选了点灯。
       秦淮夜景<b>在岸上照样看得全</b>（乌衣巷、文德桥、白鹭洲一线灯影），丢的是坐船那一小时的休息 ——
-      走了一整天，这一小时其实不轻。两个都要就压缩晚餐、20:30 上船，<b>先查末班船时间</b>。</li>
+      走了一整天，这一小时其实不轻。<br>
+      <b>价格已核</b>：9 月是旺季，东线夜船 <b>120</b>/人（淡季夜船才 80）、西线夜游 140，
+      五个人一小时的船约 500 元 —— 核完之后这个取舍比原先估的还清楚。
+      真要加：画舫运营到 22:00，但<b>船满即发不是整点发</b>，赶末班得 20:30 前到码头。</li>
       <li class="att"><b>身高 1.4–1.45 m：绝大部分项目玩得了</b>（主流门槛 1.4 m），
       卡 1.45 m 的只有最刺激那两三个。
       出发前在官方小程序<b>对一遍各项目的身高线</b>，把 1.45 m 那几个先划掉，
       按「能玩的」排当天主攻项目。</li>
-      <li class="att"><b>欢乐谷 17:30 就走，不等 18:30 闭园。</b>它在城东北、车站在城西南，
+      <li class="att"><b>欢乐谷 17:30 就走，不等 21:00 闭园。</b>它在城东北、车站在城西南，
       跨城返程撞上假期最后一天晚高峰，那一小时是留给堵车的。<br>
       另外热门项目排队 1–2 小时，进门先用官方 App 看排队时长，<b>挑 3–4 个主攻，别指望全玩</b>。</li>
-      <li class="att"><b>欢乐谷门票和「假期是否需预约」都还待核</b>，提前在官方小程序买 ——
-      <b>但别太早买死</b>，下雨会关停户外项目，看 9/24 的预报再定。</li>
-      <li class="imp"><b>Day3 行李早上就送进南京南寄存。</b>两组下午不在一起，谁都没法替对方跑那一趟。
-      出门前把<b>会合时间、地点（候车层）、寄存柜号</b>说定。</li>
+      <li class="imp"><b>欢乐谷门票别按挂牌价买。</b>挂牌全日票 260 / 儿童长者 130，
+      但官方小程序和美团常年 <b>79–99</b>。免预约，下单即入园。
+      <b>但别太早买死</b>，下雨会关停户外项目 —— 提前 1–2 天、看完 9/24 的预报再下单。</li>
+      <li class="imp"><b>Day3 行李早上就送进南京南寄存，但不用全家一起送。</b>
+      两组下午不在一起，谁都没法替对方跑那一趟 —— 所以行李必须早上进站；
+      可是<b>去车站和去欢乐谷是正相反的两个方向</b>，五个人加行李还得叫 6/7 座。
+      <b>正确做法是退房后在酒店门口就分头</b>：老人组带全部行李顺路走南京南（他们本来就要去城西），
+      亲子组空手直奔欢乐谷。<b>寄存柜号存完拍照发群里。</b></li>
       <li class="imp"><b>5 个人打车要叫 6/7 座</b>（普通网约车限载 4 位乘客，四大一小加行李上不去）。
       <b>9/25 早 6:00 那一趟提前一天预约</b>，别当场干等。</li>
       <li><b>自驾才要预约停车</b>：2025 年 10 月起钟山景区限量预约（提前一天、每车每月 2 次），
@@ -915,7 +982,8 @@
 
 <footer>
   一起出发，去看更大的世界 ♥
-  <span class="tiny">所有票价、开放时间与班次时刻请出发前在官方渠道复核 · 标「待核」的几项尤其要确认</span>
+  <span class="tiny">票价与开放时间于 2026-09-17 核过一轮（六朝 30 / 中华门 50 / 科举 50 / 画舫旺季夜船 120 / 欢乐谷 79–99）·
+  明孝陵售票 06:30–18:30 取自中山陵园管理局官方公告 · 钟山的中秋专项公告一般节前 3–7 天才发，9/22–9/24 再刷一次</span>
 </footer>
 
 </div>
@@ -970,6 +1038,52 @@ document.querySelectorAll('.photo').forEach(box => {
   }
   box.appendChild(cap);
 });
+
+/* ── 可勾选的行前清单（穿什么 / 必备物品）───────────────────────
+   点一条 → 打勾 + 划掉；状态存 localStorage，关掉页面、换天再打开还在。
+
+   key 用「第几个清单 + 条目原文」而不是下标：
+   ⚠️ 只用下标的话，以后往清单中间插一条，后面所有条目的勾选状态会整体串位
+      —— 用户会看见「备用鞋袜」自己打了勾。用原文当 key，插条目不影响已有的。
+   同一份清单里出现重复文案时才退回带序号的 key。 */
+(function () {
+  const KEY = 'nj2026-chk';
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { saved = {}; }
+  // 存不进去（隐私模式 / 存储满）不该让勾选功能整个失效：勾还是能勾，只是不记住
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {} };
+
+  document.querySelectorAll('ul.chk').forEach((ul, li0) => {
+    const seen = {};
+    ul.querySelectorAll('li').forEach(li => {
+      const txt = li.textContent.trim();
+      seen[txt] = (seen[txt] || 0) + 1;
+      const k = li0 + '|' + txt + (seen[txt] > 1 ? '#' + seen[txt] : '');
+      li.dataset.k = k;
+      if (saved[k]) li.classList.add('done');
+      li.addEventListener('click', () => {
+        const on = li.classList.toggle('done');
+        if (on) saved[k] = 1; else delete saved[k];
+        save();
+      });
+    });
+  });
+
+  // 每张含清单的卡片标题右侧挂一个「清空」
+  document.querySelectorAll('.card').forEach(card => {
+    const items = card.querySelectorAll('ul.chk li');
+    if (!items.length) return;
+    const btn = document.createElement('button');
+    btn.className = 'chk-reset';
+    btn.type = 'button';
+    btn.textContent = '清空勾选';
+    btn.onclick = () => {
+      items.forEach(li => { li.classList.remove('done'); delete saved[li.dataset.k]; });
+      save();
+    };
+    card.querySelector('h3').appendChild(btn);
+  });
+})();
 </script>
 </body>
 </html>
