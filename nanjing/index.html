@@ -31,22 +31,33 @@
   这份里的地址和孩子年龄已经在源文件里就脱敏成「家」「孩子」，发布时不再需要额外 sed。
 -->
 <style>
-  /* 色系：2026-09-17 整体降饱和度。原来那套（#2f7fd0 / #1d6fc0 / #dff0fb）在手机屏上
-     蓝得发冲，整页像浸在蓝墨水里。这版把装饰色的饱和度砍掉约一半、往灰里靠，
-     ⚠️ 但 .warn / .red / .win 三个语义色**没跟着降** —— 它们的职责就是从页面里跳出来，
-     一起调灰会让「19:00 停止检票」这种硬线和普通正文长得一样。 */
+  /* 色系：马卡龙（2026-09-17 第二版）。
+     第一版只是把原来那套冲天蓝「降饱和」，结果整页发灰发暗 —— 降饱和 ≠ 马卡龙。
+     马卡龙是**高明度 + 中饱和**：色块要浅得像糖霜，而不是把颜色调脏。
+
+     🔴 所以这版做了一个连带翻转：**页头和三天的色带改用深色字，不再压白字。**
+        色块浅到马卡龙那一档（#bcdcf0 左右）时，白字对比度只剩 1.6:1，等于看不见。
+        要往更浅里调就得连字色一起往深里走；只动背景会把标题糊掉。
+
+     每个色相分三档，各有各的岗位，别混用：
+       --dN     中调，用于时间轴圆点和时刻文字（12.5px 小字，太浅会糊）
+       色带     浅调，写死在 .dN .day-hd 里，配 --dN-t 深色字
+       --dN-l   最浅，住宿那条的底色
+
+     ⚠️ .warn / .red / .win 三个语义色**不参加**这次调色 —— 它们的职责就是跳出来。
+        一起马卡龙化会让「19:00 停止检票」这种硬线和普通正文长得一样。 */
   :root{
-    --d1:#4a7fa4; --d1-l:#eceff2;
-    --d2:#4b9184; --d2-l:#edf2f0;
-    --d3:#b5765c; --d3-l:#f6efeb;
+    --d1:#5e94ba; --d1-l:#eef6fb; --d1-t:#34617f;
+    --d2:#4fa392; --d2-l:#edf8f4; --d2-t:#2f7264;
+    --d3:#cf8360; --d3-l:#fdf2ec; --d3-t:#9e5c3e;
     --ink:#2a343d; --ink2:#5d6976; --ink3:#8d97a1;
-    --line:#dfe3e8;
+    --line:#e4eaef;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{
     font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
     color:var(--ink);
-    background:linear-gradient(160deg,#e7ebee 0%,#f1f3f3 38%,#f7f3ee 100%);
+    background:linear-gradient(160deg,#eef5fa 0%,#f6f4ef 45%,#fdf1ea 100%);
     padding:26px 18px 34px;-webkit-font-smoothing:antialiased;
     /* 不写这条，Chrome Android 会对窄列自动放大字号，把已经调好的字号层级打乱 */
     -webkit-text-size-adjust:100%;text-size-adjust:100%;
@@ -56,27 +67,30 @@
   /* ── 页头 ─────────────────────────────── */
   header{
     position:relative;overflow:hidden;border-radius:18px;padding:22px 28px 20px;
-    background:linear-gradient(105deg,#3d6b8c 0%,#4f89a4 46%,#83b0bb 100%);
-    color:#fff;box-shadow:0 8px 20px rgba(60,90,110,.18);
+    /* 渐变依次是 Day1 蓝 → Day2 薄荷 → Day3 蜜桃，页头等于把三天的颜色预告一遍 */
+    background:linear-gradient(105deg,#bcdcf0 0%,#c6e7de 48%,#f8d9c6 100%);
+    color:#2e4a5c;box-shadow:0 6px 18px rgba(150,175,190,.22);
   }
   header h1{font-size:34px;letter-spacing:1px;font-weight:800;line-height:1.2}
   header h1 small{font-size:20px;font-weight:600;opacity:.92;margin-left:8px}
   .sub{margin-top:9px;font-size:14.5px;opacity:.95;display:flex;gap:13px;flex-wrap:wrap;align-items:center}
   .sub b{font-weight:700}
-  .sub .sep{opacity:.5}
-  .tagline{position:absolute;right:28px;top:26px;text-align:right;font-size:14px;line-height:1.9;opacity:.95}
+  .sub .sep{opacity:.45}
+  .tagline{position:absolute;right:28px;top:26px;text-align:right;font-size:14px;line-height:1.9;opacity:.9}
   .tagline em{font-style:normal;font-size:19px;font-weight:700;letter-spacing:2px}
 
   /* ── 三天 ─────────────────────────────── */
   .days{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:18px}
-  .day{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(70,85,100,.10)}
-  .day-hd{padding:12px 16px 11px;color:#fff}
+  .day{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(150,170,185,.16)}
+  .day-hd{padding:12px 16px 11px}
   .day-hd .dt{font-size:22px;font-weight:800;letter-spacing:.5px}
   .day-hd .dt em{font-style:normal;font-size:14px;font-weight:600;opacity:.9;margin-left:7px}
   .day-hd .rt{margin-top:5px;font-size:12px;opacity:.93;line-height:1.55}
-  .d1 .day-hd{background:linear-gradient(100deg,#4a7fa4,#7aa6bd)}
-  .d2 .day-hd{background:linear-gradient(100deg,#4b9184,#7ab5a7)}
-  .d3 .day-hd{background:linear-gradient(100deg,#b5765c,#d2a189)}
+  .d1 .day-hd{background:linear-gradient(100deg,#bcdcf0,#d9ecf7);color:var(--d1-t)}
+  .d2 .day-hd{background:linear-gradient(100deg,#bfe4da,#dcf1ea);color:var(--d2-t)}
+  .d3 .day-hd{background:linear-gradient(100deg,#f8d6c3,#fce8dc);color:var(--d3-t)}
+  /* 副标题原来靠 opacity 压成次要信息；深色字再压就快没了，回调到 .82 */
+  .day-hd .dt em,.day-hd .rt{opacity:.82}
   .day-bd{padding:13px 14px 15px}
 
   /* 时间轴：竖线画在 li::before，最后一条截断 */
@@ -94,10 +108,10 @@
   .h .ic{margin-right:5px}
   /* 选择器别写成 `.h .badge`：票价表里也有 badge（「傍晚场」「老人组」），
      限定在 .h 下面会让那几个退化成和正文粘在一起的裸字。 */
-  .badge{font-size:10.5px;font-weight:700;background:#eef2f6;color:#7b8b9a;border-radius:4px;padding:1px 5px;margin-left:5px;vertical-align:1.5px;white-space:nowrap}
+  .badge{font-size:10.5px;font-weight:700;background:#eef3f7;color:#7b8b9a;border-radius:4px;padding:1px 5px;margin-left:5px;vertical-align:1.5px;white-space:nowrap}
   .badge.new{background:#fff1d6;color:#a8730c}
   .n{color:var(--ink2);font-size:12px;line-height:1.6;margin-top:3px}
-  .n .tag{display:inline-block;background:#f1f5f9;color:var(--ink2);border-radius:4px;padding:0 5px;font-size:11px;margin-right:4px;white-space:nowrap}
+  .n .tag{display:inline-block;background:#eef4f9;color:var(--ink2);border-radius:4px;padding:0 5px;font-size:11px;margin-right:4px;white-space:nowrap}
   .n .tag.ok{background:#e6f6ee;color:#1a7a52}
   .n .tag.bk{background:#fdeceb;color:#b4342c}
   .warn{color:#c2410c;font-weight:600}
@@ -143,9 +157,9 @@
   /* Day3 分两条并行支线，用小标题把时间轴切成段 */
   .trk{margin:2px 0 9px;padding:7px 10px;border-radius:8px;font-size:12.5px;font-weight:800;line-height:1.5}
   .trk small{display:block;font-weight:600;font-size:11.5px;opacity:.88;margin-top:2px}
-  .trk.a{background:#f7ece6;color:#9c5a41}
-  .trk.b{background:#ecf0f3;color:#3f6480}
-  .trk.c{background:#ecf3ee;color:#3c7558}
+  .trk.a{background:#fdeee6;color:#a9643f}
+  .trk.b{background:#eaf3f9;color:#3f6b88}
+  .trk.c{background:#e8f6f0;color:#3a7c68}
 
   .stay{margin-top:4px;border-radius:10px;padding:10px 12px;font-size:12px;line-height:1.6}
   .d1 .stay{background:var(--d1-l)} .d2 .stay{background:var(--d2-l)} .d3 .stay{background:var(--d3-l)}
@@ -156,22 +170,22 @@
   .panels{display:grid;gap:14px;margin-top:15px}
   .row-a{grid-template-columns:1.02fr 1.1fr 1.08fr}
   .row-b{grid-template-columns:.72fr .72fr .64fr 1.62fr}
-  .card{background:#fff;border-radius:14px;padding:14px 16px 15px;box-shadow:0 4px 14px rgba(70,85,100,.09)}
+  .card{background:#fff;border-radius:14px;padding:14px 16px 15px;box-shadow:0 4px 14px rgba(150,170,185,.14)}
   .card h3{font-size:15.5px;font-weight:800;margin-bottom:9px;display:flex;align-items:center;gap:6px}
-  .c-blue h3{color:#43718f} .c-green h3{color:#42887b} .c-amber h3{color:#9c7b2e}
-  .c-orange h3{color:#b0705a} .c-purple h3{color:#726a9c} .c-teal h3{color:#3d777e}
+  .c-blue h3{color:#4b7f9f} .c-green h3{color:#45907f} .c-amber h3{color:#b08a3a}
+  .c-orange h3{color:#bd7455} .c-purple h3{color:#8478b0} .c-teal h3{color:#4a8b90}
 
   table.sch{width:100%;border-collapse:collapse;font-size:12px}
   table.sch td{padding:4.5px 2px;border-bottom:1px dashed var(--line);vertical-align:top;line-height:1.5}
   table.sch tr:last-child td{border-bottom:none}
-  table.sch td.k{white-space:nowrap;font-weight:800;color:#43718f;width:70px}
+  table.sch td.k{white-space:nowrap;font-weight:800;color:#4b7f9f;width:70px}
   table.sch td.v{color:var(--ink2)}
   table.sch td.p{white-space:nowrap;text-align:right;font-weight:700;color:var(--ink);width:56px}
   table.sch tr.tbd td{opacity:.72}
   .free{color:#1a7a52}
 
   .cols2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .box{background:#f7fafc;border-radius:9px;padding:9px 10px}
+  .box{background:#f4f9fb;border-radius:9px;padding:9px 10px}
   .box .bt{font-size:12px;font-weight:800;margin-bottom:5px;color:var(--ink)}
   .box.hl{background:#fff7e8} .box.hl .bt{color:#bb8410}
   /* 可勾选清单：点一下打勾并划掉，勾选状态存 localStorage。
@@ -207,7 +221,7 @@
   ul.tips li.att::before{content:"⚠️";font-size:10px;top:7px}
   ul.tips li b{color:var(--ink)}
 
-  footer{margin-top:18px;text-align:center;font-size:16px;font-weight:700;color:#4a7d95;letter-spacing:3px}
+  footer{margin-top:18px;text-align:center;font-size:16px;font-weight:700;color:#6a9ab5;letter-spacing:3px}
   footer .tiny{display:block;margin-top:7px;font-size:11px;font-weight:400;letter-spacing:0;color:var(--ink3)}
 
   /* ── 手机 ─────────────────────────────────
@@ -225,12 +239,13 @@
     header h1 small{display:block;margin:4px 0 0;font-size:14px}
     /* tagline 原本绝对定位在右上角；窄屏下它会直接压在标题上，收回文档流 */
     .tagline{position:static;text-align:left;margin-top:11px;padding-top:9px;
-             border-top:1px solid rgba(255,255,255,.28);font-size:12.5px;line-height:1.7}
+             border-top:1px solid rgba(255,255,255,.75);font-size:12.5px;line-height:1.7}
     .tagline em{font-size:15.5px;letter-spacing:1px}
     /* 竖杠分隔符换行后会落在行尾变成孤零零一根，改成药丸块 */
     .sub{gap:6px;margin-top:9px;font-size:12.5px}
     .sub .sep{display:none}
-    .sub>span,.sub>b{background:rgba(255,255,255,.17);border-radius:999px;padding:3px 9px}
+    /* 深色页头时这层白纱够用；换成浅色页头后 17% 的白等于没有，提到 60% 才看得出边界 */
+    .sub>span,.sub>b{background:rgba(255,255,255,.6);border-radius:999px;padding:3px 9px}
 
     .days{grid-template-columns:1fr;gap:12px;margin-top:12px}
     .day-hd{padding:11px 13px 10px}
