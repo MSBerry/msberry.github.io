@@ -1,0 +1,896 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>一家五口 南京 3天2晚 亲子游 · 2026.9.25–9.27</title>
+<!--
+  改这份行程前先读：下面几条是互相咬死的，单独动一条会连累别处。
+
+  🔴 中山陵必须排 Day1 钟山第一站。假期 08:30–17:00 且不延长，往后挪就进不去。
+  🔴 陵园路（梧桐大道）必须排 Day1 最后。它是当天唯一不受闭园时间管的一站，
+     而 9 月下旬南京日落约 18:10–18:20 —— 再往后就是摸黑走，绿隧道白来。
+  🔴 大报恩寺排 Day2 傍晚（17:35–19:30）是为了 19:00 点灯，19:00 停止检票是硬线。
+     园内时长下午场和傍晚场一样（都约 2 小时），改回下午只会白丢点灯。
+     代价是秦淮画舫夜游（同在晚上）——「顺手」把夜游加回来而不动别的就会撞车。
+  🔴 Day3 两条支线下午不在一起，所以行李必须早上就送进南京南寄存。
+     别改回「下午回酒店取」：那天没人能替对方跑那一趟。
+
+  票价 / 开放时间 / 预约口径均来自官方或本地宝，核不到的标「待核」，不冒充确定值。
+  玄武湖和鸡鸣寺在城北，Day3 两条支线都不经过，已不在行程内。
+
+  换照片：改页尾 PHOTOS 映射即可（本地文件名或完整网址都行），缺图会自动退回渐变色块。
+  导图 / 打印：Ctrl+P → 横向 + 勾「背景图形」；或整页截长图。
+-->
+<style>
+  :root{
+    --d1:#2f7fd0; --d1-l:#eaf3fc;
+    --d2:#1f9e7a; --d2-l:#e7f6f1;
+    --d3:#c7603f; --d3-l:#fceee8;
+    --ink:#22303d; --ink2:#5b6b7a; --ink3:#8b9aa8;
+    --line:#dbe6f0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+    color:var(--ink);
+    background:linear-gradient(160deg,#dff0fb 0%,#eef7fd 36%,#fdf6ee 100%);
+    padding:26px 18px 34px;-webkit-font-smoothing:antialiased;
+  }
+  .poster{max-width:1240px;margin:0 auto}
+
+  /* ── 页头 ─────────────────────────────── */
+  header{
+    position:relative;overflow:hidden;border-radius:18px;padding:22px 28px 20px;
+    background:linear-gradient(105deg,#1d6fc0 0%,#2f95d8 46%,#63c0e2 100%);
+    color:#fff;box-shadow:0 8px 22px rgba(30,110,180,.22);
+  }
+  header h1{font-size:34px;letter-spacing:1px;font-weight:800;line-height:1.2}
+  header h1 small{font-size:20px;font-weight:600;opacity:.92;margin-left:8px}
+  .sub{margin-top:9px;font-size:14.5px;opacity:.95;display:flex;gap:13px;flex-wrap:wrap;align-items:center}
+  .sub b{font-weight:700}
+  .sub .sep{opacity:.5}
+  .tagline{position:absolute;right:28px;top:26px;text-align:right;font-size:14px;line-height:1.9;opacity:.95}
+  .tagline em{font-style:normal;font-size:19px;font-weight:700;letter-spacing:2px}
+
+  /* ── 三天 ─────────────────────────────── */
+  .days{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:18px}
+  .day{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(40,90,140,.10)}
+  .day-hd{padding:12px 16px 11px;color:#fff}
+  .day-hd .dt{font-size:22px;font-weight:800;letter-spacing:.5px}
+  .day-hd .dt em{font-style:normal;font-size:14px;font-weight:600;opacity:.9;margin-left:7px}
+  .day-hd .rt{margin-top:5px;font-size:12px;opacity:.93;line-height:1.55}
+  .d1 .day-hd{background:linear-gradient(100deg,#2f7fd0,#57a6e0)}
+  .d2 .day-hd{background:linear-gradient(100deg,#1f9e7a,#4dbf9c)}
+  .d3 .day-hd{background:linear-gradient(100deg,#c7603f,#e59168)}
+  .day-bd{padding:13px 14px 15px}
+
+  /* 时间轴：竖线画在 li::before，最后一条截断 */
+  ul.tl{list-style:none;position:relative}
+  ul.tl li{position:relative;padding:0 0 13px 21px}
+  ul.tl li::before{content:"";position:absolute;left:4.5px;top:13px;bottom:0;width:2px;background:var(--line)}
+  ul.tl li:last-child::before{display:none}
+  ul.tl li::after{content:"";position:absolute;left:0;top:5px;width:11px;height:11px;border-radius:50%;background:#fff;border:3px solid currentColor}
+  .d1 ul.tl li{color:var(--d1)} .d2 ul.tl li{color:var(--d2)} .d3 ul.tl li{color:var(--d3)}
+  ul.tl li.meal::after{background:currentColor}
+  ul.tl li.opt::after{border-style:dotted}
+  ul.tl li.star::after{box-shadow:0 0 0 3px rgba(255,190,70,.5)}
+  .t{font-size:12.5px;font-weight:800;letter-spacing:.3px}
+  .h{color:var(--ink);font-size:14.5px;font-weight:700;margin-top:2px;line-height:1.35}
+  .h .ic{margin-right:5px}
+  .h .badge{font-size:10.5px;font-weight:700;background:#eef2f6;color:#7b8b9a;border-radius:4px;padding:1px 5px;margin-left:5px;vertical-align:1.5px}
+  .h .badge.new{background:#fff1d6;color:#a8730c}
+  .n{color:var(--ink2);font-size:12px;line-height:1.6;margin-top:3px}
+  .n .tag{display:inline-block;background:#f1f5f9;color:var(--ink2);border-radius:4px;padding:0 5px;font-size:11px;margin-right:4px;white-space:nowrap}
+  .n .tag.ok{background:#e6f6ee;color:#1a7a52}
+  .n .tag.bk{background:#fdeceb;color:#b4342c}
+  .warn{color:#c2410c;font-weight:600}
+  .red{color:#b91c1c;font-weight:700}
+  .win{color:#12794f;font-weight:700}
+  .eat{background:#fff8ec;border-left:3px solid #e8b44c;border-radius:0 7px 7px 0;padding:6px 9px;margin-top:4px;color:#7a5a1e;font-size:12px;line-height:1.6}
+  .eat b{color:#6b4a12}
+
+  /* 图位：渐变色块是「兜底层」，真图由页尾脚本盖在上面。
+     ⚠️ 别把渐变 class 删掉换成纯 <img> —— 那样缺图就是裂图图标，现在缺图只是退回色块。 */
+  .photo{
+    position:relative;overflow:hidden;
+    height:104px;border-radius:9px;margin-top:8px;display:flex;align-items:flex-end;
+    font-size:11px;color:#fff;font-weight:600;padding:7px 9px;
+    text-shadow:0 1px 3px rgba(0,0,0,.45);width:100%;
+  }
+  .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  /* 压暗带：真图的亮部会把白字吃掉，单靠 text-shadow 不够 */
+  .photo i.scrim{
+    position:absolute;left:0;right:0;bottom:0;height:56%;z-index:1;
+    background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,0));
+  }
+  .photo span.cap{position:relative;z-index:2}
+  .p-museum {background:linear-gradient(135deg,#8c6f52,#c2a480 60%,#e0cdb4)}
+  .p-tomb   {background:linear-gradient(135deg,#5b6f4a,#8fa76d 55%,#cfdcae)}
+  .p-wutong {background:linear-gradient(135deg,#2e5c3a,#5c8f52 50%,#a8c78c)}
+  .p-music  {background:linear-gradient(135deg,#7c6aa8,#a794cf 55%,#d6cdea)}
+  .p-meiling{background:linear-gradient(135deg,#7a6a3c,#b2a05f 55%,#ddd4a6)}
+  .p-sifang {background:linear-gradient(135deg,#6a6258,#9d9385 55%,#ccc5b8)}
+  .p-sun    {background:linear-gradient(135deg,#2f6fae,#6aa8d8 55%,#c2ddf0)}
+  .p-train  {background:linear-gradient(135deg,#334a63,#6b87a5 55%,#c0d2e0)}
+  .p-six    {background:linear-gradient(135deg,#2c6b6b,#5aa3a0 55%,#b7dcd8)}
+  .p-pagoda {background:linear-gradient(135deg,#a4592c,#d68f4e 55%,#f2d6a8)}
+  .p-wall2  {background:linear-gradient(135deg,#584a40,#8c7868 52%,#c9b8a6)}
+  .p-gate   {background:linear-gradient(135deg,#6b5344,#a6866c 55%,#dcc6ac)}
+  .p-exam   {background:linear-gradient(135deg,#4a3d6b,#7d6da8 55%,#c9bfdf)}
+  .p-qinhuai{background:linear-gradient(135deg,#8f2f3a,#d06a58 50%,#f3c39a)}
+  .p-lake   {background:linear-gradient(135deg,#1f5f7a,#4d97ad 55%,#b6dbe4)}
+  .p-memo   {background:linear-gradient(135deg,#3a3f45,#6e757c 55%,#b6bcc2)}
+  .p-yuhua  {background:linear-gradient(135deg,#4a5f45,#7d9573 55%,#c3d2b9)}
+  .p-happy  {background:linear-gradient(135deg,#b4335c,#e0705f 50%,#f6c98c)}
+
+  /* Day3 分两条并行支线，用小标题把时间轴切成段 */
+  .trk{margin:2px 0 9px;padding:7px 10px;border-radius:8px;font-size:12.5px;font-weight:800;line-height:1.5}
+  .trk small{display:block;font-weight:600;font-size:11.5px;opacity:.88;margin-top:2px}
+  .trk.a{background:#fdefe7;color:#a8492a}
+  .trk.b{background:#eaf1f8;color:#25567d}
+  .trk.c{background:#e9f6ee;color:#1a6e48}
+
+  .stay{margin-top:4px;border-radius:10px;padding:10px 12px;font-size:12px;line-height:1.6}
+  .d1 .stay{background:var(--d1-l)} .d2 .stay{background:var(--d2-l)} .d3 .stay{background:var(--d3-l)}
+  .stay .lb{font-weight:800;font-size:12.5px;display:block;margin-bottom:3px}
+  .d1 .stay .lb{color:var(--d1)} .d2 .stay .lb{color:var(--d2)} .d3 .stay .lb{color:var(--d3)}
+
+  /* ── 底部面板 ───────────────────────────── */
+  .panels{display:grid;gap:14px;margin-top:15px}
+  .row-a{grid-template-columns:1.02fr 1.1fr 1.08fr}
+  .row-b{grid-template-columns:.72fr .72fr .64fr 1.62fr}
+  .card{background:#fff;border-radius:14px;padding:14px 16px 15px;box-shadow:0 4px 14px rgba(40,90,140,.09)}
+  .card h3{font-size:15.5px;font-weight:800;margin-bottom:9px;display:flex;align-items:center;gap:6px}
+  .c-blue h3{color:#1d6fc0} .c-green h3{color:#1f9e7a} .c-amber h3{color:#bb8410}
+  .c-orange h3{color:#c7603f} .c-purple h3{color:#7c5cbf} .c-teal h3{color:#16808a}
+
+  table.sch{width:100%;border-collapse:collapse;font-size:12px}
+  table.sch td{padding:4.5px 2px;border-bottom:1px dashed var(--line);vertical-align:top;line-height:1.5}
+  table.sch tr:last-child td{border-bottom:none}
+  table.sch td.k{white-space:nowrap;font-weight:800;color:#1d6fc0;width:70px}
+  table.sch td.v{color:var(--ink2)}
+  table.sch td.p{white-space:nowrap;text-align:right;font-weight:700;color:var(--ink);width:56px}
+  table.sch tr.tbd td{opacity:.72}
+  .free{color:#1a7a52}
+
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .box{background:#f7fafc;border-radius:9px;padding:9px 10px}
+  .box .bt{font-size:12px;font-weight:800;margin-bottom:5px;color:var(--ink)}
+  .box.hl{background:#fff7e8} .box.hl .bt{color:#bb8410}
+  ul.chk{list-style:none;font-size:11.5px;line-height:1.85;color:var(--ink2)}
+  ul.chk li::before{content:"□ ";color:#9fb3c4;font-weight:700}
+
+  .wx{display:grid;grid-template-columns:1fr;gap:5px;font-size:12px}
+  .wx .w{display:flex;align-items:center;gap:7px;color:var(--ink2)}
+  .wx .w b{color:var(--ink);font-weight:800;min-width:40px}
+  .note{margin-top:9px;font-size:11px;color:var(--ink3);line-height:1.65}
+  .note b{color:var(--ink2)}
+
+  ul.tips{list-style:none;font-size:12px;line-height:1.7;color:var(--ink2)}
+  ul.tips li{padding:4.5px 0 4.5px 18px;position:relative;border-bottom:1px dashed var(--line)}
+  ul.tips li:last-child{border-bottom:none}
+  ul.tips li::before{content:"✔";position:absolute;left:0;top:5px;color:#3aa06f;font-size:11px}
+  ul.tips li.imp::before{content:"🔴";font-size:10px;top:7px}
+  ul.tips li.att::before{content:"⚠️";font-size:10px;top:7px}
+  ul.tips li b{color:var(--ink)}
+
+  footer{margin-top:18px;text-align:center;font-size:16px;font-weight:700;color:#2b7cb8;letter-spacing:3px}
+  footer .tiny{display:block;margin-top:7px;font-size:11px;font-weight:400;letter-spacing:0;color:var(--ink3)}
+</style>
+</head>
+<body>
+<div class="poster">
+
+<header>
+  <h1>一家五口 南京 <small>3天2晚 亲子游</small></h1>
+  <div class="sub">
+    <b>2026.9.25（周五）– 9.27（周日）</b><span class="sep">|</span>
+    <span><b>4 大 1 小</b>（孩子 9 岁）</span><span class="sep">|</span>
+    <span>杭州临平 · 南苑街道 出发</span><span class="sep">|</span>
+    <span>全程高铁</span><span class="sep">|</span>
+    <span>2 晚换 1 次酒店</span>
+  </div>
+  <div class="tagline"><em>钟山一日 · 秦淮一日 · 城南一日</em><br>看博物馆 · 走梧桐道 · 游秦淮河</div>
+</header>
+
+<div class="days">
+
+  <!-- ══════════ DAY 1 ══════════ -->
+  <section class="day d1">
+    <div class="day-hd">
+      <div class="dt">9/25 <em>周五 · 中秋</em></div>
+      <div class="rt">杭州西 → 南京南（08:33）→ 酒店卸行李 → 南京博物院 → 钟山：中山陵 · 音乐台 · 美龄宫 · 四方城 · 明孝陵石象路 · 陵园路梧桐大道</div>
+    </div>
+    <div class="day-bd">
+      <ul class="tl">
+        <li>
+          <div class="t">05:40 / 06:00</div>
+          <div class="h"><span class="ic">🚕</span>起床 · 出门</div>
+          <div class="n">临平 · 南苑街道→ <b>杭州西站</b>，打车约 40 分钟。
+          <b>5 人 + 行李叫一台 6/7 座商务车</b>（普通轿车只能坐 4 客，装不下），前一晚在打车软件里预约好。</div>
+        </li>
+        <li>
+          <div class="t">06:45</div>
+          <div class="h"><span class="ic">🎫</span>到站 · 进站</div>
+          <div class="n">中秋假期首日，安检排队留 30 分钟。
+          <span class="warn">9 岁按儿童票，带上他自己的身份证（有就用）或户口本，核验要查。</span></div>
+        </li>
+        <li>
+          <div class="t">07:23 → 08:33</div>
+          <div class="h"><span class="ic">🚄</span>G1544 杭州西 → 南京南</div>
+          <div class="n"><span class="tag ok">时刻已确认</span>到站 <b>08:33</b>，比常规班次早，今天多出整整一小时，全给了南博。</div>
+          <div class="eat">🍳 <b>早餐在车上</b>：头天晚上备好面包 / 三明治 + 牛奶，6 点出门别指望路上买。</div>
+          <div class="photo p-train">南京南站</div>
+        </li>
+        <li>
+          <div class="t">08:50–09:25</div>
+          <div class="h"><span class="ic">🛏️</span>先去酒店卸行李</div>
+          <div class="n">南京南 → <b>玄武苏宁诺富特</b>，打车约 30 分钟。房间这时候肯定没好，
+          <b>前台寄存就行</b>，空手出门。<span class="warn">南博 9:00 才开门，这一趟正好填上，不浪费。</span></div>
+        </li>
+        <li>
+          <div class="t">10:05–12:35</div>
+          <div class="h"><span class="ic">🏛️</span>南京博物院</div>
+          <div class="n"><span class="tag ok">免费</span><span class="tag bk">须提前 7 天预约</span><span class="tag">地铁 2 号线</span>
+          开放 09:00–17:30 · 周一闭馆。酒店打车约 20 分钟。
+          <b>2.5 小时，挑两个馆</b>：历史馆（镇馆之宝）+ 民国馆（地下老街实景，孩子最买账）。</div>
+          <div class="photo p-museum">南京博物院 · 民国馆老街</div>
+        </li>
+        <li class="meal">
+          <div class="t">12:35–13:35</div>
+          <div class="h"><span class="ic">🍽️</span>午餐 · 南博院内餐饮</div>
+          <div class="eat"><b>就在院里吃</b>——中山门一带外食选择少，出去再回来白扔 40 分钟，孩子还得多走一趟。
+          院内餐厅 / 咖啡简餐够用。真想吃好的，打车 10 分钟到<b>月牙湖 / 苜蓿园</b>商圈。</div>
+        </li>
+        <li>
+          <div class="t">13:40</div>
+          <div class="h"><span class="ic">🚐</span>先买观光车「当日不限次」</div>
+          <div class="n"><span class="tag">30 元/人 · 单次 10 元</span><span class="tag">运营 7:30–18:00</span>
+          <b>1 号线：苜蓿园—四方城—美龄宫—海底世界—中山陵南广场</b> ——
+          今天下面五个点它串了三个，<b>反着坐就是回程方向</b>。
+          <b>孩子走不动直接上车。</b></div>
+        </li>
+        <li class="star">
+          <div class="t">13:55–15:05</div>
+          <div class="h"><span class="ic">⛩️</span>中山陵</div>
+          <div class="n"><span class="tag ok">免费</span><span class="tag bk">分时段预约</span><span class="tag">地铁 2 号线</span>
+          <span class="red">🔴 <b>假期口径按 08:30–17:00</b>（2025 双节公告就是这个，<b>中秋不延时</b>）——
+          它必须排钟山第一站，别留到傍晚。</span>
+          <b>预约选 12:30–14:30 场次</b>（另有 08:30–10:30 / 10:30–12:30 / 14:30–16:30）。<br>
+          <b>✅ 时间窗其实很宽：可提前 30 分钟、延迟 60 分钟入园</b> ——
+          这个场次实际 12:00 到 15:30 之间进都算数，13:55 有充足余量。<br>
+          392 级台阶、8 个休息平台，没有电梯 —— <b>9 岁自己爬得上去</b>，上之前先把水喝够。<br>
+          <b>✅ 下来不用原路爬：祭堂两侧都有步道</b>（右侧那条直通灵谷寺方向）。
+          <span class="warn">⚠️ 主轴墓道是单行动线，走反了会多爬一截台阶 —— 下山前看一眼指示牌。<br>
+          ⚠️ <b>墓室在法定节假日关闭</b>（平时周二至周五才开），中秋这三天进不去，只能到祭堂 ——
+          别让家里人白期待。</span></div>
+          <div class="photo p-sun">中山陵 · 392 级台阶</div>
+        </li>
+        <li>
+          <div class="t">15:15–15:45</div>
+          <div class="h"><span class="ic">🕊️</span>音乐台</div>
+          <div class="n"><span class="tag">含在钟山联票</span><span class="tag">售票 06:30–18:30</span>就在中山陵广场边上，步行几分钟。
+          <b>喂鸽子 —— 刚爬完 392 级台阶，这半小时正好当休息。</b>现场有鸽食卖，自带面包也行。</div>
+          <div class="photo p-music">音乐台 · 鸽子</div>
+        </li>
+        <li>
+          <div class="t">15:55–16:20</div>
+          <div class="h"><span class="ic">🏠</span>美龄宫</div>
+          <div class="n"><span class="tag">含在钟山联票</span><span class="tag">07:30–18:00 · 17:30 停止入园</span>
+          <b>坐观光车 1 号线过来</b>（中山陵南广场 → 美龄宫），省掉 20 分钟步行 —— 这 20 分钟后面要用。
+          紫金山上的"项链"，屋里家具陈设孩子能看懂，不闷。</div>
+          <div class="photo p-meiling">美龄宫 · 紫金山上的"项链"</div>
+        </li>
+        <li>
+          <div class="t">16:25–16:35</div>
+          <div class="h"><span class="ic">🪨</span>四方城（神功圣德碑亭）</div>
+          <div class="n"><span class="tag">含在钟山联票</span>观光车 1 号线一站到（或步行 6 分钟）。
+          就一座碑亭，<b>十分钟够</b>。它是个路口：<b>往下走接石象路，往外走跨天桥就是陵园路。</b></div>
+          <div class="photo p-sifang">四方城 · 神功圣德碑亭</div>
+        </li>
+        <li class="star">
+          <div class="t">16:40–17:35</div>
+          <div class="h"><span class="ic">🐘</span>明孝陵 · 石象路「最美 600 米」</div>
+          <div class="n"><span class="tag">含在钟山联票</span>从四方城拾阶而下，走到明孝陵 5 号门。
+          两侧石兽六百年没动过，是<b>石兽神道</b>，<b>不是梧桐大道</b>（两码事，见下一站）。
+          <span class="tag">售票 06:30–18:30</span>（另一口径 06:30–18:00、17:30 停止售票）
+          —— 16:40 进场有近两小时余量，不赶。
+          <span class="warn">⚠️ 它的看点是秋日彩叶（榉树嫣红、枫香、乌桕橙黄），<b>9 月下旬还没上色</b>，
+          这次看的是石兽和绿荫。<br>
+          ⚠️ 别和<b>明孝陵博物馆</b>搞混 —— 那是另一个点，9:00–17:00、16:30 停止入馆，本次不去。</span></div>
+          <div class="photo p-tomb">明孝陵 · 石象路石兽神道</div>
+        </li>
+        <li class="star">
+          <div class="t">17:40–18:20</div>
+          <div class="h"><span class="ic">🌳</span>陵园路 · 梧桐大道</div>
+          <div class="n"><span class="tag ok">免费 · 全天开放 · 不用票不用预约</span>
+          1929 年为迎孙中山灵柩所修，两侧千余棵法国梧桐的<b>绿色隧道</b>，
+          西起中山门、东至中山陵，全长 3.5 公里 —— <b>走一段就够，不用走完</b>。<br>
+          <b>放最后是因为它是今天唯一不受闭园时间管的一站</b>，而且 17:40 之后正是斜光最好的时候。
+          <span class="warn">⚠️ 9 月下旬是绿隧道，金黄落叶期在 10 月底到 11 月中。
+          9 月下旬南京日落约 18:10–18:20，<b>18:20 收工是掐着天光定的</b>。</span></div>
+          <div class="photo p-wutong">陵园路 · 法国梧桐绿色隧道</div>
+        </li>
+        <li class="opt">
+          <div class="t">16:35 · 分头点</div>
+          <div class="h"><span class="ic">👨‍👩‍👦</span>孩子走不动就在四方城分头</div>
+          <div class="n"><b>这是全天唯一适合分头的位置，而且不用各自打车：</b>
+          陵园路正好从<b>明孝陵大金门和四方城之间穿过</b>。<br>
+          ▸ <b>妈妈带孩子</b>：直接下陵园路慢慢逛 —— 免费、平路、不爬台阶、不用票<br>
+          ▸ <b>老人和其他人</b>：进明孝陵走石象路（票已含在联票里）<br>
+          ▸ <b>17:40 在大金门原地碰头</b>，两拨人本来就在同一片，一起走最后那段梧桐大道</div>
+        </li>
+        <li class="meal">
+          <div class="t">18:30 以后</div>
+          <div class="h"><span class="ic">🍜</span>晚餐 → 回酒店</div>
+          <div class="eat"><b>就近</b>：酒店在玄武大道 / 徐庄一带，商圈里随便吃，今天走了一万五千步。<br>
+          <b>想吃正经南京菜</b>：打车约 20 分钟找「<b>南京大牌档</b>」离酒店最近那家 —— 菜单大众、孩子有的吃，
+          但<b>必排队</b>，出发前先在小程序取号。</div>
+        </li>
+      </ul>
+      <div class="stay">
+        <span class="lb">🛏️ 住宿｜第 1 晚</span>
+        <b>南京玄武苏宁诺富特酒店</b>（玄武区）<br>
+        它的价值全在今天：离钟山风景区近，玩到天黑能直接回来，不用横穿城区。
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ DAY 2 ══════════ -->
+  <section class="day d2">
+    <div class="day-hd">
+      <div class="dt">9/26 <em>周六</em></div>
+      <div class="rt">换酒店 → 六朝博物馆 → 中华门瓮城 → 老门东 → 江南贡院 → <b>大报恩寺（19:00 点灯）</b> → 老门东晚餐 → 乌衣巷 · 夫子庙灯影</div>
+    </div>
+    <div class="day-bd">
+      <ul class="tl">
+        <li class="meal">
+          <div class="t">07:30–08:30</div>
+          <div class="h"><span class="ic">🥐</span>起床 · 酒店早餐 · 退房</div>
+          <div class="eat"><b>诺富特早餐</b>（订房时确认含不含、儿童怎么算）。今天换酒店，行李全部带走。</div>
+        </li>
+        <li>
+          <div class="t">08:50–09:20</div>
+          <div class="h"><span class="ic">🚕</span>行李先送到第 2 家酒店</div>
+          <div class="n">诺富特 → <b>夫子庙水游城假日</b>，约 25 分钟。<b>前台寄存</b>，房卡晚饭前顺路再办。
+          <span class="warn">别拖着箱子逛博物馆。</span></div>
+        </li>
+        <li>
+          <div class="t">09:40–11:40</div>
+          <div class="h"><span class="ic">🏺</span>六朝博物馆</div>
+          <div class="n"><span class="tag">约 30 元 · 待核</span><span class="tag bk">建议预约</span><span class="tag">3 号线大行宫</span>
+          长江路，酒店打车约 10 分钟。三楼那面木格落地窗是公认打卡点。
+          <span class="warn">周一闭馆，本次周六不受影响。</span></div>
+          <div class="photo p-six">六朝博物馆 · 木格落地窗</div>
+        </li>
+        <li class="meal">
+          <div class="t">11:50–12:50</div>
+          <div class="h"><span class="ic">🍽️</span>午餐 · 长江路商场里</div>
+          <div class="eat"><b>直接进商场</b>（德基 / 新世界，步行可达）——有空调、有儿童椅、不用晒。
+          <b>南京大牌档</b>（德基店）或<b>狮王府</b>（淮扬菜）都在这一带。
+          <span class="warn">假期 11:30 就开始排 —— 逛六朝博物馆的时候就先线上取号。</span></div>
+        </li>
+        <li class="star">
+          <div class="t">13:10–14:20</div>
+          <div class="h"><span class="ic">🧱</span>南京城墙 · 中华门瓮城</div>
+          <div class="n"><span class="tag">约 50 元 · 待核</span><span class="tag">3 号线中华门</span>
+          长江路打车约 20 分钟。
+          现存<b>世界最大的瓮城</b>：三道瓮城、四道券门、27 个藏兵洞 ——
+          <b>9 岁正是钻洞的年纪，这是整趟行程里最"能玩"的一个点</b>（27 个洞，让他自己数）。
+          <span class="warn">城上看出去是老城南屋顶和大报恩寺琉璃塔 —— <b>晚上要去的就是那座塔</b>。
+          开放时间待核，下午这个点没风险。</span></div>
+          <div class="photo p-wall2">中华门瓮城 · 藏兵洞</div>
+        </li>
+        <li>
+          <div class="t">14:30–15:45</div>
+          <div class="h"><span class="ic">🏮</span>老门东历史街区</div>
+          <div class="n">从中华门<b>步行 10 分钟</b>。牌坊、砖巷、手作铺子，比夫子庙清静些。</div>
+          <div class="eat">🥟 <b>下午茶就在这儿扫小吃</b>（别吃太饱，晚饭在 19:45）：<br>
+          <b>蒋有记</b>锅贴＋牛肉汤 · <b>小郑酥烧饼</b> · 赤豆元宵 · 鸭血粉丝汤 · 梅花糕</div>
+          <div class="photo p-gate">老门东 · 牌坊</div>
+        </li>
+        <li>
+          <div class="t">16:00–17:05</div>
+          <div class="h"><span class="ic">📜</span>江南贡院 · 中国科举博物馆</div>
+          <div class="n"><span class="tag">约 50 元 · 待核</span><span class="tag">3 号线夫子庙</span>
+          老门东步行约 15 分钟。<b>全在地下四层、有空调</b>，走了一天这里正好歇脚；
+          科举号舍、殿试互动屏，小学生很吃这套。</div>
+          <div class="photo p-exam">中国科举博物馆 · 地下四层</div>
+        </li>
+        <li>
+          <div class="t">17:10–17:25</div>
+          <div class="h"><span class="ic">🛏️</span>顺路办入住</div>
+          <div class="n">酒店就在水游城，<b>房卡办掉、行李送进房间</b>，再空手出门看塔 ——
+          别留到 21:30 回来才办，那会儿一家五口都累透了。</div>
+        </li>
+        <li class="star">
+          <div class="t">17:35–19:30</div>
+          <div class="h"><span class="ic">🛕</span>大报恩寺遗址景区</div>
+          <div class="n"><span class="tag">90 元</span><span class="tag ok">无需预约</span><span class="tag">3 号线中华门</span>
+          开放 08:30–19:30、<b>19:00 停止检票</b>，酒店打车约 10 分钟。
+          室内为主、有空调，遗址、地宫、琉璃塔，声光足，下雨也不影响。
+          <span class="red">🔴 <b>19:00 琉璃塔点灯，在塔前广场，18:45 前占好位置。</b></span>
+          <span class="warn">⚠️ 中秋是否延长开放<b>待核</b>（2025 五一曾延到 20:30）—— 延了更从容，没延也够。</span></div>
+          <div class="photo p-pagoda">大报恩寺 · 琉璃塔 19:00 点灯</div>
+        </li>
+        <li class="meal">
+          <div class="t">19:45–20:45</div>
+          <div class="h"><span class="ic">🍲</span>晚餐 · 老门东</div>
+          <div class="n">出园<b>步行 10 分钟</b>就到，不用打车。</div>
+          <div class="eat"><b>老字号路线</b>：<b>奇芳阁</b>（鸭油酥烧饼、什锦菜）<br>
+          <b>稳妥路线</b>：<b>南京大牌档</b>（5 人一桌好订、孩子有饭有汤）<br>
+          <b>必点</b>：盐水鸭 · 狮子头 · 美龄粥 · 皮肚面
+          <span class="warn">⚠️ 20:00 后不少老字号就停止点单了，订位或提前取号。</span></div>
+        </li>
+        <li>
+          <div class="t">20:55–21:25</div>
+          <div class="h"><span class="ic">🌙</span>乌衣巷 · 文德桥 · 夫子庙灯影</div>
+          <div class="n"><span class="tag ok">夫子庙免费 · 无需预约</span>开放到 <b>22:00</b>，从老门东步行约 15 分钟，
+          走完<b>顺路回酒店</b>，不用打车。
+          <span class="win">✅ 秦淮河的夜景在<b>岸上照样看得全</b>（文德桥、白鹭洲一线灯影都在这儿），
+          砍掉的只是「坐船那一小时」。</span></div>
+          <div class="photo p-qinhuai">乌衣巷 · 文德桥 · 秦淮灯影</div>
+        </li>
+        <li class="opt">
+          <div class="t">备选 · 未安排</div>
+          <div class="h"><span class="ic">🚤</span>秦淮河夜游（画舫）</div>
+          <div class="n"><span class="tag">约 60–100 元/人 · 待核</span>
+          <b>点灯和夜游都在晚上，只能二选一。</b>想两个都要：
+          晚餐压到 40 分钟（19:40–20:20），<b>20:30–21:30 上船</b>，21:45 回酒店。
+          <span class="warn">⚠️ 成不成取决于<b>末班船时间</b>（待核）—— 出发前查清楚再决定，
+          别当天到码头碰运气。</span></div>
+        </li>
+      </ul>
+      <div class="stay">
+        <span class="lb">🛏️ 住宿｜第 2 晚</span>
+        <b>南京夫子庙水游城假日酒店</b>（秦淮区）<br>
+        今天中午以后<b>六个点全靠步行串起来</b>：大报恩寺 → 中华门 → 老门东 → 贡院 → 夫子庙 → 乌衣巷，
+        中华门 → 老门东 → 贡院 → 大报恩寺 → 老门东 → 乌衣巷，除大报恩寺那 10 分钟车程外全靠步行，
+        看完灯影走回来就睡。
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ DAY 3 ══════════ -->
+  <section class="day d3">
+    <div class="day-hd">
+      <div class="dt">9/27 <em>周日</em></div>
+      <div class="rt"><b>全家先送行李进南京南 → 分两路</b>：亲子组去欢乐谷 / 老人组走纪念馆 + 雨花台 → 18:20 南京南会合 → 杭州东</div>
+    </div>
+    <div class="day-bd">
+      <div class="trk c">🧳 共同段 · 先把行李甩掉
+        <small>两组都空手出门，这是分头能成立的前提</small></div>
+      <ul class="tl">
+        <li class="meal">
+          <div class="t">07:00–07:50</div>
+          <div class="h"><span class="ic">🥐</span>起床 · 酒店早餐</div>
+          <div class="eat"><b>水游城假日早餐</b>。今天两组分开走，吃饭时把会合时间和地点先说定。</div>
+        </li>
+        <li class="star">
+          <div class="t">08:30–09:00</div>
+          <div class="h"><span class="ic">🚉</span>全家一起送行李进南京南站寄存</div>
+          <div class="n">08:00 退房、行李<b>全部带走</b>，08:30 一台 6/7 座直奔南京南（约 25 分钟），
+          <b>站内统一寄存</b>。
+          <span class="red">🔴 <b>行李必须早上就进站，不能留到下午取。</b>
+          今天两组下午不在一起，谁都没法替对方跑那一趟。</span></div>
+        </li>
+        <li>
+          <div class="t">09:00 · 南京南站</div>
+          <div class="h"><span class="ic">👋</span>在这里分头</div>
+          <div class="n">两条支线都<b>以南京南站为起点、也以它为终点</b>，谁晚了都不影响另一组。<br>
+          分开前对一遍：<b>会合时间 18:20、地点候车层、行李寄存柜号</b>。</div>
+        </li>
+      </ul>
+
+      <div class="trk a">🎢 亲子组 · 爸爸 + 妈妈 + 孩子
+        <small>南京欢乐谷（栖霞区）· 全天一个点</small></div>
+      <ul class="tl">
+        <li>
+          <div class="t">09:15–10:00</div>
+          <div class="h"><span class="ic">🚕</span>南京南 → 南京欢乐谷</div>
+          <div class="n">打车约 45 分钟（欢乐谷北路 8 号，城东北）。
+          <span class="warn">地铁要 1 小时 15 分（3 号线 → 大行宫换 2 号线 → 经天路站 + 接驳车），
+          带孩子不值这个时间，打车。</span></div>
+        </li>
+        <li class="star">
+          <div class="t">10:00–17:30</div>
+          <div class="h"><span class="ic">🎢</span>南京欢乐谷</div>
+          <div class="n"><span class="tag bk">门票待核</span><span class="tag">周末 09:30–18:30</span><span class="tag">2 号线经天路</span>
+          南京最大的主题乐园，六大园区、40 余台设备，招牌是飞翼过山车<b>「掠食者」</b>。<br>
+          <span class="win">✅ <b>1.4–1.45 m 这个区间其实挺好</b>：主流项目的门槛是 <b>1.4 m</b>，
+          绝大部分都能上；卡 <b>1.45 m</b> 的通常只有最刺激的那两三个。</span>
+          <span class="warn">⚠️ 出发前在官方小程序<b>对一遍各项目的身高线</b>，
+          把 1.45 m 那几个先划掉、按「能玩的」排当天主攻 —— 省得到现场再临时改计划。</span>
+          <span class="warn">⚠️ 闭园前 1 小时停止售票入园。<b>假期热门项目排队 1–2 小时</b>，
+          7.5 小时实际玩不了太多：进门先用官方 App 看排队时长，挑 3–4 个主攻，别指望全玩。<br>
+          ⚠️ 门票和假期是否需预约都<b>待核</b>，提前在官方小程序买。</span></div>
+          <div class="photo p-happy">南京欢乐谷 · 飞翼过山车「掠食者」</div>
+        </li>
+        <li class="meal">
+          <div class="t">园内</div>
+          <div class="h"><span class="ic">🍔</span>午餐 · 园内解决</div>
+          <div class="eat">主题乐园餐饮贵且一般，但出园再进不现实。<b>自带零食和水</b>能省不少，
+          正餐在园内挑一家坐下吃 —— 顺便当排队之间的休息。</div>
+        </li>
+        <li>
+          <div class="t">17:30–18:20</div>
+          <div class="h"><span class="ic">🚕</span>离园 → 回南京南</div>
+          <div class="n"><span class="red">🔴 <b>17:30 就走，不等 18:30 闭园。</b></span>
+          它在城东北、车站在城西南，<b>跨城返程 + 假期最后一天晚高峰</b>，
+          这一小时是留给堵车的，不是浪费。</div>
+        </li>
+      </ul>
+
+      <div class="trk b">🕯️ 老人组 · 两位老人
+        <small>纪念馆 + 雨花台 · 节奏慢、全程有座位可歇</small></div>
+      <ul class="tl">
+        <li>
+          <div class="t">09:40–10:05</div>
+          <div class="h"><span class="ic">🚕</span>南京南 → 江东门</div>
+          <div class="n">打车约 25 分钟（或地铁 2 号线云锦路站）。</div>
+        </li>
+        <li class="star">
+          <div class="t">10:10–12:00</div>
+          <div class="h"><span class="ic">🕯️</span>侵华日军南京大屠杀遇难同胞纪念馆</div>
+          <div class="n"><span class="tag ok">免费</span><span class="tag bk">须提前 7 天预约</span><span class="tag">2 号线云锦路</span>
+          开放 08:30–16:30。
+          <span class="win">✅ 上午场人最少，能安安静静看近两小时。</span>
+          <span class="warn">没约到可以<b>蹲当天放票</b>。<br>
+          ⚠️ 馆内内容沉重、全程站立参观，两位老人中途累了就到馆外<b>和平广场</b>的长椅上歇。</span></div>
+          <div class="photo p-memo">遇难同胞纪念馆 · 和平广场</div>
+        </li>
+        <li class="meal">
+          <div class="t">12:10–13:10</div>
+          <div class="h"><span class="ic">🍜</span>午餐 · 河西 / 万达商圈</div>
+          <div class="eat">纪念馆出来打车约 10 分钟。<b>进商场吃</b> —— 有空调、有电梯、不用晒，
+          对老人比街边店合适得多。<br>
+          <b>推荐</b>：南京大牌档 / 刘长兴（面）/ 绿柳居（素菜，老字号）<br>
+          <span class="warn">下午雨花台周边没什么吃的，这餐要吃实。</span></div>
+        </li>
+        <li class="star">
+          <div class="t">13:30–16:00</div>
+          <div class="h"><span class="ic">🌾</span>雨花台风景区</div>
+          <div class="n"><span class="tag ok">免费</span>打车约 25 分钟。
+          <span class="win">✅ 13:30 进场，<b>室内场馆（约 17:00 停止入馆）完全赶得上。</b></span>
+          纪念碑、纪念馆、雨花石博物馆，林荫路平缓好走，<b>累了随时坐、想早走就早走</b>。</div>
+          <div class="photo p-yuhua">雨花台 · 纪念碑</div>
+        </li>
+        <li>
+          <div class="t">16:10–16:25</div>
+          <div class="h"><span class="ic">🚉</span>回南京南站休息</div>
+          <div class="n">雨花台离车站只 3 公里，<b>约 10 分钟车程</b>。
+          到站早，先找座位歇着、上厕所，等亲子组回来。</div>
+        </li>
+      </ul>
+
+      <div class="trk c">🤝 会合 · 18:20 南京南站
+        <small>两组在候车层碰头，一起吃晚饭上车</small></div>
+      <ul class="tl">
+        <li class="meal">
+          <div class="t">18:30–19:45</div>
+          <div class="h"><span class="ic">🍱</span>站内晚餐 + 取行李</div>
+          <div class="eat"><b>1 小时 15 分的缓冲</b>：吃饭、取寄存的行李、孩子在乐园玩了一天先歇会儿。<br>
+          🛍️ <b>特产在这儿买就行</b>：真空<b>盐水鸭</b> · <b>雨花茶</b> · 糕团。
+          今天两组都没经过老门东狮子桥，别指望白天顺手买。</div>
+        </li>
+        <li>
+          <div class="t">20:26 → 约 22:10</div>
+          <div class="h"><span class="ic">🚄</span>G9423 南京南 → 杭州东</div>
+          <div class="n"><span class="tag">已定</span>到站时刻以车票为准。
+          孩子在乐园跑了一天，这趟车上八成会睡着，但 <b>9 岁不用抱</b> ——
+          叫醒他自己背小包，大人腾出两只手拿行李。</div>
+        </li>
+        <li>
+          <div class="t">22:30 以后</div>
+          <div class="h"><span class="ic">🏡</span>杭州东 → 家</div>
+          <div class="n">打车回临平南苑街道约 40 分钟，最稳（<b>5 人还是叫 6/7 座</b>）。
+          <span class="warn">⚠️ 地铁 1 号线（临平方向）末班约 23:00 —— 带孩子加行李，不建议赌末班车。</span></div>
+        </li>
+      </ul>
+      <div class="stay">
+        <span class="lb">🔑 今天的两条线共用车站</span>
+        两组<b>都从南京南出发、也都回南京南</b>，谁那边晚了都不拖累另一组。
+        出门前把<b>会合时间、地点（候车层）和寄存柜号</b>说定，路上手机不一定顺畅。
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ── 底部面板 · 第一行 ──────────────────────────── -->
+<div class="panels row-a">
+
+  <div class="card c-blue">
+    <h3>📅 预约 / 购票时间表</h3>
+    <table class="sch">
+      <tr><td class="k">现在</td><td class="v">两趟高铁确认出票（G1544 08:33 到 / G9423 20:26 发）。<b>9/25 是中秋</b>，票源紧</td></tr>
+      <tr><td class="k">9/17–9/18</td><td class="v">两家酒店确认：<b>4 大 1 小按 2 间房</b>（孩子随大人住），问清加床与儿童早餐</td></tr>
+      <tr><td class="k" style="color:#b4342c">9/18<br>16:00</td><td class="v">🔴 <b>中山陵放号是「入园前 7 天、每天 16:00」</b> ——
+        <b>9/18 下午 16:00 整</b>去抢 9/25 的：<br>
+        ▸ <b>中山陵</b>（免费，<span style="color:#b4342c">要 12:30–14:30 场</span>）<br>
+        ▸ 同日一起约 <b>南京博物院</b>（免费）</td></tr>
+      <tr><td class="k" style="color:#b4342c">9/19<br>16:00</td><td class="v">约 9/26 的 <b>六朝博物馆</b>（口径待核，按需预约）</td></tr>
+      <tr><td class="k" style="color:#b4342c">9/20<br>16:00</td><td class="v">约 9/27 的 <b>遇难同胞纪念馆</b>（免费，<b>只需 2 位老人的名额</b>）<br>
+        <span class="free">约上午场（10:00 前后进馆）；没约到可蹲当天放票</span></td></tr>
+      <tr><td class="k">9/23</td><td class="v">线上买票：<b>钟山联票</b>（成人 100 / <b>老人儿童 50</b>）·
+        <b>观光车不限次 30</b> · 大报恩寺 90 · <b>中华门城墙</b> · 科举博物馆 ·
+        <span style="color:#8b9aa8">秦淮河画舫（未安排，想加再买 —— 先查末班船）</span> ·
+        <b style="color:#b4342c">南京欢乐谷（3 张，并查清各项目身高线）</b></td></tr>
+      <tr><td class="k">9/24</td><td class="v">① 看最终天气<br>
+        ② <b>预约 9/25 早 06:00 的 6/7 座车</b><br>③ Day2 晚餐提前订位</td></tr>
+      <tr><td class="k">9/25 当天</td><td class="v">06:45 前到杭州西站</td></tr>
+    </table>
+    <div class="note">🔴 <b>只有三项必须抢</b>：南博、中山陵、纪念馆 —— 全是免费 + 提前 7 天，
+    <b>放号时间是每天 16:00 整</b>（中山陵已核实，另两项建议按同一时点守）。<br>
+    已核实：<b>2026 中秋假期就是 9/25（五）–9/27（日）三天</b>，三天都不是周一，周一闭馆的馆全部不受影响。
+    大报恩寺、夫子庙、钟山联票都<b>无需预约</b>，省一大半事。
+    <b>纪念馆只要约 2 位老人的名额</b>（亲子组那天去乐园）。<br>
+    <b>周一闭馆</b>的几个馆（南博、中山陵、六朝）本次是五、六、日，<b>不受影响</b>。</div>
+  </div>
+
+  <div class="card c-amber">
+    <h3>🍜 吃什么</h3>
+    <table class="sch">
+      <tr><td class="k" style="color:#bb8410">D1 早</td><td class="v">车上吃 · 前一晚备好面包牛奶</td></tr>
+      <tr><td class="k" style="color:#bb8410">D1 午</td><td class="v"><b>南博院内餐饮</b> —— 中山门外食少，出去再回来白扔 40 分钟</td></tr>
+      <tr><td class="k" style="color:#bb8410">D1 晚</td><td class="v">酒店周边商圈就近；想吃好的找<b>南京大牌档</b>最近门店（必排队，先取号）</td></tr>
+      <tr><td class="k" style="color:#bb8410">D2 早</td><td class="v">诺富特酒店早餐</td></tr>
+      <tr><td class="k" style="color:#bb8410">D2 午</td><td class="v"><b>长江路商场里</b>（德基/新世界）· 南京大牌档 / 狮王府 —— 有空调有儿童椅<br>
+        <span class="warn">逛六朝博物馆时就先取号</span></td></tr>
+      <tr><td class="k" style="color:#bb8410">D2 下午</td><td class="v"><b>老门东扫小吃</b>：蒋有记锅贴+牛肉汤 · 小郑酥烧饼 · 赤豆元宵 · 梅花糕</td></tr>
+      <tr><td class="k" style="color:#bb8410">D2 晚</td><td class="v"><b>19:45 老门东</b>（看完点灯出园步行 10 分钟）· 奇芳阁 / 南京大牌档<br>
+        <span class="warn">⚠️ 吃得晚，20:00 后不少老字号停止点单 —— 订位或提前取号</span></td></tr>
+      <tr><td class="k" style="color:#bb8410">D3 早</td><td class="v">水游城假日酒店早餐 —— 8:45 要到纪念馆，早点吃</td></tr>
+      <tr><td class="k" style="color:#bb8410">D3 午<br>亲子组</td><td class="v"><b>欢乐谷园内</b>（出园再进不现实）。贵且一般，<b>自带零食和水</b>能省不少</td></tr>
+      <tr><td class="k" style="color:#bb8410">D3 午<br>老人组</td><td class="v"><b>河西 / 万达商圈</b>（纪念馆出来 10 分钟）· 南京大牌档 / 刘长兴 / 绿柳居<br>
+        <span class="warn">进商场吃 —— 有空调有电梯，对老人比街边店合适；下午雨花台周边没吃的</span></td></tr>
+      <tr><td class="k" style="color:#bb8410">D3 晚</td><td class="v"><b>南京南站内</b>，两组 18:20 会合，18:30 开吃，有 1 小时 15 分<br>
+        <span class="warn">🛍️ 特产也在站内买 —— 今天两组都不经过老门东和狮子桥</span></td></tr>
+    </table>
+    <div class="note"><b>南京必点：</b>盐水鸭 · 鸭血粉丝汤 · 皮肚面 · 鸡汁/蟹黄汤包 · 狮子头 · 美龄粥 ·
+    什锦菜 · 赤豆元宵 · 桂花糖芋苗 · 梅花糕。<br>
+    <b>带孩子别点：</b>活珠子（猎奇向，孩子大概率不吃还被吓到）。</div>
+  </div>
+
+  <div class="card c-teal">
+    <h3>🎫 票价 · 开放时间 · 预约</h3>
+    <table class="sch">
+      <tr><td class="v"><b>南京博物院</b><br><span style="font-size:11px">9:00–17:30 · 周一闭 · 2号线</span></td>
+          <td class="p free">免费<br><span style="font-size:10.5px;color:#b4342c">提前7天</span></td></tr>
+      <tr><td class="v"><b>中山陵</b><br><span style="font-size:11px">8:30–17:30 · <b>17:00 停止入园</b><br>周一闭 · 2号线 · <b>分时段</b></span></td>
+          <td class="p free">免费<br><span style="font-size:10.5px;color:#b4342c">提前7天</span></td></tr>
+      <tr><td class="v"><b>钟山联票</b>（含以下四景区）<br><span style="font-size:11px">明孝陵 06:30–18:30<br>音乐台 售票 06:30–18:30<br>美龄宫 07:30–18:00（17:30 止）<br>灵谷景区（本次不去）</span></td>
+          <td class="p">100<br><span style="font-size:10.5px;color:#b4342c">老人儿童 50</span></td></tr>
+      <tr><td class="v"><b>景区观光车</b><br><span style="font-size:11px">7:30–18:00 · 1号线串三个点</span></td>
+          <td class="p">30<br><span style="font-size:10.5px;color:var(--ink3)">不限次</span></td></tr>
+      <tr><td class="v"><b>陵园路（梧桐大道）</b><br><span style="font-size:11px">全天 · 苜蓿园站北行 500 米</span></td>
+          <td class="p free">免费<br><span style="font-size:10.5px;color:#1a7a52">免预约</span></td></tr>
+      <tr><td class="v"><b>遇难同胞纪念馆</b><br><span style="font-size:11px">8:30–16:30 · 2号线</span></td>
+          <td class="p free">免费<br><span style="font-size:10.5px;color:#b4342c">提前7天</span></td></tr>
+      <tr><td class="v"><b>大报恩寺</b><span class="badge new">傍晚场</span><br><span style="font-size:11px">8:30–19:30 · <b>19:00 停止检票</b><br><b>19:00 点灯</b> · 3号线中华门</span></td>
+          <td class="p">90<br><span style="font-size:10.5px;color:#1a7a52">免预约</span></td></tr>
+      <tr><td class="v"><b>夫子庙</b><br><span style="font-size:11px">9:00–22:00 · 3号线</span></td>
+          <td class="p free">免费<br><span style="font-size:10.5px;color:#1a7a52">免预约</span></td></tr>
+      <tr><td class="v"><b>雨花台</b><span class="badge">老人组</span><br><span style="font-size:11px">室内馆约 17:00 停止入馆 · 13:30 进场没问题</span></td>
+          <td class="p free">免费</td></tr>
+      <tr><td class="v"><b>南京欢乐谷</b><span class="badge new">亲子组</span><br><span style="font-size:11px">周末 09:30–18:30<br>闭园前 1 小时停止入园 · 2号线经天路</span></td>
+          <td class="p" style="color:#b4342c">待核<br><span style="font-size:10.5px">提前买</span></td></tr>
+      <tr><td class="v">玄武湖 / 古鸡鸣寺<span class="badge">本次不去</span><br><span style="font-size:11px">在城北，两条支线都不经过</span></td>
+          <td class="p free">免费<br><span style="font-size:10.5px">／10 元</span></td></tr>
+      <tr><td class="v">总统府<span class="badge">没排进</span><br><span style="font-size:11px">8:30–18:00 · 3号线</span></td>
+          <td class="p">35<br><span style="font-size:10.5px;color:#b4342c">提前7天</span></td></tr>
+      <tr><td class="v">红山动物园<span class="badge">没排进</span><br><span style="font-size:11px">8:30–18:00 · 1号线</span></td>
+          <td class="p">40<br><span style="font-size:10.5px;color:#1a7a52">免预约</span></td></tr>
+      <tr class="tbd"><td class="v">六朝博物馆 / 科举博物馆 / <b>中华门城墙</b> / 秦淮画舫<br>
+          <span style="font-size:11px"><b>票价待核</b>，出发前在官方渠道确认</span></td>
+          <td class="p">约 30<br>约 50<br>约 50<br>60–100</td></tr>
+    </table>
+    <div class="note">🔴 <b>钟山买联票比单买便宜</b>：明孝陵 70 + 美龄宫 30 + 音乐台 10 = 110，联票 100 且不用逐个预约；
+    <b>老人票 / 儿童票都是 50</b>，按 2 老 + 2 成 + 1 童算是 <b>350</b>，比五张全票省 150。<br>
+    儿童免票按身高或年龄，<b>各馆口径不同</b>。门票总额粗估 <b>约 1800–2200 元</b>（已含观光车 5×30），仅供预算参考。</div>
+  </div>
+
+</div>
+
+<!-- ── 底部面板 · 第二行 ──────────────────────────── -->
+<div class="panels row-b">
+
+  <div class="card c-orange">
+    <h3>👕 穿什么</h3>
+    <div class="cols2">
+      <div class="box">
+        <div class="bt">大人 ×4（每人）</div>
+        <ul class="chk">
+          <li>短袖 × 3</li>
+          <li>薄外套 × 1</li>
+          <li>长裤 × 2</li>
+          <li>运动鞋（重要）</li>
+          <li>遮阳帽 / 墨镜</li>
+        </ul>
+      </div>
+      <div class="box hl">
+        <div class="bt">孩子 ×1（9 岁）</div>
+        <ul class="chk">
+          <li>短袖 × 4</li>
+          <li>薄外套 × 2</li>
+          <li>长裤 × 2</li>
+          <li>帽子 × 1</li>
+          <li><b>运动鞋</b>（和大人同等重要）</li>
+          <li>换洗内衣 × 3</li>
+          <li>备用鞋袜各 1</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">Day1 钟山、Day2 中华门+老门东走一整天，都是万步级别，<b>新鞋别在这几天穿</b>。
+    早晚和中午差 8–10℃，薄外套是刚需。</div>
+  </div>
+
+  <div class="card c-purple">
+    <h3>🎒 必备物品</h3>
+    <div class="cols2">
+      <div class="box">
+        <div class="bt">景区</div>
+        <ul class="chk">
+          <li>防晒霜 / 遮阳帽</li>
+          <li><b>驱蚊液</b>（紫金山蚊子多）</li>
+          <li>保温水壶 × 2</li>
+          <li>折叠雨伞 × 2</li>
+          <li>充电宝（导航+拍照）</li>
+        </ul>
+      </div>
+      <div class="box hl">
+        <div class="bt">孩子（9 岁）</div>
+        <ul class="chk">
+          <li>零食 + 湿巾 + 纸巾</li>
+          <li>常用药 / 创可贴</li>
+          <li>他自己的小背包</li>
+          <li>鸽食或面包（音乐台）</li>
+          <li><b>小手电</b>（中华门藏兵洞）</li>
+          <li><b>换洗上衣 + 薄雨衣</b>（D3 欢乐谷有水上项目）</li>
+          <li>平板 / 漫画（高铁上）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">🔴 证件：<b>身份证 × 4 + 孩子的身份证或户口本</b>。
+    三项免费预约是<b>五个人都要实名</b>（孩子占一个名额，别漏报），儿童票核验也查他的证件。</div>
+  </div>
+
+  <div class="card c-amber">
+    <h3>🌤️ 天气参考</h3>
+    <div class="wx">
+      <div class="w"><b>9/25</b> 约 19–28℃</div>
+      <div class="w"><b>9/26</b> 约 18–27℃</div>
+      <div class="w"><b>9/27</b> 约 18–27℃</div>
+      <div class="w">日均温差 8–10℃</div>
+    </div>
+    <div class="note"><b>这是南京 9 月下旬的常年气候区间，不是预报。</b>
+    真实预报请在 <b>9/24</b> 再看一次。<br><br>
+    <b>下雨怎么改：</b><br>
+    Day1 把户外的钟山压短、南博多留；<br>
+    Day2 大报恩寺、科举博物馆全室内，中华门瓮城的藏兵洞也在券门里，<b>基本不受影响</b>；<br>
+    <b>Day3 下雨最麻烦，因为两组受的影响相反：</b><br>
+    ▸ <b>亲子组</b>：欢乐谷<b>下雨会关停户外项目</b>（过山车一类首当其冲），
+    雨大基本等于白买票 —— 所以门票<b>别太早买死</b>，看 9/24 的预报再定，
+    真下雨就改成室内馆（科举博物馆 / 六朝博物馆补上）。<br>
+    ▸ <b>老人组</b>：纪念馆全室内、雨花台室内馆也开着，<b>几乎不受影响</b>。</div>
+  </div>
+
+  <div class="card c-blue">
+    <h3>💡 小贴士 · 出门前和当天要记住的</h3>
+    <ul class="tips">
+      <li class="imp"><b>预约放号是「入园日前 7 天、每天 16:00 整」</b>，不是那天随便什么时候。
+      <b>9/18 下午 16:00</b> 抢 9/25 的中山陵 —— 要 <b>12:30–14:30</b> 那一场
+      （四场：08:30–10:30 / 10:30–12:30 / 12:30–14:30 / 14:30–16:30）。
+      9/20 那天约纪念馆<b>只需 2 个名额</b>（孩子那天去乐园）。</li>
+      <li>中山陵<b>入园有弹性</b>：凭预约码可提前 30 分钟、延迟 60 分钟 ——
+      12:30–14:30 那场实际 12:00 到 15:30 进都算数，不用掐点赶。</li>
+      <li class="imp"><b>中秋不延长开放，别指望。</b>中山陵假期就是 <b>08:30–17:00</b>
+      （2025 双节公告即如此，只调了分景区售票、陵寝时段一分钟没加）。
+      这是中山陵必须排钟山第一站的原因。</li>
+      <li class="att"><b>中山陵墓室在法定节假日关闭</b>（平时也只有周二至周五开），
+      中秋这三天<b>只能到祭堂</b> —— 出发前跟家里人说一声，别到了才失望。</li>
+      <li class="imp"><b>中山陵不必原路爬回</b>：祭堂两侧都有步道下山（右侧通灵谷寺方向）。
+      但主轴墓道是<b>单行动线</b>，走反了会多爬一截台阶 —— 下山前看一眼指示牌。</li>
+      <li class="imp"><b>钟山买 100 元联票，别单买</b>（明孝陵 70 + 美龄宫 30 + 音乐台 10 = 110），
+      而且<b>老人票、儿童票都是 50</b>：2 老 + 2 成 + 1 童 = <b>350</b>，比五张全票省 150。
+      老人年龄线以景区口径为准。</li>
+      <li><b>观光车买「当日不限次」30 元/人</b>（单次 10 元；旧攻略写 50，已下调）。
+      1 号线「苜蓿园—四方城—美龄宫—海底世界—中山陵南广场」，运营 7:30–18:00，
+      今天下面五个点它串了三个。<b>孩子走不动直接上车</b>，别靠腿连走。</li>
+      <li class="imp"><b>「石象路」和「梧桐大道」是两条不同的路，别找错。</b>
+      <b>陵园路</b>才是梧桐大道（法国梧桐绿色隧道、<b>免费全天、不用票不用预约</b>）；
+      <b>石象路</b>是明孝陵神道的「最美 600 米」，看点是石兽，<b>在景区里要票</b>。
+      两条在明孝陵一带交汇 —— 陵园路从大金门和四方城之间穿过。</li>
+      <li class="att"><b>9 月下旬这两条路都没到季节。</b>陵园路是浓绿的「绿色隧道」
+      （金黄落叶期在 10 月底–11 月中）；石象路的看点本是榉树嫣红、枫香、乌桕橙黄的彩叶，
+      <b>这时候一点没上色</b>，只能看石兽和绿荫。想拍彩叶得 11 月再来。</li>
+      <li class="att"><b>Day1 孩子走不动就在四方城（16:35）分头，别在中山陵分。</b>
+      陵园路正好从大金门和四方城之间穿过：妈妈带孩子走免费平路的陵园路、老人进明孝陵走石象路，
+      <b>17:40 在大金门原地碰头</b>，谁都不用单独打车。在中山陵分的话两拨人隔着两公里山路。</li>
+      <li class="imp"><b>大报恩寺 19:00 停止检票，琉璃塔 19:00 点灯，18:45 前到塔前广场占位。</b>
+      这是 Day2 晚上唯一有硬时间的一站。</li>
+      <li class="att"><b>点灯和秦淮河画舫夜游都在晚上，只能二选一</b>，本行程选了点灯。
+      秦淮夜景<b>在岸上照样看得全</b>（乌衣巷、文德桥、白鹭洲一线灯影），丢的是坐船那一小时的休息 ——
+      走了一整天，这一小时其实不轻。两个都要就压缩晚餐、20:30 上船，<b>先查末班船时间</b>。</li>
+      <li class="att"><b>身高 1.4–1.45 m：绝大部分项目玩得了</b>（主流门槛 1.4 m），
+      卡 1.45 m 的只有最刺激那两三个。
+      出发前在官方小程序<b>对一遍各项目的身高线</b>，把 1.45 m 那几个先划掉，
+      按「能玩的」排当天主攻项目。</li>
+      <li class="att"><b>欢乐谷 17:30 就走，不等 18:30 闭园。</b>它在城东北、车站在城西南，
+      跨城返程撞上假期最后一天晚高峰，那一小时是留给堵车的。<br>
+      另外热门项目排队 1–2 小时，进门先用官方 App 看排队时长，<b>挑 3–4 个主攻，别指望全玩</b>。</li>
+      <li class="att"><b>欢乐谷门票和「假期是否需预约」都还待核</b>，提前在官方小程序买 ——
+      <b>但别太早买死</b>，下雨会关停户外项目，看 9/24 的预报再定。</li>
+      <li class="imp"><b>Day3 行李早上就送进南京南寄存。</b>两组下午不在一起，谁都没法替对方跑那一趟。
+      出门前把<b>会合时间、地点（候车层）、寄存柜号</b>说定。</li>
+      <li class="imp"><b>5 个人打车要叫 6/7 座</b>（普通网约车限载 4 位乘客，四大一小加行李上不去）。
+      <b>9/25 早 6:00 那一趟提前一天预约</b>，别当场干等。</li>
+      <li><b>自驾才要预约停车</b>：2025 年 10 月起钟山景区限量预约（提前一天、每车每月 2 次），
+      规则<b>不含客运出租汽车</b> —— 我们全程打车不受影响。临时改租车自驾记得补约。</li>
+      <li>杭州东 22:10 到站后<b>直接打车回临平</b>（约 40 分钟），别赌地铁 1 号线末班（约 23:00）。</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>
+  一起出发，去看更大的世界 ♥
+  <span class="tiny">所有票价、开放时间与班次时刻请出发前在官方渠道复核 · 标「待核」的几项尤其要确认</span>
+</footer>
+
+</div>
+
+<script>
+/* 图位填充：把 img/ 下的照片盖到渐变色块上面。
+   为什么不在 HTML 里直接写死 <img>：缺一张就是一个裂图图标，整页全是叉。
+   这里走 onerror 把 img 摘掉，缺图时静静退回渐变色块，页面永远是完整的。
+   想用网图：把下面的值换成完整 http(s) 地址，兜底逻辑一样生效。 */
+const PHOTOS = {
+  // Day 1
+  'p-train'   : 'img/nanjing-south-station.jpg',  // 南京南站
+  'p-museum'  : 'img/nanjing-museum.jpg',         // 南京博物院（民国馆老街最出片）
+  'p-sun'     : 'img/zhongshanling.jpg',          // 中山陵 392 级台阶（从下往上拍）
+  'p-music'   : 'img/yinyuetai.jpg',              // 音乐台（要有鸽子）
+  'p-meiling' : 'img/meilinggong.jpg',            // 美龄宫（航拍「项链」）
+  'p-sifang'  : 'img/sifangcheng.jpg',            // 四方城 神功圣德碑亭
+  'p-tomb'    : 'img/shixianglu.jpg',             // 明孝陵石象路（石兽，别找成梧桐的）
+  'p-wutong'  : 'img/lingyuanlu.jpg',             // 陵园路梧桐大道（找绿隧道，不是金黄的）
+  // Day 2
+  'p-six'     : 'img/liuchao-museum.jpg',         // 六朝博物馆 木格落地窗
+  'p-pagoda'  : 'img/dabaoensi.jpg',              // 大报恩寺 琉璃塔
+  'p-wall2'   : 'img/zhonghuamen.jpg',            // 中华门瓮城 藏兵洞
+  'p-gate'    : 'img/laomendong.jpg',             // 老门东 牌坊
+  'p-exam'    : 'img/keju-museum.jpg',            // 中国科举博物馆
+  'p-qinhuai' : 'img/qinhuai-night.jpg',          // 秦淮河 画舫夜景
+  // Day 3
+  'p-happy'   : 'img/happy-valley.jpg',           // 南京欢乐谷（亲子组）
+  'p-memo'    : 'img/jiangdongmen.jpg',           // 遇难同胞纪念馆（老人组）
+  'p-yuhua'   : 'img/yuhuatai.jpg',               // 雨花台 纪念碑（老人组）
+  // 'p-lake'（玄武湖）已随 Day3 改双线拿掉，图位不存在了，保留这行只会让人白找一张图
+};
+
+document.querySelectorAll('.photo').forEach(box => {
+  const key = [...box.classList].find(c => c.startsWith('p-'));
+  const src = PHOTOS[key];
+
+  // 说明文字原本是裸文本节点，拿不到 z-index，先包一层 span 才能压在图上面
+  const cap = document.createElement('span');
+  cap.className = 'cap';
+  cap.textContent = box.textContent.trim();
+  box.textContent = '';
+
+  if (src) {
+    const scrim = document.createElement('i');
+    scrim.className = 'scrim';
+    const img = document.createElement('img');
+    img.alt = '';
+    img.onerror = () => { img.remove(); scrim.remove(); };  // 缺图 → 退回渐变
+    img.src = src;
+    box.append(img, scrim);
+  }
+  box.appendChild(cap);
+});
+</script>
+</body>
+</html>
