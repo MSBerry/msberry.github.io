@@ -2,7 +2,8 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=1280">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
 <title>一家五口 南京 3天2晚 亲子游 · 2026.9.25–9.27</title>
 <!--
   改这份行程前先读：下面几条是互相咬死的，单独动一条会连累别处。
@@ -21,6 +22,10 @@
 
   换照片：改页尾 PHOTOS 映射即可（本地文件名或完整网址都行），缺图会自动退回渐变色块。
   导图 / 打印：Ctrl+P → 横向 + 勾「背景图形」；或整页截长图。
+
+  手机：样式表末尾有 ≤820px 的重排档（三天改竖排、字号整体上调一档）。
+  🔴 那个断点别往 1123px 以上抬 —— 横向 A4 打印宽就是 1123px，抬过去连打印版也会变单列。
+  这份里的地址和孩子年龄已经在源文件里就脱敏成「家」「孩子」，发布时不再需要额外 sed。
 -->
 <style>
   :root{
@@ -36,6 +41,8 @@
     color:var(--ink);
     background:linear-gradient(160deg,#dff0fb 0%,#eef7fd 36%,#fdf6ee 100%);
     padding:26px 18px 34px;-webkit-font-smoothing:antialiased;
+    /* 不写这条，Chrome Android 会对窄列自动放大字号，把已经调好的字号层级打乱 */
+    -webkit-text-size-adjust:100%;text-size-adjust:100%;
   }
   .poster{max-width:1240px;margin:0 auto}
 
@@ -78,8 +85,10 @@
   .t{font-size:12.5px;font-weight:800;letter-spacing:.3px}
   .h{color:var(--ink);font-size:14.5px;font-weight:700;margin-top:2px;line-height:1.35}
   .h .ic{margin-right:5px}
-  .h .badge{font-size:10.5px;font-weight:700;background:#eef2f6;color:#7b8b9a;border-radius:4px;padding:1px 5px;margin-left:5px;vertical-align:1.5px}
-  .h .badge.new{background:#fff1d6;color:#a8730c}
+  /* 选择器别写成 `.h .badge`：票价表里也有 badge（「傍晚场」「老人组」），
+     限定在 .h 下面会让那几个退化成和正文粘在一起的裸字。 */
+  .badge{font-size:10.5px;font-weight:700;background:#eef2f6;color:#7b8b9a;border-radius:4px;padding:1px 5px;margin-left:5px;vertical-align:1.5px;white-space:nowrap}
+  .badge.new{background:#fff1d6;color:#a8730c}
   .n{color:var(--ink2);font-size:12px;line-height:1.6;margin-top:3px}
   .n .tag{display:inline-block;background:#f1f5f9;color:var(--ink2);border-radius:4px;padding:0 5px;font-size:11px;margin-right:4px;white-space:nowrap}
   .n .tag.ok{background:#e6f6ee;color:#1a7a52}
@@ -177,6 +186,76 @@
 
   footer{margin-top:18px;text-align:center;font-size:16px;font-weight:700;color:#2b7cb8;letter-spacing:3px}
   footer .tiny{display:block;margin-top:7px;font-size:11px;font-weight:400;letter-spacing:0;color:var(--ink3)}
+
+  /* ── 手机 ─────────────────────────────────
+     这一档不是"把桌面版缩小"，是重排：三天从并排改成竖着排，正文字号整体上调一档
+     （12px 在手机上是"看得见但要凑近"的尺寸，这份东西是走路时掏出来看的）。
+
+     🔴 断点必须落在 820–1100px 之间：横向 A4 打印宽约 1123px，
+        断点抬过 1123 会把 Ctrl+P 导出的横版长图也一起变成单列。 */
+  @media (max-width:820px){
+    body{padding:12px 10px 22px}
+    .poster{max-width:100%}
+
+    header{border-radius:14px;padding:16px 15px 14px}
+    header h1{font-size:23px;letter-spacing:.5px}
+    header h1 small{display:block;margin:4px 0 0;font-size:14px}
+    /* tagline 原本绝对定位在右上角；窄屏下它会直接压在标题上，收回文档流 */
+    .tagline{position:static;text-align:left;margin-top:11px;padding-top:9px;
+             border-top:1px solid rgba(255,255,255,.28);font-size:12.5px;line-height:1.7}
+    .tagline em{font-size:15.5px;letter-spacing:1px}
+    /* 竖杠分隔符换行后会落在行尾变成孤零零一根，改成药丸块 */
+    .sub{gap:6px;margin-top:9px;font-size:12.5px}
+    .sub .sep{display:none}
+    .sub>span,.sub>b{background:rgba(255,255,255,.17);border-radius:999px;padding:3px 9px}
+
+    .days{grid-template-columns:1fr;gap:12px;margin-top:12px}
+    .day-hd{padding:11px 13px 10px}
+    .day-hd .dt{font-size:19px}
+    .day-hd .rt{font-size:12px}
+    .day-bd{padding:12px 12px 14px}
+
+    ul.tl li{padding-bottom:15px}
+    .t{font-size:13px}
+    .h{font-size:15.5px}
+    .n{font-size:13.5px;line-height:1.72}
+    .n .tag{font-size:12px}
+    .eat{font-size:13px;line-height:1.72;padding:8px 10px}
+    .stay{font-size:13px;padding:11px 12px}
+    /* 卡片吃满屏宽后，104px 高的图位会被拉成一条细缝 */
+    .photo{height:150px;font-size:12px}
+
+    .panels{gap:12px;margin-top:12px}
+    .row-a,.row-b{grid-template-columns:1fr}
+    .card{border-radius:12px;padding:13px 13px 14px}
+    .card h3{font-size:16px}
+    /* 两列清单在 390px 宽下每列只剩 ~160px，"薄外套 × 1"都要折行 */
+    .cols2{grid-template-columns:1fr}
+    .box{padding:10px 11px}
+    ul.chk{font-size:13px;line-height:1.95}
+    ul.tips{font-size:13px;line-height:1.75}
+    ul.tips li{padding:6px 0 6px 20px}
+    .wx{font-size:13px}
+    .note{font-size:12px;line-height:1.7}
+
+    table.sch{font-size:13px}
+    table.sch td{padding:6px 2px}
+    table.sch td.k{width:auto}
+    table.sch td.p{width:62px}
+    /* 表格里那些小字是写死在 style= 里的（11 / 10.5px），只能用 !important 压过去 */
+    table.sch td.v span[style]{font-size:12.5px!important;line-height:1.55}
+    table.sch td.p span[style]{font-size:11.5px!important}
+
+    footer{font-size:15px;letter-spacing:2px}
+  }
+
+  /* iPhone SE / mini 一档：再收一次，避免票价表横向出溢出条 */
+  @media (max-width:390px){
+    body{padding:10px 8px 20px}
+    header h1{font-size:21px}
+    .photo{height:132px}
+    table.sch td.p{width:54px}
+  }
 </style>
 </head>
 <body>
@@ -186,8 +265,8 @@
   <h1>一家五口 南京 <small>3天2晚 亲子游</small></h1>
   <div class="sub">
     <b>2026.9.25（周五）– 9.27（周日）</b><span class="sep">|</span>
-    <span><b>4 大 1 小</b>（孩子 9 岁）</span><span class="sep">|</span>
-    <span>杭州临平 · 南苑街道 出发</span><span class="sep">|</span>
+    <span><b>4 大 1 小</b></span><span class="sep">|</span>
+    <span>从家出发</span><span class="sep">|</span>
     <span>全程高铁</span><span class="sep">|</span>
     <span>2 晚换 1 次酒店</span>
   </div>
@@ -207,14 +286,14 @@
         <li>
           <div class="t">05:40 / 06:00</div>
           <div class="h"><span class="ic">🚕</span>起床 · 出门</div>
-          <div class="n">临平 · 南苑街道→ <b>杭州西站</b>，打车约 40 分钟。
+          <div class="n">家 → <b>杭州西站</b>，打车约 40 分钟。
           <b>5 人 + 行李叫一台 6/7 座商务车</b>（普通轿车只能坐 4 客，装不下），前一晚在打车软件里预约好。</div>
         </li>
         <li>
           <div class="t">06:45</div>
           <div class="h"><span class="ic">🎫</span>到站 · 进站</div>
           <div class="n">中秋假期首日，安检排队留 30 分钟。
-          <span class="warn">9 岁按儿童票，带上他自己的身份证（有就用）或户口本，核验要查。</span></div>
+          <span class="warn">孩子按儿童票，带上他自己的身份证（有就用）或户口本，核验要查。</span></div>
         </li>
         <li>
           <div class="t">07:23 → 08:33</div>
@@ -260,7 +339,7 @@
           <b>预约选 12:30–14:30 场次</b>（另有 08:30–10:30 / 10:30–12:30 / 14:30–16:30）。<br>
           <b>✅ 时间窗其实很宽：可提前 30 分钟、延迟 60 分钟入园</b> ——
           这个场次实际 12:00 到 15:30 之间进都算数，13:55 有充足余量。<br>
-          392 级台阶、8 个休息平台，没有电梯 —— <b>9 岁自己爬得上去</b>，上之前先把水喝够。<br>
+          392 级台阶、8 个休息平台，没有电梯 —— <b>孩子自己爬得上去</b>，上之前先把水喝够。<br>
           <b>✅ 下来不用原路爬：祭堂两侧都有步道</b>（右侧那条直通灵谷寺方向）。
           <span class="warn">⚠️ 主轴墓道是单行动线，走反了会多爬一截台阶 —— 下山前看一眼指示牌。<br>
           ⚠️ <b>墓室在法定节假日关闭</b>（平时周二至周五才开），中秋这三天进不去，只能到祭堂 ——
@@ -377,7 +456,7 @@
           <div class="n"><span class="tag">约 50 元 · 待核</span><span class="tag">3 号线中华门</span>
           长江路打车约 20 分钟。
           现存<b>世界最大的瓮城</b>：三道瓮城、四道券门、27 个藏兵洞 ——
-          <b>9 岁正是钻洞的年纪，这是整趟行程里最"能玩"的一个点</b>（27 个洞，让他自己数）。
+          <b>正是钻洞的年纪，这是整趟行程里最"能玩"的一个点</b>（27 个洞，让他自己数）。
           <span class="warn">城上看出去是老城南屋顶和大报恩寺琉璃塔 —— <b>晚上要去的就是那座塔</b>。
           开放时间待核，下午这个点没风险。</span></div>
           <div class="photo p-wall2">中华门瓮城 · 藏兵洞</div>
@@ -578,14 +657,14 @@
           <div class="t">20:26 → 约 22:10</div>
           <div class="h"><span class="ic">🚄</span>G9423 南京南 → 杭州东</div>
           <div class="n"><span class="tag">已定</span>到站时刻以车票为准。
-          孩子在乐园跑了一天，这趟车上八成会睡着，但 <b>9 岁不用抱</b> ——
+          孩子在乐园跑了一天，这趟车上八成会睡着，但 <b>已经不用抱</b> ——
           叫醒他自己背小包，大人腾出两只手拿行李。</div>
         </li>
         <li>
           <div class="t">22:30 以后</div>
           <div class="h"><span class="ic">🏡</span>杭州东 → 家</div>
-          <div class="n">打车回临平南苑街道约 40 分钟，最稳（<b>5 人还是叫 6/7 座</b>）。
-          <span class="warn">⚠️ 地铁 1 号线（临平方向）末班约 23:00 —— 带孩子加行李，不建议赌末班车。</span></div>
+          <div class="n">打车回家约 40 分钟，最稳（<b>5 人还是叫 6/7 座</b>）。
+          <span class="warn">⚠️ 地铁 1 号线末班约 23:00 —— 带孩子加行李，不建议赌末班车。</span></div>
         </li>
       </ul>
       <div class="stay">
@@ -710,7 +789,7 @@
         </ul>
       </div>
       <div class="box hl">
-        <div class="bt">孩子 ×1（9 岁）</div>
+        <div class="bt">孩子 ×1</div>
         <ul class="chk">
           <li>短袖 × 4</li>
           <li>薄外套 × 2</li>
@@ -740,7 +819,7 @@
         </ul>
       </div>
       <div class="box hl">
-        <div class="bt">孩子（9 岁）</div>
+        <div class="bt">孩子</div>
         <ul class="chk">
           <li>零食 + 湿巾 + 纸巾</li>
           <li>常用药 / 创可贴</li>
@@ -828,7 +907,7 @@
       <b>9/25 早 6:00 那一趟提前一天预约</b>，别当场干等。</li>
       <li><b>自驾才要预约停车</b>：2025 年 10 月起钟山景区限量预约（提前一天、每车每月 2 次），
       规则<b>不含客运出租汽车</b> —— 我们全程打车不受影响。临时改租车自驾记得补约。</li>
-      <li>杭州东 22:10 到站后<b>直接打车回临平</b>（约 40 分钟），别赌地铁 1 号线末班（约 23:00）。</li>
+      <li>杭州东 22:10 到站后<b>直接打车回家</b>（约 40 分钟），别赌地铁 1 号线末班（约 23:00）。</li>
     </ul>
   </div>
 
