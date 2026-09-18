@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
+<meta name="theme-color" content="#bcdcf0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="攻略">
+<link rel="manifest" href="/trips/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/trips/icon-180.png">
+<title>旅行攻略</title>
+<!--
+  这是「旅行攻略」App 的首页（城市列表）。
+
+  🔴 加一座新城市：只改 trips.json，这个文件不用动。
+     1) 把攻略页放到 /<城市>/index.html
+     2) 在 trips.json 的 trips 数组里加一条（字段说明在那个文件里）
+     3) 提交推送 —— 首页自动多一张卡，Service Worker 也会自动接管它的离线缓存
+
+  🔴 Service Worker 在**站点根目录** /sw.js，不在这里。理由写在那个文件顶部：
+     scope 只能覆盖自己所在目录及以下，放在 /trips/ 就管不到 /nanjing/。
+
+  ⚠️ 卡片的封面图直接用攻略页 img/ 里的实景图，没有单独做一套 ——
+     多一套就多一处会忘记更新的地方。
+-->
+<style>
+  :root{
+    --ink:#2a343d; --ink2:#5d6976; --ink3:#8d97a1;
+    --line:#e4eaef;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+    color:var(--ink);
+    background:linear-gradient(160deg,#eef5fa 0%,#f6f4ef 45%,#fdf1ea 100%);
+    background-attachment:fixed;
+    min-height:100vh;
+    padding:calc(env(safe-area-inset-top) + 18px) 14px calc(env(safe-area-inset-bottom) + 28px);
+    -webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;text-size-adjust:100%;
+  }
+  .wrap{max-width:560px;margin:0 auto}
+
+  header{margin:2px 4px 16px}
+  h1{font-size:25px;font-weight:800;letter-spacing:.5px}
+  header p{margin-top:5px;font-size:13px;color:var(--ink2);line-height:1.6}
+
+  /* 离线条：只有真离线才出现，平时不占位置 */
+  .offline{
+    display:none;margin:0 0 12px;padding:9px 12px;border-radius:10px;
+    background:#fff4e6;color:#a8730c;font-size:12.5px;font-weight:600;line-height:1.5;
+  }
+  body.is-offline .offline{display:block}
+
+  .cards{display:grid;gap:13px}
+  a.card{
+    display:block;text-decoration:none;color:inherit;position:relative;overflow:hidden;
+    border-radius:16px;background:#fff;box-shadow:0 4px 16px rgba(150,170,185,.16);
+    -webkit-tap-highlight-color:transparent;
+  }
+  a.card:active{transform:scale(.988)}
+  .cover{position:relative;height:132px;background:#dbe6ee}
+  .cover img{width:100%;height:100%;object-fit:cover;display:block}
+  /* 压暗带：实景图亮部会把白字吃掉 */
+  .cover .scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,rgba(0,0,0,.12) 55%,rgba(0,0,0,0) 100%)}
+  .cover .ttl{position:absolute;left:14px;bottom:10px;right:14px;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.45)}
+  .cover .ttl b{display:block;font-size:22px;font-weight:800;letter-spacing:1px}
+  .cover .ttl span{display:block;margin-top:3px;font-size:12.5px;opacity:.95}
+
+  .pill{
+    position:absolute;right:11px;top:11px;padding:4px 10px;border-radius:999px;
+    font-size:11.5px;font-weight:800;background:rgba(255,255,255,.92);color:#34617f;
+    backdrop-filter:blur(3px);
+  }
+  .pill.now{background:#2f7264;color:#fff}
+  .pill.past{background:rgba(255,255,255,.82);color:#8d97a1}
+
+  .meta{padding:11px 14px 13px;display:flex;align-items:center;gap:10px}
+  .meta .d{font-size:13px;font-weight:700;color:var(--ink2)}
+  .meta .go{margin-left:auto;font-size:12.5px;font-weight:700;color:#4b7f9f}
+
+  .empty{padding:30px 16px;text-align:center;color:var(--ink3);font-size:13px;line-height:1.8}
+
+  /* 装到桌面的提示：装过了就不再出现 */
+  .install{
+    display:none;margin-top:16px;padding:13px 14px;border-radius:13px;
+    background:#fff;box-shadow:0 3px 12px rgba(150,170,185,.14);
+    font-size:12.5px;line-height:1.75;color:var(--ink2);
+  }
+  .install.show{display:block}
+  .install b{color:var(--ink)}
+  .install button{
+    margin-top:9px;width:100%;padding:10px;border:none;border-radius:10px;cursor:pointer;
+    background:linear-gradient(100deg,#bcdcf0,#c6e7de);color:#2e4a5c;font-size:14px;font-weight:800;
+    font-family:inherit;
+  }
+  .foot{margin:18px 4px 0;font-size:11px;color:var(--ink3);line-height:1.8}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>旅行攻略</h1>
+    <p>点城市进当次行程。装到桌面后<b>离线也能看</b> —— 进过一次的页面会留在本地。</p>
+  </header>
+
+  <div class="offline">📴 现在是离线状态，看到的是上次打开时存下来的版本。<br>票价和预约时刻可能已经变了，有信号了再刷一次。</div>
+
+  <div class="cards" id="cards"></div>
+
+  <div class="install" id="install">
+    <b>把它放到手机桌面</b><br>
+    <span id="installHow"></span>
+    <button id="installBtn" hidden>添加到主屏幕</button>
+  </div>
+
+  <div class="foot" id="foot"></div>
+
+</div>
+
+<script>
+/* ── 渲染城市列表 ───────────────────────────────
+   数据全在 trips.json 里，这段只负责排序和画卡片。 */
+
+const DAY = 86400000;
+
+// 只取年月日做差，避免「今天下午 3 点」和「出发日 0 点」差出半天来
+function toDay(s){ const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d).getTime(); }
+function today(){ const n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()).getTime(); }
+
+function statusOf(t){
+  const now = today(), s = toDay(t.start), e = toDay(t.end);
+  if (now < s) return { key:'soon', days: Math.round((s - now) / DAY) };
+  if (now > e) return { key:'past', days: Math.round((now - e) / DAY) };
+  return { key:'now', days: Math.round((now - s) / DAY) + 1 };
+}
+
+function label(st, t){
+  if (st.key === 'now')  return `进行中 · 第 ${st.days} 天`;
+  if (st.key === 'past') return '已结束';
+  if (st.days === 0)     return '就是今天';
+  if (st.days === 1)     return '明天出发';
+  return `还有 ${st.days} 天`;
+}
+
+function card(t){
+  const st = statusOf(t);
+  const a = document.createElement('a');
+  a.className = 'card';
+  a.href = t.path;
+
+  const cover = document.createElement('div');
+  cover.className = 'cover';
+  if (t.accent) cover.style.background = t.accent;
+  if (t.cover){
+    const img = document.createElement('img');
+    img.alt = ''; img.loading = 'lazy';
+    // 图挂了就退回 accent 纯色，别留个裂图框
+    img.onerror = () => img.remove();
+    img.src = t.cover;
+    cover.appendChild(img);
+  }
+  const scrim = document.createElement('div'); scrim.className = 'scrim';
+  const ttl = document.createElement('div'); ttl.className = 'ttl';
+  ttl.innerHTML = `<b></b><span></span>`;
+  ttl.querySelector('b').textContent = t.city;
+  ttl.querySelector('span').textContent = t.subtitle || '';
+  const pill = document.createElement('div');
+  pill.className = 'pill' + (st.key === 'now' ? ' now' : st.key === 'past' ? ' past' : '');
+  pill.textContent = label(st, t);
+  cover.append(scrim, ttl, pill);
+
+  const meta = document.createElement('div');
+  meta.className = 'meta';
+  const d = document.createElement('div'); d.className = 'd'; d.textContent = t.dates || '';
+  const go = document.createElement('div'); go.className = 'go'; go.textContent = '打开攻略 ›';
+  meta.append(d, go);
+
+  a.append(cover, meta);
+  return a;
+}
+
+fetch('/trips/trips.json', { cache: 'no-cache' })
+  .then(r => {
+    // Service Worker 兜底给的会带这个头 —— 这是「看到的是旧版本」最可靠的一路信号
+    if (r.headers.get('X-Offline-Cache')) document.body.classList.add('is-offline');
+    return r.json();
+  })
+  .then(data => {
+    const box = document.getElementById('cards');
+    const list = (data.trips || []).slice();
+
+    // 进行中最前，然后是没出发的（近的在前），已结束的垫底（新的在前）
+    const rank = { now: 0, soon: 1, past: 2 };
+    list.sort((a, b) => {
+      const sa = statusOf(a), sb = statusOf(b);
+      if (rank[sa.key] !== rank[sb.key]) return rank[sa.key] - rank[sb.key];
+      return sa.key === 'past' ? toDay(b.start) - toDay(a.start) : toDay(a.start) - toDay(b.start);
+    });
+
+    if (!list.length){
+      box.innerHTML = '<div class="empty">还没有攻略。<br>往 trips.json 里加一条就会出现在这儿。</div>';
+    } else {
+      list.forEach(t => box.appendChild(card(t)));
+    }
+    document.getElementById('foot').textContent =
+      `共 ${list.length} 份攻略 · 数据更新于 ${data.updated || '—'}`;
+  })
+  .catch(() => {
+    document.getElementById('cards').innerHTML =
+      '<div class="empty">攻略列表没读出来。<br>有信号的时候再打开一次试试。</div>';
+  });
+
+/* ── 离线状态 ───────────────────────────────
+   ⚠️ 只看 navigator.onLine 不够：「连着 WiFi 但没外网」时它照样是 true。
+      真正的判据是上面那个 X-Offline-Cache 响应头（内容是不是 SW 从缓存兜底给的）。
+      这里的 onLine 只负责一件事：网络恢复时把提示条收回去。 */
+const goOnline = () => document.body.classList.remove('is-offline');
+const goOffline = () => document.body.classList.add('is-offline');
+addEventListener('online', goOnline); addEventListener('offline', goOffline);
+if (!navigator.onLine) goOffline();
+
+/* ── 装到桌面 ───────────────────────────────
+   ⚠️ 两条路差别很大，不能只写一套说明：
+      Android/桌面 Chrome 会给 beforeinstallprompt，可以做成一个按钮；
+      iOS Safari 至今没有这个事件，只能教用户手动「分享 → 添加到主屏幕」。 */
+const installBox = document.getElementById('install');
+const installBtn = document.getElementById('installBtn');
+const installHow = document.getElementById('installHow');
+const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+
+if (!standalone){
+  const iOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  installHow.innerHTML = iOS
+    ? '在 Safari 里点底部的<b>分享</b>按钮 → 往下找<b>「添加到主屏幕」</b>。'
+    : '浏览器菜单里选<b>「安装应用」/「添加到主屏幕」</b>。';
+  installBox.classList.add('show');
+}
+
+let deferred = null;
+addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault(); deferred = e;
+  installBox.classList.add('show');
+  installBtn.hidden = false;
+  installHow.innerHTML = '装上以后有独立图标、全屏打开，<b>没信号也能看</b>。';
+});
+installBtn.addEventListener('click', async () => {
+  if (!deferred) return;
+  deferred.prompt();
+  await deferred.userChoice;
+  deferred = null;
+  installBox.classList.remove('show');
+});
+addEventListener('appinstalled', () => installBox.classList.remove('show'));
+
+/* ── Service Worker ───────────────────────────
+   🔴 路径是 /sw.js（根目录），不是 /trips/sw.js —— 作用域只能覆盖自己所在目录及以下，
+      放 /trips/ 就管不到 /nanjing/ 那些攻略页，离线功能等于没做。 */
+if ('serviceWorker' in navigator){
+  addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js', { scope: '/' })
+      .catch(err => console.warn('SW 注册失败，App 照常能用，只是没有离线：', err));
+  });
+}
+</script>
+</body>
+</html>

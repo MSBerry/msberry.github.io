@@ -1,0 +1,28 @@
+{
+  "_说明": "新增一座城市只改这个文件：在 trips 里加一条，再把攻略页放到 path 指向的目录。App 首页会自动列出来，Service Worker 也会自动接管它的离线缓存（规则见 /sw.js 顶部注释）。",
+  "_字段": {
+    "id": "英文短名，同时用作 key，别重复",
+    "city": "卡片上的大字",
+    "subtitle": "一行副标题",
+    "dates": "显示用的日期区间",
+    "start": "出发日 YYYY-MM-DD，用来算倒计时和自动判断已结束",
+    "end": "返程日 YYYY-MM-DD",
+    "path": "攻略页地址，以 / 开头、以 / 结尾",
+    "cover": "封面图地址，留空就用 accent 纯色兜底",
+    "accent": "主色，取自那座城市攻略页的页头色"
+  },
+  "updated": "2026-09-18",
+  "trips": [
+    {
+      "id": "nanjing",
+      "city": "南京",
+      "subtitle": "一家五口 · 钟山 / 秦淮 / 城南",
+      "dates": "2026.9.25 – 9.27",
+      "start": "2026-09-25",
+      "end": "2026-09-27",
+      "path": "/nanjing/",
+      "cover": "/nanjing/img/zhongshanling.jpg",
+      "accent": "#bcdcf0"
+    }
+  ]
+}

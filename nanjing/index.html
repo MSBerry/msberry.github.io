@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
+<meta name="theme-color" content="#bcdcf0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="攻略">
+<!-- 挂同一份 manifest：从 App 首页点进来时不会跳出 App，直接打开这一页也能装桌面 -->
+<link rel="manifest" href="/trips/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/trips/icon-180.png">
 <title>一家五口 南京 3天2晚 亲子游 · 2026.9.25–9.27</title>
 <!--
   改这份行程前先读：下面几条是互相咬死的，单独动一条会连累别处。
@@ -76,6 +82,13 @@
     background:linear-gradient(105deg,#bcdcf0 0%,#c6e7de 48%,#f8d9c6 100%);
     color:#2e4a5c;box-shadow:0 6px 18px rgba(150,175,190,.22);
   }
+  /* 「全部行程」回到 App 首页。独立打开这一页时它也在，当面包屑用 */
+  .back{
+    display:inline-flex;align-items:center;gap:5px;margin-bottom:10px;padding:4px 11px;
+    border-radius:999px;background:rgba(255,255,255,.55);color:#2e4a5c;
+    font-size:12.5px;font-weight:700;text-decoration:none;-webkit-tap-highlight-color:transparent;
+  }
+  .back:active{background:rgba(255,255,255,.8)}
   header h1{font-size:34px;letter-spacing:1px;font-weight:800;line-height:1.2}
   header h1 small{font-size:20px;font-weight:600;opacity:.92;margin-left:8px}
   .sub{margin-top:9px;font-size:14.5px;opacity:.95;display:flex;gap:13px;flex-wrap:wrap;align-items:center}
@@ -310,6 +323,7 @@
 <div class="poster">
 
 <header>
+  <a class="back" href="/trips/">‹ 全部行程</a>
   <h1>一家五口 南京 <small>3天2晚 亲子游</small></h1>
   <div class="sub">
     <b>2026.9.25（周五）– 9.27（周日）</b><span class="sep">|</span>
@@ -1217,6 +1231,14 @@ document.querySelectorAll('.photo').forEach(box => {
     card.querySelector('h3').appendChild(btn);
   });
 })();
+
+/* 注册离线缓存。🔴 路径是根目录的 /sw.js —— Service Worker 的作用域只能覆盖
+   自己所在目录及以下，放 /trips/ 就管不到这一页。注册失败不影响页面本身。 */
+if ('serviceWorker' in navigator) {
+  addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch(() => {});
+  });
+}
 </script>
 </body>
 </html>
