@@ -74,6 +74,11 @@
     -webkit-text-size-adjust:100%;text-size-adjust:100%;
   }
   .poster{max-width:1240px;margin:0 auto}
+  /* 桌面档：这两层退化成透明容器，版面和加它们之前一模一样。
+     ⚠️ .pager 别给 display:flex —— 桌面档三天是靠 .days 的 grid 排的，
+        父层一变 flex 就会把 .days 和 .page-info 挤成两列。 */
+  .pager{display:block}
+  .tabs{display:none}
 
   /* ── 页头 ─────────────────────────────── */
   header{
@@ -249,24 +254,97 @@
      🔴 断点必须落在 820–1100px 之间：横向 A4 打印宽约 1123px，
         断点抬过 1123 会把 Ctrl+P 导出的横版长图也一起变成单列。 */
   @media (max-width:820px){
-    body{padding:12px 10px 22px}
-    .poster{max-width:100%}
+    /* 🔴 这一档把页面从「一条长文档」改成「固定视口 + 四页横滑」：
+          顶部页头和标签栏钉住不动，下面一屏一页，左右滑切换天。
+          所以 html/body 不再滚动，滚动发生在每一页内部。
 
-    header{border-radius:14px;padding:16px 15px 14px}
-    header h1{font-size:23px;letter-spacing:.5px}
-    header h1 small{display:block;margin:4px 0 0;font-size:14px}
-    /* tagline 原本绝对定位在右上角；窄屏下它会直接压在标题上，收回文档流 */
-    .tagline{position:static;text-align:left;margin-top:11px;padding-top:9px;
-             border-top:1px solid rgba(255,255,255,.75);font-size:12.5px;line-height:1.7}
-    .tagline em{font-size:15.5px;letter-spacing:1px}
+       ⚠️ 用 100dvh 不要用 100vh：iOS Safari 的 100vh 是「工具栏收起时」的高度，
+          工具栏展开着的时候底部会被切掉一截，最后一条时间轴永远看不全。
+       ⚠️ 打印不受影响：横向 A4 宽约 1123px，进不到这个断点。 */
+    html,body{height:100%;overflow:hidden}
+    body{padding:0}
+    .poster{
+      max-width:100%;height:100dvh;display:flex;flex-direction:column;
+      padding:env(safe-area-inset-top) 0 0;
+    }
+
+    /* 顶栏每高一像素，四页的可读区就矮一像素 —— 所以这里挤到只剩一行半：
+       返回键和标题同排，副标题那排只留日期。
+       ⚠️ 被挤掉的几项（4 大 1 小 / 从家出发 / 全程高铁 / 换酒店 / 那三句 tagline）
+          **不是删掉，是由页尾脚本搬到「备办」页顶部**。别只加 display:none 就完事。 */
+    header{
+      border-radius:0;padding:9px 13px 8px;flex:0 0 auto;
+      display:flex;align-items:baseline;flex-wrap:wrap;column-gap:9px;row-gap:3px;
+    }
+    .back{margin-bottom:0;order:0;padding:3px 9px;font-size:11.5px}
+    header h1{order:1;font-size:18px;letter-spacing:0;line-height:1.25}
+    header h1 small{display:inline;margin-left:6px;font-size:12px;opacity:.85}
+    .sub{order:2;flex:1 1 100%;margin-top:1px;font-size:11.5px;gap:5px}
+    /* 只留第一项（日期）。其余搬走了，不是没了 */
+    .sub > *:not(:first-child){display:none}
+    .sub > b{background:rgba(255,255,255,.6);border-radius:999px;padding:2px 8px}
+    /* tagline 在手机档不显示：顶栏每多一行，四页内容就少一行。
+       它那三句（钟山一日 / 秦淮一日 / 城南一日）现在由标签栏本身表达了。 */
+    .tagline{display:none}
     /* 竖杠分隔符换行后会落在行尾变成孤零零一根，改成药丸块 */
     .sub{gap:6px;margin-top:9px;font-size:12.5px}
     .sub .sep{display:none}
     /* 深色页头时这层白纱够用；换成浅色页头后 17% 的白等于没有，提到 60% 才看得出边界 */
     .sub>span,.sub>b{background:rgba(255,255,255,.6);border-radius:999px;padding:3px 9px}
 
-    .days{grid-template-columns:1fr;gap:12px;margin-top:12px}
-    .day-hd{padding:11px 13px 10px}
+    /* ── 四页横滑 ──────────────────────────
+       .days 用 display:contents 把三个 .day 直接交给 .pager 当 flex 项 ——
+       ⚠️ 别改成 .days{flex:0 0 100%}：那样三天会挤在同一页里，等于没分页。 */
+    .tabs{
+      display:flex;flex:0 0 auto;gap:0;background:rgba(255,255,255,.72);
+      backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+    }
+    .tabs button{
+      flex:1 1 0;min-width:0;border:none;background:none;cursor:pointer;
+      padding:9px 2px 8px;font-family:inherit;font-size:12px;font-weight:700;
+      color:var(--ink3);line-height:1.35;position:relative;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .tabs button b{display:block;font-size:14.5px;font-weight:800}
+    .tabs button[aria-selected="true"]{color:var(--ink)}
+    /* 选中态用一条 3px 的底边，颜色跟那一天的主色一致 —— 一眼知道现在在第几天 */
+    .tabs button[aria-selected="true"]::after{
+      content:"";position:absolute;left:14%;right:14%;bottom:0;height:3px;border-radius:3px 3px 0 0;
+      background:currentColor;
+    }
+    .tabs button[data-i="0"][aria-selected="true"]{color:var(--d1-t)}
+    .tabs button[data-i="1"][aria-selected="true"]{color:var(--d2-t)}
+    .tabs button[data-i="2"][aria-selected="true"]{color:var(--d3-t)}
+
+    .pager{
+      flex:1 1 auto;display:flex;min-height:0;
+      overflow-x:auto;overflow-y:hidden;
+      scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+    }
+    .pager::-webkit-scrollbar{display:none}
+    .days{display:contents}
+    .day,.page-info{
+      flex:0 0 100%;width:100%;min-width:100%;scroll-snap-align:start;
+      overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;
+      overscroll-behavior-y:contain;   /* 页内滚到底别把整个 pager 带着弹 */
+    }
+    .day{border-radius:0;box-shadow:none;margin:0}
+    .page-info{padding:12px 10px calc(env(safe-area-inset-bottom) + 20px)}
+    /* 从顶栏搬下来的基本盘。只在手机档存在，桌面档那些信息还在页头上 */
+    .basics{
+      background:#fff;border-radius:12px;padding:12px 13px;margin-bottom:12px;
+      box-shadow:0 3px 12px rgba(150,170,185,.14);
+    }
+    .basics .bh{font-size:13px;font-weight:800;color:#4b7f9f;margin-bottom:8px}
+    .basics .sub{display:flex;flex-wrap:wrap;gap:6px;font-size:12.5px;opacity:1;margin:0}
+    .basics .sub > *{display:inline-block!important;background:#eef4f9;color:var(--ink2);
+                     border-radius:999px;padding:3px 9px}
+    .basics .sub .sep{display:none!important}
+    .basics .tl2{display:block;margin-top:9px;font-size:12.5px;color:var(--ink2);line-height:1.7}
+    .basics .tl2 em{font-style:normal;font-weight:800;color:var(--ink);letter-spacing:.5px}
+
+    .day-hd{padding:11px 13px 10px;position:sticky;top:0;z-index:3}
     .day-hd .dt{font-size:19px}
     .day-hd .rt{font-size:12px}
     .day-bd{padding:12px 12px 14px}
@@ -281,7 +359,8 @@
     /* 卡片吃满屏宽后，104px 高的图位会被拉成一条细缝 */
     .photo{height:150px;font-size:12px}
 
-    .panels{gap:12px;margin-top:12px}
+    .panels{gap:12px;margin-top:0}
+    .panels.row-b{margin-top:12px}
     .row-a,.row-b{grid-template-columns:1fr}
     .card{border-radius:12px;padding:13px 13px 14px}
     .card h3{font-size:16px}
@@ -304,7 +383,7 @@
     table.sch td.v span[style]{font-size:12.5px!important;line-height:1.55}
     table.sch td.p span[style]{font-size:11.5px!important}
 
-    footer{font-size:15px;letter-spacing:2px}
+    footer{font-size:15px;letter-spacing:2px;margin-top:14px}
   }
 
   /* 打印时「清空勾选」是个死按钮，别占纸 */
@@ -334,6 +413,14 @@
   </div>
   <div class="tagline"><em>钟山一日 · 秦淮一日 · 城南一日</em><br>看博物馆 · 走梧桐道 · 游秦淮河</div>
 </header>
+
+<!-- 手机档才出现的分天标签，内容由页尾脚本按 .day 生成 —— 别在这里写死日期，
+     写死就会和上面三个 section 的日期各改各的，迟早对不上 -->
+<nav class="tabs" id="tabs" hidden></nav>
+
+<!-- 🔴 .pager 这一层是给手机档做「左右滑切换」用的，桌面档它是 display:block、
+     等于不存在。删掉它会让手机版退回一条 2 万像素的长滚动。 -->
+<div class="pager" id="pager">
 
 <div class="days">
 
@@ -836,6 +923,9 @@
 
 </div>
 
+<!-- 第 4 页：备办。手机档它是滑动到最右边的一页，桌面档就是原来的底部面板 -->
+<div class="page-info">
+
 <!-- ── 底部面板 · 第一行 ──────────────────────────── -->
 <div class="panels row-a">
 
@@ -1132,6 +1222,9 @@
   明孝陵售票 06:30–18:30 取自中山陵园管理局官方公告 · 钟山的中秋专项公告一般节前 3–7 天才发，9/22–9/24 再刷一次</span>
 </footer>
 
+</div><!-- /.page-info -->
+</div><!-- /.pager -->
+
 </div>
 
 <script>
@@ -1185,6 +1278,155 @@ document.querySelectorAll('.photo').forEach(box => {
   }
   box.appendChild(cap);
 });
+
+/* ── 手机档的分天标签栏 ─────────────────────────────────────────
+   桌面档三天并排，不需要它；手机档一屏一页，靠它知道自己在第几天。
+
+   标签文案从 .day 的日期里读，**不在 HTML 里写死** —— 写死就会和上面三个
+   section 各改各的，改了行程忘了改标签，最后对不上。 */
+(function () {
+  const pager = document.getElementById('pager');
+  const tabs = document.getElementById('tabs');
+  if (!pager || !tabs) return;
+
+  const days = [...document.querySelectorAll('.days > .day')];
+  const info = document.querySelector('.page-info');
+  const pages = [...days, info];
+
+  // 「9/25 周五 · 中秋」→ 主标题 9/25、副标题 中秋；没有副标题就用星期
+  const meta = days.map((d) => {
+    const dt = d.querySelector('.day-hd .dt');
+    const date = (dt?.textContent || '').trim().split(/\s+/)[0] || '';
+    const em = dt?.querySelector('em')?.textContent.trim() || '';
+    const parts = em.split('·').map((x) => x.trim()).filter(Boolean);
+    return { date, sub: parts[parts.length - 1] || em };
+  });
+  meta.push({ date: '备办', sub: '票 / 吃 / 带' });
+
+  meta.forEach((m, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.dataset.i = i;
+    b.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    b.innerHTML = '<b></b><span></span>';
+    b.querySelector('b').textContent = m.date;
+    b.querySelector('span').textContent = m.sub;
+    b.addEventListener('click', () => {
+      // 再点一次当前页 = 回到这一页的顶部（和常见 App 的标签栏一致）
+      if (b.getAttribute('aria-selected') === 'true') {
+        pages[i].scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      go(i, true);
+    });
+    tabs.appendChild(b);
+  });
+  tabs.hidden = false;
+
+  const btns = [...tabs.querySelectorAll('button')];
+  let cur = -1;
+
+  function mark(i) {
+    if (i === cur) return;
+    cur = i;
+    btns.forEach((b, k) => b.setAttribute('aria-selected', k === i ? 'true' : 'false'));
+    // 刷新后还停在原来那一页；replaceState 不进历史，免得返回键要按四下才出去
+    history.replaceState(null, '', i < days.length ? '#d' + (i + 1) : '#info');
+  }
+
+  function go(i, smooth) {
+    pager.scrollTo({ left: pager.clientWidth * i, behavior: smooth ? 'smooth' : 'auto' });
+    mark(i);
+  }
+
+  /* 滑动时同步高亮。⚠️ 别用 IntersectionObserver：每页都占满整个视口宽，
+     阈值调不出「哪一页是当前页」，横滑过程中会两页同时命中、标签来回跳。
+     直接按 scrollLeft 四舍五入最稳。 */
+  let raf = 0;
+  pager.addEventListener('scroll', () => {
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = 0;
+      const w = pager.clientWidth;
+      if (w) mark(Math.max(0, Math.min(pages.length - 1, Math.round(pager.scrollLeft / w))));
+    });
+  }, { passive: true });
+
+  /* 落在哪一页：hash 优先，其次「今天是行程第几天就落在那一天」。
+     纯算术比对日期字符串，别用 Date 解析 .dt 里的「9/25」—— 那串里没有年份。 */
+  const TRIP = [[2026, 9, 25], [2026, 9, 26], [2026, 9, 27]];
+  function defaultPage() {
+    const m = /^#d([1-9])$/.exec(location.hash);
+    if (m) return Math.min(pages.length - 1, +m[1] - 1);
+    if (location.hash === '#info') return pages.length - 1;
+    const n = new Date();
+    const key = [n.getFullYear(), n.getMonth() + 1, n.getDate()].join('-');
+    const hit = TRIP.findIndex((d) => d.join('-') === key);
+    return hit >= 0 ? hit : 0;
+  }
+
+  // 只在手机档生效：桌面档 .pager 是 display:block，clientWidth 等于整行宽、滑不动
+  function isPaged() { return getComputedStyle(pager).display === 'flex'; }
+
+  /* 把顶栏挤掉的那几项搬到「备办」页顶部。
+     ⚠️ 用克隆而不是移动：桌面档（同一份 HTML）的页头还要用原件，
+        真把节点搬走会让宽屏上的副标题和那三句 slogan 一起消失。 */
+  let basics = null;
+  function buildBasics() {
+    if (basics || !info) return;
+    const sub = document.querySelector('header .sub');
+    const tag = document.querySelector('header .tagline');
+    if (!sub) return;
+    basics = document.createElement('div');
+    basics.className = 'basics';
+    const h = document.createElement('div');
+    h.className = 'bh';
+    h.textContent = '这趟的基本盘';
+    basics.appendChild(h);
+    basics.appendChild(sub.cloneNode(true));
+    if (tag) {
+      const t = tag.cloneNode(true);
+      t.className = 'tl2';
+      basics.appendChild(t);
+    }
+    info.prepend(basics);
+  }
+
+  /* 兜底：整套分页的地基是 `.days{display:contents}`（让三个 .day 直接当 .pager 的 flex 项）。
+     Safari 15.4 以前对 display:contents + flex 有过布局 bug，万一不生效，
+     三天会挤在同一页里、宽度对不上 —— 那就退回**真的把节点搬进 .pager**。
+     判据是「第一页的宽度等不等于一页宽」，不是去嗅浏览器版本。
+     回落之后的表现和正常情况完全一样，只是 DOM 里 .days 变成了空壳。 */
+  function ensurePages() {
+    const w = pager.clientWidth;
+    if (!w || !days.length) return;
+    if (Math.abs(days[0].getBoundingClientRect().width - w) <= 2) return;
+    const host = document.querySelector('.days');
+    days.forEach((d) => pager.insertBefore(d, info));
+    if (host) host.remove();
+    console.warn('display:contents 没生效，已把三天直接搬进 pager');
+  }
+
+  function boot() {
+    if (!isPaged()) { tabs.hidden = true; return; }
+    tabs.hidden = false;
+    buildBasics();
+    ensurePages();
+    go(defaultPage(), false);
+  }
+  boot();
+
+  /* 有人手动改 URL、或者从别处跳进来时同一文档只换了 hash —— 那种情况不会重新加载，
+     boot() 也就不会再跑，页面会停在原来那一页和 URL 不一致。 */
+  addEventListener('hashchange', () => { if (isPaged()) go(defaultPage(), true); });
+
+  // 转屏 / 窗口宽度跨过断点时重新对齐，否则会停在两页中间
+  let t = 0;
+  addEventListener('resize', () => {
+    clearTimeout(t);
+    t = setTimeout(() => { if (isPaged()) go(Math.max(cur, 0), false); else tabs.hidden = true; }, 120);
+  });
+})();
 
 /* ── 可勾选的行前清单（穿什么 / 必备物品）───────────────────────
    点一条 → 打勾 + 划掉；状态存 localStorage，关掉页面、换天再打开还在。
