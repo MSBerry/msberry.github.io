@@ -261,10 +261,18 @@
        ⚠️ 用 100dvh 不要用 100vh：iOS Safari 的 100vh 是「工具栏收起时」的高度，
           工具栏展开着的时候底部会被切掉一截，最后一条时间轴永远看不全。
        ⚠️ 打印不受影响：横向 A4 宽约 1123px，进不到这个断点。 */
+    /* 🔴 竖向滚动发生在 .poster 上，**不是** body、也不是每一页各自滚。
+          这一条决定了「上滑时页头一起滚走、只有日期标签栏钉住」：
+          页头留在正常流里 → 会被滚走；标签栏 position:sticky → 钉在顶上。
+
+          ⚠️ 别退回「每页各自 overflow-y:auto」那一版：那样页头必须待在滚动区外面才不会
+             被四个滚动容器各滚一份，于是它就永远钉着，挤掉约 90px 的可读高度。 */
     html,body{height:100%;overflow:hidden}
     body{padding:0}
     .poster{
-      max-width:100%;height:100dvh;display:flex;flex-direction:column;
+      max-width:100%;height:100dvh;
+      overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;
+      overscroll-behavior-y:contain;
       padding:env(safe-area-inset-top) 0 0;
     }
 
@@ -272,8 +280,9 @@
        返回键和标题同排，副标题那排只留日期。
        ⚠️ 被挤掉的几项（4 大 1 小 / 从家出发 / 全程高铁 / 换酒店 / 那三句 tagline）
           **不是删掉，是由页尾脚本搬到「备办」页顶部**。别只加 display:none 就完事。 */
+    /* 不写 position/flex：就是普通块，跟着 .poster 一起滚走 */
     header{
-      border-radius:0;padding:9px 13px 8px;flex:0 0 auto;
+      border-radius:0;padding:9px 13px 8px;
       display:flex;align-items:baseline;flex-wrap:wrap;column-gap:9px;row-gap:3px;
     }
     .back{margin-bottom:0;order:0;padding:3px 9px;font-size:11.5px}
@@ -295,9 +304,12 @@
     /* ── 四页横滑 ──────────────────────────
        .days 用 display:contents 把三个 .day 直接交给 .pager 当 flex 项 ——
        ⚠️ 别改成 .days{flex:0 0 100%}：那样三天会挤在同一页里，等于没分页。 */
+    /* 唯一钉住的东西。⚠️ 背景必须是不透明的实色：半透明 + blur 在滚动时
+       会把下面掠过的图片糊成一团彩色，标签文字反而看不清。 */
     .tabs{
-      display:flex;flex:0 0 auto;gap:0;background:rgba(255,255,255,.72);
-      backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+      display:flex;gap:0;position:sticky;top:0;z-index:6;
+      background:#f4f6f7;border-bottom:1px solid var(--line);
+      box-shadow:0 2px 8px rgba(120,140,155,.10);
     }
     .tabs button{
       flex:1 1 0;min-width:0;border:none;background:none;cursor:pointer;
@@ -316,9 +328,9 @@
     .tabs button[data-i="1"][aria-selected="true"]{color:var(--d2-t)}
     .tabs button[data-i="2"][aria-selected="true"]{color:var(--d3-t)}
 
+    /* 只管横向。竖向交给 .poster —— 两个方向分给两层，手势才不打架 */
     .pager{
-      flex:1 1 auto;display:flex;min-height:0;
-      overflow-x:auto;overflow-y:hidden;
+      display:flex;overflow-x:auto;overflow-y:hidden;
       scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
       scrollbar-width:none;
     }
@@ -326,8 +338,9 @@
     .days{display:contents}
     .day,.page-info{
       flex:0 0 100%;width:100%;min-width:100%;scroll-snap-align:start;
-      overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;
-      overscroll-behavior-y:contain;   /* 页内滚到底别把整个 pager 带着弹 */
+      /* 🔴 align-self 必须是 flex-start：flex 默认 stretch 会把每一页都拉到
+            最高那页的高度，于是短页底部多出几千像素空白，滚不到底。 */
+      align-self:flex-start;
     }
     .day{border-radius:0;box-shadow:none;margin:0}
     .page-info{padding:12px 10px calc(env(safe-area-inset-bottom) + 20px)}
@@ -344,7 +357,12 @@
     .basics .tl2{display:block;margin-top:9px;font-size:12.5px;color:var(--ink2);line-height:1.7}
     .basics .tl2 em{font-style:normal;font-weight:800;color:var(--ink);letter-spacing:.5px}
 
-    .day-hd{padding:11px 13px 10px;position:sticky;top:0;z-index:3}
+    /* 🔴 这里**不要**给 .day-hd 加 position:sticky，加了也吸不住：
+          sticky 认的是「最近一个 overflow 不为 visible 的祖先」，
+          而 .pager 为了横滑带着 overflow-x:auto —— 于是它成了 sticky 的容器，
+          可 .pager 在竖向是 hidden、根本不滚，色带只会跟着内容一起走。
+          真正需要的「一直看得见的日期」已经由标签栏承担了，重复吸顶反而挤地方。 */
+    .day-hd{padding:11px 13px 10px}
     .day-hd .dt{font-size:19px}
     .day-hd .rt{font-size:12px}
     .day-bd{padding:12px 12px 14px}
@@ -463,10 +481,10 @@
           <div class="n"><span class="tag ok">免费</span><span class="tag bk">小程序抢 · 18:00 放票</span><span class="tag">酒店打车 20 分钟</span>
           开放 <b>09:00–17:00，16:00 停止检票</b> · 周一闭馆。（地铁是 2 号线，但今天全程打车。）
           <b>2.5 小时，挑两个馆</b>：历史馆（镇馆之宝）+ 民国馆（地下老街实景，孩子最买账）。
-          <span class="red">🔴 要抢<b>上午票（9:00–13:00 场）</b> —— 我们 10:05 进、12:35 出，正好；
-          上午票规定<b>首次入馆必须在 13:00 前</b>，别买成下午场。</span>
-          <span class="warn">⚠️ 入馆走<b>人脸比对</b>，五个人都要带<b>二代身份证原件</b>，刷脸不认截图。<br>
-          ⚠️ 同一账号 30 天内最多约 5 人 —— <b>我们正好 5 人，一个账号刚好够，别先拿它约别的</b>。</span></div>
+          <span class="red">🔴 要抢<b>上午票（9:00–13:00 场）</b> —— 我们 10:05 进、12:35 出正好，
+          上午票规定<b>首次入馆必须 13:00 前</b>，别买成下午场。入馆走<b>人脸比对</b>，
+          五个人都要带<b>二代身份证原件</b>，刷脸不认截图。</span>
+          同一账号 30 天内最多约 5 人 —— 正好够我们五个，<b>别先拿它约别人</b>。</div>
           <div class="photo p-museum">南京博物院 · 民国馆老街</div>
         </li>
         <li class="meal">
@@ -1287,7 +1305,8 @@ document.querySelectorAll('.photo').forEach(box => {
 (function () {
   const pager = document.getElementById('pager');
   const tabs = document.getElementById('tabs');
-  if (!pager || !tabs) return;
+  const poster = document.querySelector('.poster');
+  if (!pager || !tabs || !poster) return;
 
   const days = [...document.querySelectorAll('.days > .day')];
   const info = document.querySelector('.page-info');
@@ -1314,7 +1333,8 @@ document.querySelectorAll('.photo').forEach(box => {
     b.addEventListener('click', () => {
       // 再点一次当前页 = 回到这一页的顶部（和常见 App 的标签栏一致）
       if (b.getAttribute('aria-selected') === 'true') {
-        pages[i].scrollTo({ top: 0, behavior: 'smooth' });
+        // 再点一次当前标签：回到这一页最顶上，页头也一起放回来
+        poster.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
       go(i, true);
@@ -1334,8 +1354,34 @@ document.querySelectorAll('.photo').forEach(box => {
     history.replaceState(null, '', i < days.length ? '#d' + (i + 1) : '#info');
   }
 
+  /* pager 的高度必须显式等于**当前页**的高度。
+     ⚠️ 不能让它自然撑开：flex 容器的高度取最高那页，
+        于是看 9/27（最短）时底部会多出几千像素空白。 */
+  let ro = null;
+  function fitHeight(i) {
+    const page = pages[i];
+    if (!page) return;
+    const h = page.scrollHeight;
+    if (h) pager.style.height = h + 'px';
+    // 图片一张张加载完会把页变高，得跟着量
+    if (ro) ro.disconnect();
+    if ('ResizeObserver' in window) {
+      ro = new ResizeObserver(() => {
+        if (cur === i) pager.style.height = page.scrollHeight + 'px';
+      });
+      ro.observe(page);
+    }
+  }
+
+  // 标签栏吸顶时，.poster 的 scrollTop 正好等于标签栏在文档里的位置
+  function stickyTop() { return Math.max(0, tabs.offsetTop - poster.offsetTop); }
+
   function go(i, smooth) {
     pager.scrollTo({ left: pager.clientWidth * i, behavior: smooth ? 'smooth' : 'auto' });
+    fitHeight(i);
+    /* 已经把页头滚上去了就别让它弹回来：只把竖向位置收到「标签栏刚吸顶」那一点，
+       新的一天从头开始看。没滚过页头的话一动不动，免得点标签就把页头顶掉。 */
+    if (poster.scrollTop > stickyTop()) poster.scrollTo({ top: stickyTop(), behavior: smooth ? 'smooth' : 'auto' });
     mark(i);
   }
 
@@ -1348,7 +1394,10 @@ document.querySelectorAll('.photo').forEach(box => {
     raf = requestAnimationFrame(() => {
       raf = 0;
       const w = pager.clientWidth;
-      if (w) mark(Math.max(0, Math.min(pages.length - 1, Math.round(pager.scrollLeft / w))));
+      if (!w) return;
+      const i = Math.max(0, Math.min(pages.length - 1, Math.round(pager.scrollLeft / w)));
+      if (i !== cur) fitHeight(i);
+      mark(i);
     });
   }, { passive: true });
 
@@ -1408,10 +1457,17 @@ document.querySelectorAll('.photo').forEach(box => {
   }
 
   function boot() {
-    if (!isPaged()) { tabs.hidden = true; return; }
+    if (!isPaged()) {
+      tabs.hidden = true;
+      pager.style.height = '';      // 桌面档不能留着手机档量出来的死高度
+      if (ro) { ro.disconnect(); ro = null; }
+      return;
+    }
     tabs.hidden = false;
     buildBasics();
     ensurePages();
+    // 标签栏实际多高，交给 .day-hd 的 sticky 用
+    document.documentElement.style.setProperty('--tabh', tabs.offsetHeight + 'px');
     go(defaultPage(), false);
   }
   boot();
@@ -1424,7 +1480,7 @@ document.querySelectorAll('.photo').forEach(box => {
   let t = 0;
   addEventListener('resize', () => {
     clearTimeout(t);
-    t = setTimeout(() => { if (isPaged()) go(Math.max(cur, 0), false); else tabs.hidden = true; }, 120);
+    t = setTimeout(boot, 120);
   });
 })();
 
