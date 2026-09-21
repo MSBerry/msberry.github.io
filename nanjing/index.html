@@ -248,8 +248,12 @@
 
   /* ── 底部面板 ───────────────────────────── */
   .panels{display:grid;gap:14px;margin-top:15px}
+  /* 第一排＝出门前要准备的（穿 / 带 / 天气）。放最前面是因为这几样是
+     出发前一晚真的要照着做的；预约表和票价是到了现场才翻的。别再往下挪。 */
+  .row-pre{grid-template-columns:1fr 1.15fr .95fr}
   .row-a{grid-template-columns:1.02fr 1.1fr 1.08fr}
-  .row-b{grid-template-columns:.72fr .72fr .64fr 1.62fr}
+  /* row-b 现在只剩小贴士一张，占满整行 */
+  .row-b{grid-template-columns:1fr}
   .card{background:#fff;border-radius:14px;padding:14px 16px 15px;box-shadow:0 4px 14px rgba(150,170,185,.14)}
   .card h3{font-size:15.5px;font-weight:800;margin-bottom:9px;display:flex;align-items:center;gap:6px}
   .c-blue h3{color:#4b7f9f} .c-green h3{color:#45907f} .c-amber h3{color:#b08a3a}
@@ -435,8 +439,8 @@
     .photo{height:150px;font-size:12px}
 
     .panels{gap:12px;margin-top:0}
-    .panels.row-b{margin-top:12px}
-    .row-a,.row-b{grid-template-columns:1fr}
+    .panels.row-a,.panels.row-b{margin-top:12px}
+    .row-pre,.row-a,.row-b{grid-template-columns:1fr}
     .card{border-radius:12px;padding:13px 13px 14px}
     .card h3{font-size:16px}
     /* 两列清单在 390px 宽下每列只剩 ~160px，"薄外套 × 1"都要折行 */
@@ -1023,6 +1027,92 @@
 <div class="page-info">
 
 <!-- ── 底部面板 · 第一行 ──────────────────────────── -->
+<!-- ── 底部面板 · 第一排：出门前要准备的 ─────────────── -->
+<div class="panels row-pre">
+
+  <div class="card c-orange">
+    <h3>👕 穿什么</h3>
+    <div class="cols2">
+      <div class="box">
+        <div class="bt">大人 ×4（每人）</div>
+        <ul class="chk">
+          <li>短袖 × 3</li>
+          <li>薄外套 × 1</li>
+          <li>长裤 × 2</li>
+          <li>运动鞋（重要）</li>
+          <li>遮阳帽 / 墨镜</li>
+        </ul>
+      </div>
+      <div class="box hl">
+        <div class="bt">孩子 ×1</div>
+        <ul class="chk">
+          <li>短袖 × 4</li>
+          <li>薄外套 × 2</li>
+          <li>长裤 × 2</li>
+          <li>帽子 × 1</li>
+          <li><b>运动鞋</b>（和大人同等重要）</li>
+          <li>换洗内衣 × 3</li>
+          <li>备用鞋袜各 1</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">Day1 钟山、Day2 中华门+老门东走一整天，都是万步级别，<b>新鞋别在这几天穿</b>。
+    早晚和中午差 8–10℃，薄外套是刚需。</div>
+  </div>
+
+  <div class="card c-purple">
+    <h3>🎒 必备物品</h3>
+    <div class="cols2">
+      <div class="box">
+        <div class="bt">景区</div>
+        <ul class="chk">
+          <li>防晒霜 / 遮阳帽</li>
+          <li><b>驱蚊液</b>（紫金山蚊子多）</li>
+          <li>保温水壶 × 2</li>
+          <li>折叠雨伞 × 2</li>
+          <li>充电宝（导航+拍照）</li>
+        </ul>
+      </div>
+      <div class="box hl">
+        <div class="bt">孩子</div>
+        <ul class="chk">
+          <li>零食 + 湿巾 + 纸巾</li>
+          <li>常用药 / 创可贴</li>
+          <li>他自己的小背包</li>
+          <li>鸽食或面包（音乐台）</li>
+          <li><b>小手电</b>（中华门藏兵洞）</li>
+          <li><b>换洗上衣 + 薄雨衣</b>（D3 欢乐谷有水上项目）</li>
+          <li>平板 / 漫画（高铁上）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">🔴 证件：<b>身份证 × 4 + 孩子的身份证或户口本</b>。
+    三项免费预约是<b>五个人都要实名</b>（孩子占一个名额，别漏报），儿童票核验也查他的证件。</div>
+  </div>
+
+  <div class="card c-amber">
+    <h3>🌤️ 天气参考</h3>
+    <div class="wx">
+      <div class="w"><b>9/25</b> 约 19–28℃</div>
+      <div class="w"><b>9/26</b> 约 18–27℃</div>
+      <div class="w"><b>9/27</b> 约 18–27℃</div>
+      <div class="w">日均温差 8–10℃</div>
+    </div>
+    <div class="note"><b>这是南京 9 月下旬的常年气候区间，不是预报。</b>
+    真实预报请在 <b>9/24</b> 再看一次。<br><br>
+    <b>下雨怎么改：</b><br>
+    Day1 把户外的钟山压短、南博多留；<br>
+    Day2 大报恩寺、科举博物馆全室内，中华门瓮城的藏兵洞也在券门里，<b>基本不受影响</b>；<br>
+    <b>Day3 下雨最麻烦，因为两组受的影响相反：</b><br>
+    ▸ <b>妈妈组</b>：欢乐谷<b>下雨会关停户外项目</b>（过山车一类首当其冲），雨大基本等于白买票。
+    <b>票已经买了（253）</b>，所以 <b>9/24 看完预报就得决定</b> —— 真要下大雨，走小程序改期或退，
+    越临期越退不掉，别拖到当天。<br>
+    ▸ <b>爸爸组</b>：纪念馆和总统府主体都在室内，<b>几乎不受影响</b>（总统府的煦园是露天的，下雨少走两步）；
+    玄武湖那一段是露天的，下雨直接跳过 —— 反正它零成本、不预约。</div>
+  </div>
+
+</div>
+
 <div class="panels row-a">
 
   <div class="card c-blue">
@@ -1151,87 +1241,6 @@
 
 <!-- ── 底部面板 · 第二行 ──────────────────────────── -->
 <div class="panels row-b">
-
-  <div class="card c-orange">
-    <h3>👕 穿什么</h3>
-    <div class="cols2">
-      <div class="box">
-        <div class="bt">大人 ×4（每人）</div>
-        <ul class="chk">
-          <li>短袖 × 3</li>
-          <li>薄外套 × 1</li>
-          <li>长裤 × 2</li>
-          <li>运动鞋（重要）</li>
-          <li>遮阳帽 / 墨镜</li>
-        </ul>
-      </div>
-      <div class="box hl">
-        <div class="bt">孩子 ×1</div>
-        <ul class="chk">
-          <li>短袖 × 4</li>
-          <li>薄外套 × 2</li>
-          <li>长裤 × 2</li>
-          <li>帽子 × 1</li>
-          <li><b>运动鞋</b>（和大人同等重要）</li>
-          <li>换洗内衣 × 3</li>
-          <li>备用鞋袜各 1</li>
-        </ul>
-      </div>
-    </div>
-    <div class="note">Day1 钟山、Day2 中华门+老门东走一整天，都是万步级别，<b>新鞋别在这几天穿</b>。
-    早晚和中午差 8–10℃，薄外套是刚需。</div>
-  </div>
-
-  <div class="card c-purple">
-    <h3>🎒 必备物品</h3>
-    <div class="cols2">
-      <div class="box">
-        <div class="bt">景区</div>
-        <ul class="chk">
-          <li>防晒霜 / 遮阳帽</li>
-          <li><b>驱蚊液</b>（紫金山蚊子多）</li>
-          <li>保温水壶 × 2</li>
-          <li>折叠雨伞 × 2</li>
-          <li>充电宝（导航+拍照）</li>
-        </ul>
-      </div>
-      <div class="box hl">
-        <div class="bt">孩子</div>
-        <ul class="chk">
-          <li>零食 + 湿巾 + 纸巾</li>
-          <li>常用药 / 创可贴</li>
-          <li>他自己的小背包</li>
-          <li>鸽食或面包（音乐台）</li>
-          <li><b>小手电</b>（中华门藏兵洞）</li>
-          <li><b>换洗上衣 + 薄雨衣</b>（D3 欢乐谷有水上项目）</li>
-          <li>平板 / 漫画（高铁上）</li>
-        </ul>
-      </div>
-    </div>
-    <div class="note">🔴 证件：<b>身份证 × 4 + 孩子的身份证或户口本</b>。
-    三项免费预约是<b>五个人都要实名</b>（孩子占一个名额，别漏报），儿童票核验也查他的证件。</div>
-  </div>
-
-  <div class="card c-amber">
-    <h3>🌤️ 天气参考</h3>
-    <div class="wx">
-      <div class="w"><b>9/25</b> 约 19–28℃</div>
-      <div class="w"><b>9/26</b> 约 18–27℃</div>
-      <div class="w"><b>9/27</b> 约 18–27℃</div>
-      <div class="w">日均温差 8–10℃</div>
-    </div>
-    <div class="note"><b>这是南京 9 月下旬的常年气候区间，不是预报。</b>
-    真实预报请在 <b>9/24</b> 再看一次。<br><br>
-    <b>下雨怎么改：</b><br>
-    Day1 把户外的钟山压短、南博多留；<br>
-    Day2 大报恩寺、科举博物馆全室内，中华门瓮城的藏兵洞也在券门里，<b>基本不受影响</b>；<br>
-    <b>Day3 下雨最麻烦，因为两组受的影响相反：</b><br>
-    ▸ <b>妈妈组</b>：欢乐谷<b>下雨会关停户外项目</b>（过山车一类首当其冲），雨大基本等于白买票。
-    <b>票已经买了（253）</b>，所以 <b>9/24 看完预报就得决定</b> —— 真要下大雨，走小程序改期或退，
-    越临期越退不掉，别拖到当天。<br>
-    ▸ <b>爸爸组</b>：纪念馆和总统府主体都在室内，<b>几乎不受影响</b>（总统府的煦园是露天的，下雨少走两步）；
-    玄武湖那一段是露天的，下雨直接跳过 —— 反正它零成本、不预约。</div>
-  </div>
 
   <div class="card c-blue">
     <h3>💡 小贴士 · 出门前和当天要记住的</h3>
